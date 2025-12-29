@@ -5,7 +5,7 @@
             <!-- Brand -->
             <div>
                 <a href="/" class="flex items-center gap-2.5 text-xl font-bold text-white mb-4">
-                    <img src="{{ asset('image/dyanaf-logo.jpg') }}" alt="Dyanaf Store Logo" class="w-10 h-10 rounded-xl object-cover">
+                    <img src="{{ asset('image/dyanaf-logo.jpg') }}" alt="Dyanaf Store Logo" class="w-10 h-10 rounded-full object-cover">
                     <span>Dyanaf Store</span>
                 </a>
                 <p class="text-gray-400 text-sm leading-relaxed mb-6">

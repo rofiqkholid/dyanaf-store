@@ -4,10 +4,9 @@
 
 @section('content')
 <!-- Hero Section -->
-<section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+<section id="home" class="relative min-h-screen flex items-center pt-20 pb-10 overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 gradient-hero -z-20"></div>
-    <div class="absolute inset-0 opacity-50 -z-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.05&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
     <div class="container mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -109,9 +108,9 @@
     </div>
 
     <!-- Wave -->
-    <div class="absolute bottom-0 left-0 right-0 -z-10">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" />
+    <div class="absolute bottom-0 left-0 right-0 -z-10 translate-y-[2px]">
+        <svg viewBox="0 0 1440 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block">
+            <path d="M0,20 L40,22 C80,24 160,28 240,26 C320,24 400,16 480,14 C560,12 640,16 720,22 C800,28 880,36 960,36 C1040,36 1120,28 1200,22 C1280,16 1360,12 1400,10 L1440,8 V54 H0 Z" fill="white" />
         </svg>
     </div>
 </section>

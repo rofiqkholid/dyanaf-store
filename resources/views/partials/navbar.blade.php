@@ -1,15 +1,15 @@
 <!-- Navigation -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2.5 text-xl font-bold text-white navbar-brand">
-            <img src="{{ asset('image/dyanaf-logo.jpg') }}" alt="Dyanaf Store Logo" class="w-10 h-10 rounded-xl object-cover">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 md:py-4">
+    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 text-base md:text-xl font-bold text-white navbar-brand">
+            <img src="{{ asset('image/dyanaf-logo.jpg') }}" alt="Dyanaf Store Logo" class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover">
             <span>Dyanaf Store</span>
         </a>
 
-        <button class="md:hidden flex flex-col gap-1.5 p-2.5 z-[1001]" id="mobileMenuBtn">
-            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
-            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
-            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <button class="md:hidden flex flex-col gap-1 p-2 z-[1001]" id="mobileMenuBtn">
+            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
         </button>
 
         <ul class="hidden md:flex items-center gap-2" id="navbarMenu">
@@ -21,8 +21,8 @@
         </ul>
 
         <div class="hidden md:flex items-center gap-3">
-            <a href="#contact" class="px-5 py-2.5 text-sm font-semibold bg-white text-gray-800 border border-gray-300 rounded-xl hover:-translate-y-0.5 hover:bg-gray-100 transition-all">
-                Pesan Sekarang
+            <a href="#contact" class="text-white text-xl hover:text-gray-300 transition-all">
+                <i class="fas fa-shopping-bag"></i>
             </a>
         </div>
     </div>
