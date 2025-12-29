@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 md:py-4">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
     <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2 text-base md:text-xl font-bold text-white navbar-brand">
             <img src="{{ asset('image/dyanaf-logo.jpg') }}" alt="Dyanaf Store Logo" class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover">
@@ -29,7 +29,7 @@
 </nav>
 
 <!-- Mobile Menu -->
-<div id="mobileMenu" class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-4 transform translate-x-full transition-transform duration-300 md:hidden">
+<div id="mobileMenu" class="fixed top-0 left-0 right-0 inset-0 bg-white z-40 flex flex-col items-center justify-center gap-4 transform translate-x-full transition-transform duration-300 md:hidden">
     <a href="#home" class="text-lg font-medium text-gray-800 py-2">Beranda</a>
     <a href="#services" class="text-lg font-medium text-gray-800 py-2">Layanan</a>
     <a href="#portfolio" class="text-lg font-medium text-gray-800 py-2">Portfolio</a>

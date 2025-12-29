@@ -58,12 +58,12 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.style.backgroundColor = '#2b3a4b';
-                navbar.classList.add('border-b', 'border-gray-600', 'py-2', 'md:py-3');
-                navbar.classList.remove('md:py-4');
+                navbar.classList.add('border-b', 'border-gray-600', 'py-3');
+                navbar.classList.remove('py-4');
             } else {
                 navbar.style.backgroundColor = 'transparent';
-                navbar.classList.remove('border-b', 'border-gray-600', 'py-2', 'md:py-3');
-                navbar.classList.add('md:py-4');
+                navbar.classList.remove('border-b', 'border-gray-600', 'py-3');
+                navbar.classList.add('py-4');
             }
         });
 
