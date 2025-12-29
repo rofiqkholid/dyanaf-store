@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section id="home" class="relative min-h-screen flex items-center pt-20 pb-10 overflow-hidden">
+<section id="home" class="relative min-h-screen flex items-center pt-32 lg:pt-20 pb-10 overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 gradient-hero -z-20"></div>
 
