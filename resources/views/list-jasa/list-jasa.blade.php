@@ -28,7 +28,7 @@
                     <h3 class="text-xl font-bold text-gray-700">Tugas Akademik</h3>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- Card -->
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
                         <div class="flex items-start gap-3 mb-3">
@@ -141,7 +141,7 @@
                     <h3 class="text-xl font-bold text-gray-700">Kebutuhan Lamar Pekerjaan</h3>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
                         <div class="flex items-start gap-3 mb-3">
                             <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-100 rounded-lg group-hover:bg-gray-800 group-hover:text-white transition-all text-gray-600 text-lg">
@@ -250,7 +250,7 @@
                     <h3 class="text-xl font-bold text-gray-700">Kebutuhan Perusahaan & Bisnis</h3>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
                         <div class="flex items-start gap-3 mb-3">
                             <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-100 rounded-lg group-hover:bg-gray-800 group-hover:text-white transition-all text-gray-600 text-lg">
