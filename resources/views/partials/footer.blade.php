@@ -56,8 +56,8 @@
             <div>
                 <h4 class="text-white font-semibold mb-5">Hubungi Kami</h4>
                 <div class="space-y-3 text-sm">
-                    <p class="text-gray-400"><span class="text-gray-300 font-medium">Email:</span> hello@dyanafstore.com</p>
-                    <p class="text-gray-400"><span class="text-gray-300 font-medium">WhatsApp:</span> +62 812-3456-7890</p>
+                    <p class="text-gray-400"><span class="text-gray-300 font-medium">Email:</span> dyanaf.joki@gmail.com</p>
+                    <p class="text-gray-400"><span class="text-gray-300 font-medium">WhatsApp:</span> +62 858-8172-1193</p>
                     <p class="text-gray-400"><span class="text-gray-300 font-medium">Jam Kerja:</span> Senin - Sabtu, 09:00 - 18:00</p>
                 </div>
             </div>
