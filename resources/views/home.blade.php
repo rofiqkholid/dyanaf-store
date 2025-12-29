@@ -557,7 +557,7 @@
             <div class="text-center mb-10">
                 <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Siapa di Balik Dyanaf Store?</h2>
             </div>
-            <div class="flex flex-col md:flex-row items-center gap-8 py-12 px-20 bg-gray-50 rounded-3xl">
+            <div class="flex flex-col md:flex-row items-center gap-8 py-12 px-20 md:px-8 bg-gray-50 rounded-3xl">
                 <!-- Profile Picture -->
                 <div class="w-32 h-32 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
                     <i class="fas fa-user text-5xl text-gray-400"></i>
