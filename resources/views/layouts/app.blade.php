@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Dyanaf Store - Jasa Pembuatan Website, CV Profesional, dan Surat Lamaran Pekerjaan Berkualitas">
-
-    <title>@yield('title', 'Dyanaf Store - Jasa Digital Profesional')</title>
+    
+    <title>@yield('title', 'Dyanaf Store')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('image/dyanaf-logo-circle.png') }}">
@@ -30,7 +30,7 @@
 
     <!-- Main Content -->
     <main>
-        @yield('content')
+        @yield('content')   
     </main>
 
     @include('partials.footer')
@@ -53,19 +53,7 @@
             });
         });
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.style.backgroundColor = '#2b3a4b';
-                navbar.classList.add('border-b', 'border-gray-600', 'py-3');
-                navbar.classList.remove('py-4');
-            } else {
-                navbar.style.backgroundColor = 'transparent';
-                navbar.classList.remove('border-b', 'border-gray-600', 'py-3');
-                navbar.classList.add('py-4');
-            }
-        });
+
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
