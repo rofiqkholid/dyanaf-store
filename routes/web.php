@@ -28,3 +28,6 @@ Route::get('/order/desain-grafis', fn() => view('bisnis.desain-grafis'))->name('
 Route::get('/order/data-entry', fn() => view('bisnis.data-entry'))->name('order.data-entry');
 Route::get('/order/jasa-ketik-word', fn() => view('bisnis.jasa-ketik-word'))->name('order.jasa-ketik-word');
 Route::get('/order/jasa-excel', fn() => view('bisnis.jasa-excel'))->name('order.jasa-excel');
+
+// Payment Route
+Route::post('/payment/checkout', [App\Http\Controllers\OrderController::class, 'checkout'])->name('payment.checkout');

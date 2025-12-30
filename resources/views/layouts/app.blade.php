@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Dyanaf Store - Jasa Pembuatan Website, CV Profesional, dan Surat Lamaran Pekerjaan Berkualitas">
 
     <title>@yield('title', 'Dyanaf Store')</title>
@@ -162,20 +163,75 @@
             const target = document.querySelector('#' + targetId);
 
             if (target) {
-                // Scroll to target smoothly
                 setTimeout(() => {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
-
-                    // Remove hash from URL
                     history.replaceState(null, null, window.location.pathname);
                 }, 500);
             } else {
-                // Remove hash even if target not found
                 history.replaceState(null, null, window.location.pathname);
             }
+        }
+    </script>
+
+    <!-- Midtrans Snap -->
+    @if(config('midtrans.is_production'))
+    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    @else
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    @endif
+
+    <script>
+        function triggerPayment(serviceName, price) {
+            // Change button text to "Loading..."
+            const btn = document.getElementById('pay-button');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+            fetch('{{ route("payment.checkout") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        service_name: serviceName,
+                        price: price
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (btn) btn.innerHTML = originalText;
+
+                    if (data.snap_token) {
+                        window.snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                alert("Pembayaran Berhasil!");
+                                window.location.reload();
+                            },
+                            onPending: function(result) {
+                                alert("Menunggu Pembayaran!");
+                                window.location.reload();
+                            },
+                            onError: function(result) {
+                                alert("Pembayaran Gagal!");
+                                window.location.reload();
+                            },
+                            onClose: function() {
+                                alert('Anda menutup popup pembayaran tanpa menyelesaikan pembayaran');
+                            }
+                        });
+                    } else {
+                        alert('Gagal membuat transaksi: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    if (btn) btn.innerHTML = originalText;
+                    console.error(error);
+                    alert('Terjadi kesalahan sistem');
+                });
         }
     </script>
 

@@ -178,10 +178,10 @@
                     </div>
                     
                     <!-- Order Button -->
-                    <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Gabung%20PDF%20(Rp%2010.000)" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
+                    <button onclick="triggerPayment('Gabung PDF', 10000)" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Order & Bayar</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
