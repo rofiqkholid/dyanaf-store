@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Dyanaf Store - Jasa Pembuatan Website, CV Profesional, dan Surat Lamaran Pekerjaan Berkualitas">
-    
+
     <title>@yield('title', 'Dyanaf Store')</title>
 
     <!-- Favicon -->
@@ -25,17 +25,90 @@
     @stack('styles')
 </head>
 
-<body class="font-sans antialiased text-gray-700 bg-white">
+<body class="font-sans antialiased text-gray-700 page-loading">
+    <!-- Loading Spinner -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-container">
+            <div class="loader-spinner">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="center-dot"></div>
+            </div>
+        </div>
+    </div>
+
     @include('partials.navbar')
 
     <!-- Main Content -->
     <main>
-        @yield('content')   
+        @yield('content')
     </main>
 
     @include('partials.footer')
 
     <script>
+        // Page Loading Handler
+        (function() {
+            const pageLoader = document.getElementById('pageLoader');
+            const body = document.body;
+
+            // Hide loader when page is fully loaded
+            function hideLoader() {
+                body.classList.remove('page-loading');
+                setTimeout(() => {
+                    pageLoader.classList.add('hidden');
+                }, 100);
+            }
+
+            // Show loader
+            function showLoader() {
+                pageLoader.classList.remove('hidden');
+                body.classList.add('page-loading');
+            }
+
+            // Hide loader on page load
+            if (document.readyState === 'complete') {
+                hideLoader();
+            } else {
+                window.addEventListener('load', hideLoader);
+            }
+
+            // Handle internal link navigation
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+
+                // Check if it's an internal link (not external, not anchor, not mailto, etc.)
+                if (link &&
+                    link.href &&
+                    link.href.startsWith(window.location.origin) &&
+                    !link.href.includes('#') &&
+                    !link.hasAttribute('target') &&
+                    !link.href.startsWith('mailto:') &&
+                    !link.href.startsWith('tel:')) {
+
+                    // Only show loader if navigating to a different page
+                    if (link.href !== window.location.href) {
+                        showLoader();
+                    }
+                }
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) {
+                    hideLoader();
+                }
+            });
+
+            // Fallback: hide loader if it's still showing after 3 seconds
+            setTimeout(() => {
+                if (!pageLoader.classList.contains('hidden')) {
+                    hideLoader();
+                }
+            }, 3000);
+        })();
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
