@@ -201,11 +201,17 @@
                     </div>
                 </div>
                 
-                <!-- Order Button (Compact on Mobile) -->
-                <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Makalah%20Tanpa%20Materi%20(Rp%20100.000)" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Order & Bayar</span>
-                </a>
+                <!-- Wrapper for Mobile Price & Button -->
+                <div class="flex flex-col items-end md:block">
+                    <!-- Price for Mobile (Above Button) -->
+                    <span class="md:hidden text-sm font-bold text-gray-900 mb-1">Rp 100.000</span>
+                    
+                    <!-- Order Button -->
+                    <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Makalah%20Tanpa%20Materi%20(Rp%20100.000)" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Order & Bayar</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -213,4 +219,49 @@
 
 <!-- Add padding to bottom of page for floating bar -->
 <div class="h-20"></div>
+
+<!-- Floating Bottom Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50">
+    <div class="container mx-auto px-4 py-3 md:px-6 md:py-4">
+        <div class="flex items-center justify-between gap-3 md:gap-6">
+            <!-- Left: Simple Back Link -->
+            <a href="{{ route('list-jasa') }}" class="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-all font-medium text-sm md:text-base">
+                <i class="fas fa-arrow-left"></i>
+                <span>Kembali <span class="hidden sm:inline">ke List Harga</span></span>
+            </a>
+            
+            <!-- Right: Service Info + Order Button -->
+            <div class="flex items-center gap-3 md:gap-6">
+                <!-- Service Info (Desktop Only) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 flex-shrink-0">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-base leading-tight">Makalah (Tanpa Materi)</h3>
+                        <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 100.000</p>
+                    </div>
+                </div>
+                
+                <!-- Wrapper for Mobile Price & Button -->
+                <div class="flex flex-col items-end md:block">
+                    <!-- Name & Price for Mobile (Above Button) -->
+                    <div class="md:hidden text-right mb-1">
+                        <div class="text-xs text-gray-600 font-medium">Makalah (Tanpa Materi)</div>
+                        <div class="text-sm font-bold text-gray-900">Rp 100.000</div>
+                    </div>
+                    
+                    <!-- Order Button -->
+                    <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Makalah%20Tanpa%20Materi%20(Rp%20100.000)" target="_blank" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Order & Bayar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add padding to bottom of page for floating bar -->
+<div class="h-24 md:h-20"></div>
 @endsection
