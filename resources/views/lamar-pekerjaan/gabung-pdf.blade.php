@@ -1,0 +1,149 @@
+@extends('layouts.app')
+
+@section('title', 'Gabung PDF - Dyanaf Store')
+
+@section('content')
+<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+                <i class="fas fa-briefcase"></i>
+                <span>Kebutuhan Lamar Pekerjaan</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Jasa Gabung PDF</h1>
+            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Menggabungkan beberapa file PDF menjadi satu dokumen. Cocok untuk melampirkan berkas lamaran kerja atau dokumen lainnya.</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
+                <div class="flex items-center gap-2">
+                    <i class="far fa-clock"></i>
+                    <span>30 Menit</span>
+                </div>
+                <div class="w-px h-6 bg-white/20"></div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-tag"></i>
+                    <span class="text-2xl font-bold">Rp 10.000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Sering kali saat melamar kerja atau mengurus dokumen, kita perlu menggabungkan beberapa PDF (CV, surat lamaran, ijazah, sertifikat) menjadi satu file. Kami membantu Anda menggabungkan PDF dengan rapi dan teratur.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Simple, cepat, dan murah - hanya Rp 10.000!
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Yang Anda Dapatkan</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">PDF Tergabung Rapi</h3>
+                        <p class="text-gray-600 text-sm">Semua file dijadikan satu dengan urutan yang benar</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-sort-numeric-down"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Urutan Sesuai Request</h3>
+                        <p class="text-gray-600 text-sm">Urutan file bisa disesuaikan dengan kebutuhan</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">File Size Optimal</h3>
+                        <p class="text-gray-600 text-sm">File hasil tidak terlalu besar, mudah diupload</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Cepat & Murah</h3>
+                        <p class="text-gray-600 text-sm">30 menit selesai, hanya Rp 10.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim File PDF</h3>
+                        <p class="text-gray-600">Kirimkan semua file PDF yang perlu digabung via email.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Tentukan Urutan</h3>
+                        <p class="text-gray-600">Informasikan urutan file (misal: CV - Surat Lamaran - Ijazah - Sertifikat).</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Proses Merge</h3>
+                        <p class="text-gray-600">Kami gabungkan semua file menjadi satu PDF dengan rapi.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Hasil</h3>
+                        <p class="text-gray-600">PDF tergabung dikirim kembali, siap digunakan!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Perlu Gabung PDF?</h2>
+            <p class="text-gray-600 mb-8">Kirimkan file Anda dan dapatkan PDF tergabung dalam 30 menit</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:dyanaf.joki@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all">
+                    <i class="fas fa-envelope"></i>
+                    Pesan Sekarang
+                </a>
+                <a href="{{ route('list-jasa') }}" class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-800 text-gray-800 font-semibold rounded-xl hover:bg-gray-800 hover:text-white transition-all">
+                    Lihat Layanan Lain
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

@@ -1,0 +1,149 @@
+@extends('layouts.app')
+
+@section('title', 'Joki Tugas Harian - Dyanaf Store')
+
+@section('content')
+<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+                <i class="fas fa-book"></i>
+                <span>Tugas Akademik</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Joki Tugas Harian</h1>
+            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Bantuan mengerjakan tugas harian kuliah atau sekolah dengan cepat dan akurat. Cocok untuk tugas-tugas kecil yang menumpuk.</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
+                <div class="flex items-center gap-2">
+                    <i class="far fa-clock"></i>
+                    <span>3 Jam</span>
+                </div>
+                <div class="w-px h-6 bg-white/20"></div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-tag"></i>
+                    <span class="text-2xl font-bold">Rp 50.000<span class="text-base font-normal">/tugas</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Tugas harian yang menumpuk? Deadline besok pagi? Kami siap bantu! Layanan joki tugas harian cocok untuk mengerjakan tugas-tugas kecil seperti essay pendek, soal pilihan ganda, analisis singkat, review jurnal, dan tugas sejenis.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Pengerjaan cepat dalam 3 jam, perfect untuk deadline yang mepet!
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Yang Anda Dapatkan</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Super Cepat</h3>
+                        <p class="text-gray-600 text-sm">Selesai dalam 3 jam, perfect untuk deadline mendadak</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Jawaban Akurat</h3>
+                        <p class="text-gray-600 text-sm">Dikerjakan dengan teliti dan sesuai instruksi</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Harga Terjangkau</h3>
+                        <p class="text-gray-600 text-sm">Rp 50.000/tugas, hemat untuk tugas-tugas kecil</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Format Sesuai Request</h3>
+                        <p class="text-gray-600 text-sm">Word, PDF, atau format lain sesuai kebutuhan Anda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Tugas</h3>
+                        <p class="text-gray-600">Kirimkan soal atau instruksi tugas yang perlu dikerjakan.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Konfirmasi Cepat</h3>
+                        <p class="text-gray-600">Kami review dan konfirmasi bisa dikerjakan. Lalu Anda bayar.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Pengerjaan</h3>
+                        <p class="text-gray-600">Tugas dikerjakan dengan cepat dan teliti dalam 3 jam.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Hasil</h3>
+                        <p class="text-gray-600">Tugas dikirim dan siap dikumpulkan. Cepat dan mudah!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Ada Tugas yang Menumpuk?</h2>
+            <p class="text-gray-600 mb-8">Hubungi kami sekarang dan selesaikan tugas Anda dalam 3 jam!</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:dyanaf.joki@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all">
+                    <i class="fas fa-envelope"></i>
+                    Pesan Sekarang
+                </a>
+                <a href="{{ route('list-jasa') }}" class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-800 text-gray-800 font-semibold rounded-xl hover:bg-gray-800 hover:text-white transition-all">
+                    Lihat Layanan Lain
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

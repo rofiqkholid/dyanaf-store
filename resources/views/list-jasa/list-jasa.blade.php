@@ -50,8 +50,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 100.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Makalah%20(Tanpa%20Materi)" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.makalah-tanpa-materi') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <!-- Card -->
@@ -75,8 +75,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 70.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Makalah%20(Ada%20Materi)" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.makalah-ada-materi') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <!-- Card -->
@@ -100,8 +100,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 130.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Jurnal" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.jurnal') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <!-- Card -->
@@ -125,8 +125,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 50.000<span class="text-xs font-normal text-gray-400">/tugas</span></span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Joki%20Tugas%20Harian" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.joki-tugas') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                 </div>
@@ -162,8 +162,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 25.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20CV%20Kreatif" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.cv-kreatif') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -186,8 +186,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 60.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20CV%20ATS" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.cv-ats') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -210,8 +210,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 20.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Surat%20Lamaran" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.surat-lamaran') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -234,8 +234,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 10.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Gabung%20PDF" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.gabung-pdf') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                 </div>
@@ -271,8 +271,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 600.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Web%20Statis" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.web-statis') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -295,8 +295,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 1.200.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Web%20Dinamis" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.web-dinamis') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -319,8 +319,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 100.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Jasa%20Desain" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.desain-grafis') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -343,8 +343,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 150.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Data%20Entry" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.data-entry') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -367,8 +367,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 100.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Jasa%20Ketik" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.jasa-ketik-word') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
@@ -391,8 +391,8 @@
                                 <span class="text-lg font-bold text-gray-700">Rp 130.000</span>
                             </div>
                         </div>
-                        <a href="https://wa.me/6285881721193?text=Halo%20kak,%20saya%20mau%20order%20Jasa%20Excel" target="_blank" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
-                            <i class="fab fa-whatsapp"></i> Order Sekarang
+                        <a href="{{ route('order.jasa-excel') }}" class="flex items-center justify-center gap-1.5 w-full py-2 gradient-primary text-white rounded-lg font-medium text-xs hover:opacity-90 transition-opacity">
+                            <i class="fas fa-info-circle"></i> Lihat Detail
                         </a>
                     </div>
                 </div>

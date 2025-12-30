@@ -1,0 +1,149 @@
+@extends('layouts.app')
+
+@section('title', 'Makalah Ada Materi - Dyanaf Store')
+
+@section('content')
+<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+                <i class="fas fa-book"></i>
+                <span>Tugas Akademik</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Jasa Pembuatan Makalah<br />(Ada Materi)</h1>
+            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Pembuatan makalah berdasarkan materi atau referensi yang Anda berikan. Lebih cepat dan efisien dengan sumber yang sudah tersedia.</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
+                <div class="flex items-center gap-2">
+                    <i class="far fa-clock"></i>
+                    <span>1 – 6 Jam</span>
+                </div>
+                <div class="w-px h-6 bg-white/20"></div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-tag"></i>
+                    <span class="text-2xl font-bold">Rp 70.000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Jika Anda sudah memiliki materi, buku, atau referensi untuk makalah, layanan ini cocok untuk Anda. Kami akan mengolah materi yang Anda berikan menjadi makalah yang sistematis, terstruktur, dan siap dikumpulkan.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Dengan materi yang sudah ada, proses pengerjaan lebih cepat dan harga lebih terjangkau. Cocok untuk deadline yang ketat!
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Yang Anda Dapatkan</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pengolahan Materi Profesional</h3>
+                        <p class="text-gray-600 text-sm">Materi Anda diolah menjadi makalah yang rapi dan akademis</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pengerjaan Cepat</h3>
+                        <p class="text-gray-600 text-sm">Selesai dalam 1-6 jam, sangat cocok untuk deadline mepet</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Format Standar Akademik</h3>
+                        <p class="text-gray-600 text-sm">Cover, pendahuluan, pembahasan, penutup, dan daftar pustaka</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">File Word & PDF</h3>
+                        <p class="text-gray-600 text-sm">Mendapatkan file dalam format .docx dan .pdf</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Materi</h3>
+                        <p class="text-gray-600">Kirimkan materi/referensi yang sudah Anda miliki, topik makalah, dan spesifikasi yang dibutuhkan.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Konfirmasi</h3>
+                        <p class="text-gray-600">Kami konfirmasi materi dan estimasi waktu pengerjaan. Setelah deal, lakukan pembayaran.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Proses Penulisan</h3>
+                        <p class="text-gray-600">Kami menulis makalah berdasarkan materi yang Anda berikan dengan struktur yang sistematis.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Selesai</h3>
+                        <p class="text-gray-600">Makalah dikirim tepat waktu. Revisi gratis jika ada yang perlu diperbaiki.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Siap Memesan?</h2>
+            <p class="text-gray-600 mb-8">Hubungi kami sekarang dan dapatkan makalah berkualitas dalam waktu singkat</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:dyanaf.joki@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all">
+                    <i class="fas fa-envelope"></i>
+                    Kirim Email
+                </a>
+                <a href="{{ route('list-jasa') }}" class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-800 text-gray-800 font-semibold rounded-xl hover:bg-gray-800 hover:text-white transition-all">
+                    Lihat Layanan Lain
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
