@@ -13,11 +13,11 @@
         </button>
 
         <ul class="hidden md:flex items-center gap-2" id="navbarMenu">
-            <li><a href="#home" class="nav-link px-4 py-2.5 text-sm font-medium text-white/90 rounded-lg hover:text-white hover:bg-white/10 transition-all">Beranda</a></li>
-            <li><a href="#services" class="nav-link px-4 py-2.5 text-sm font-medium text-white/90 rounded-lg hover:text-white hover:bg-white/10 transition-all">Layanan</a></li>
-            <li><a href="#portfolio" class="nav-link px-4 py-2.5 text-sm font-medium text-white/90 rounded-lg hover:text-white hover:bg-white/10 transition-all">Portfolio</a></li>
-            <li><a href="#pricing" class="nav-link px-4 py-2.5 text-sm font-medium text-white/90 rounded-lg hover:text-white hover:bg-white/10 transition-all">Harga</a></li>
-            <li><a href="#contact" class="nav-link px-4 py-2.5 text-sm font-medium text-white/90 rounded-lg hover:text-white hover:bg-white/10 transition-all">Kontak</a></li>
+            <li><a href="#home" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Beranda<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
+            <li><a href="#services" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Layanan<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
+            <li><a href="#portfolio" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Portfolio<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
+            <li><a href="#pricing" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Harga<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
+            <li><a href="#contact" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Kontak<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
         </ul>
 
         <div class="hidden md:flex items-center gap-3">
