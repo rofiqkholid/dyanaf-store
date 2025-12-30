@@ -24,12 +24,12 @@
                     Layanan profesional pembuatan website, CV berkualitas, dan surat lamaran pekerjaan yang akan membantu Anda tampil lebih menonjol di era digital.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-                    <a href="{{ route('list-jasa') }}" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white border border-white rounded-xl hover:bg-white hover:text-gray-800 transition-all">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 ">
+                    <a href="{{ route('list-jasa') }}" class="inline-flex items-center bg-white/15 justify-center gap-2 px-8 py-4 text-base font-semibold text-white border border-white/20 rounded-full hover:bg-white hover:text-gray-800 transition-all">
                         <span>List Harga</span>
                         <i class="fas fa-hand-point-right"></i>
                     </a>
-                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-1 border-white rounded-xl hover:bg-white hover:text-gray-800 transition-all">
+                    <a href="#contact" class="inline-flex items-center bg-white/15 justify-center gap-2 px-8 py-4 text-base font-semibold text-white border border-white/20 rounded-full hover:bg-white hover:text-gray-800 transition-all">
                         Hubungi Kami
                     </a>
                 </div>

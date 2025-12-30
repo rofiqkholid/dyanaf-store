@@ -6,11 +6,23 @@
             <span>Dyanaf Store</span>
         </a>
 
-        <button class="md:hidden flex flex-col gap-1 p-2 z-[1001]" id="mobileMenuBtn">
-            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
-            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
-            <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
-        </button>
+        <div class="md:hidden flex items-center gap-5">
+            <a href="{{ route('list-jasa') }}" class="text-white hover:text-gray-300 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+            </a>
+            <a href="/#contact" class="text-white hover:text-gray-300 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+            </a>
+            <button class="flex flex-col gap-1 p-2 z-[1001]" id="mobileMenuBtn">
+                <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
+                <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
+                <span class="block w-5 h-0.5 bg-white transition-all duration-300"></span>
+            </button>
+        </div>
 
         <ul class="hidden md:flex items-center gap-2" id="navbarMenu">
             <li><a href="/#home" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Beranda<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
@@ -20,9 +32,16 @@
             <li><a href="/#contact" class="nav-link relative px-4 py-2.5 text-sm font-medium text-white/90 hover:text-white transition-colors group">Kontak<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span></a></li>
         </ul>
 
-        <div class="hidden md:flex items-center gap-3">
-            <a href="{{ route('list-jasa') }}" class="text-white text-xl hover:text-gray-300 transition-all">
-                <i class="fas fa-shopping-bag"></i>
+        <div class="hidden md:flex items-center gap-5">
+            <a href="{{ route('list-jasa') }}" class="text-white hover:text-gray-300 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+            </a>
+            <a href="/#contact" class="text-white hover:text-gray-300 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
             </a>
         </div>
     </div>
