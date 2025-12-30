@@ -147,23 +147,6 @@
     </div>
 </section>
 
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="max-w-3xl mx-auto bg-white rounded-2xl p-8 md:p-12 text-center border border-gray-200">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Tingkatkan Peluang Lolos ATS</h2>
-            <p class="text-gray-600 mb-8">Dapatkan CV yang ATS-friendly dan optimized untuk posisi impian Anda</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:dyanaf.joki@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all">
-                    <i class="fas fa-envelope"></i>
-                    Pesan Sekarang
-                </a>
-                <a href="{{ route('list-jasa') }}" class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-800 text-gray-800 font-semibold rounded-xl hover:bg-gray-800 hover:text-white transition-all">
-                    Lihat Layanan Lain
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Floating Bottom Bar -->
 <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50">
     <div class="container mx-auto px-4 py-3 md:px-6 md:py-4">
