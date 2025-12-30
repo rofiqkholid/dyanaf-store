@@ -534,7 +534,7 @@
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 flex items-center justify-center gradient-primary text-white font-bold rounded-full">S</div>
                     <div>
-                        <h5 class="font-semibold text-gray-900">S**i N*******a</h5>
+                        <h5 class="font-semibold text-gray-900">S**i N******a</h5>
                         <span class="text-sm text-gray-500">Pemilik Toko Online</span>
                     </div>
                 </div>
