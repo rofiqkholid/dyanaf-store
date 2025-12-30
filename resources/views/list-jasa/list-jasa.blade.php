@@ -36,7 +36,7 @@
                                 <i class="fas fa-file-alt"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Makalah</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Makalah</h4>
                                 <p class="text-[11px] text-gray-400">(Tanpa Materi)</p>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <i class="fas fa-book-open"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Makalah</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Makalah</h4>
                                 <p class="text-[11px] text-gray-400">(Ada Materi)</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                 <i class="fas fa-newspaper"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Jurnal</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Jurnal</h4>
                                 <p class="text-[11px] text-gray-400">Ilmiah/Akademik</p>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Joki Tugas</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Joki Tugas</h4>
                                 <p class="text-[11px] text-gray-400">Tugas Harian</p>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                 <i class="fas fa-id-card"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">CV Kreatif</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">CV Kreatif</h4>
                                 <p class="text-[11px] text-gray-400">Desain Modern</p>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                                 <i class="fas fa-shield-alt"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">CV ATS</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">CV ATS</h4>
                                 <p class="text-[11px] text-gray-400">Lolos Sistem ATS</p>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                                 <i class="fas fa-envelope-open-text"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Surat Lamaran</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Surat Lamaran</h4>
                                 <p class="text-[11px] text-gray-400">Profesional</p>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 <i class="fas fa-file-pdf"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Gabung PDF</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Gabung PDF</h4>
                                 <p class="text-[11px] text-gray-400">Merge Dokumen</p>
                             </div>
                         </div>
@@ -250,14 +250,14 @@
                     <h3 class="text-xl font-bold text-gray-700">Kebutuhan Perusahaan & Bisnis</h3>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="group bg-white p-4 rounded-xl border border-gray-300 hover:border-gray-400 transition-all duration-300">
                         <div class="flex items-start gap-3 mb-3">
                             <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-100 rounded-lg group-hover:bg-gray-800 group-hover:text-white transition-all text-gray-600 text-lg">
                                 <i class="fas fa-laptop-code"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Web Statis</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Web Statis</h4>
                                 <p class="text-[11px] text-gray-400">Landing Page</p>
                             </div>
                         </div>
@@ -281,7 +281,7 @@
                                 <i class="fas fa-code"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Web Dinamis</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Web Dinamis</h4>
                                 <p class="text-[11px] text-gray-400">Excl. Hosting</p>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                                 <i class="fas fa-paint-brush"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Desain Grafis</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Desain Grafis</h4>
                                 <p class="text-[11px] text-gray-400">Logo, Banner, dll</p>
                             </div>
                         </div>
@@ -329,7 +329,7 @@
                                 <i class="fas fa-keyboard"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Data Entry</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Data Entry</h4>
                                 <p class="text-[11px] text-gray-400">Input Data</p>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                                 <i class="fab fa-microsoft"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Jasa Ketik Word</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Jasa Ketik Word</h4>
                                 <p class="text-[11px] text-gray-400">Proposal, Surat</p>
                             </div>
                         </div>
@@ -377,7 +377,7 @@
                                 <i class="fas fa-file-excel"></i>
                             </div>
                             <div class="min-w-0">
-                                <h4 class="font-semibold text-gray-700 text-sm leading-tight">Jasa Excel</h4>
+                                <h4 class="font-semibold text-gray-700 text-sm md:text-lg leading-tight">Jasa Excel</h4>
                                 <p class="text-[11px] text-gray-400">Rumus, Tabel, dll</p>
                             </div>
                         </div>
