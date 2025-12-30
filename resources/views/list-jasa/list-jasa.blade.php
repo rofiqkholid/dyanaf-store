@@ -22,7 +22,7 @@
             <!-- Category 1: Tugas Akademik -->
             <div>
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 flex items-center justify-center gradient-primary rounded-lg text-white text-lg">
+                    <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 bg-gray-100 text-lg">
                         <i class="fas fa-book"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-700">Tugas Akademik</h3>
@@ -135,7 +135,7 @@
             <!-- Category 2: Kebutuhan Lamar Pekerjaan -->
             <div>
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 flex items-center justify-center gradient-primary rounded-lg text-white text-lg">
+                    <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 bg-gray-100 text-lg">
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-700">Kebutuhan Lamar Pekerjaan</h3>
@@ -244,7 +244,7 @@
             <!-- Category 3: Kebutuhan Bisnis -->
             <div>
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 flex items-center justify-center gradient-primary rounded-lg text-white text-lg">
+                    <div class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 bg-gray-100 text-lg">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-700">Kebutuhan Perusahaan & Bisnis</h3>

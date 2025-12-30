@@ -128,19 +128,55 @@
 
 
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scroll for anchor links and hash removal
+        document.querySelectorAll('a[href^="#"], a[href*="/#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+                const href = this.getAttribute('href');
+                const hash = href.includes('/#') ? href.split('/#')[1] : href.substring(1);
+
+                // If hash exists
+                if (hash) {
+                    const target = document.querySelector('#' + hash);
+
+                    // If target exists on current page
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Remove hash from URL after scroll
+                        setTimeout(() => {
+                            history.replaceState(null, null, window.location.pathname);
+                        }, 100);
+                    }
+                    // If target doesn't exist and this is a cross-page link (/#), let it navigate
+                }
+            });
+        });
+
+        // Remove hash from URL on page load if present
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1);
+            const target = document.querySelector('#' + targetId);
+
+            if (target) {
+                // Scroll to target smoothly
+                setTimeout(() => {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
-                }
-            });
-        });
+
+                    // Remove hash from URL
+                    history.replaceState(null, null, window.location.pathname);
+                }, 500);
+            } else {
+                // Remove hash even if target not found
+                history.replaceState(null, null, window.location.pathname);
+            }
+        }
     </script>
 
     @stack('scripts')
