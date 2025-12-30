@@ -522,7 +522,7 @@
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 flex items-center justify-center gradient-primary text-white font-bold rounded-full">A</div>
                     <div>
-                        <h5 class="font-semibold text-gray-900">Andi Prasetyo</h5>
+                        <h5 class="font-semibold text-gray-900">A**i P******o</h5>
                         <span class="text-sm text-gray-500">Fresh Graduate</span>
                     </div>
                 </div>
@@ -534,7 +534,7 @@
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 flex items-center justify-center gradient-primary text-white font-bold rounded-full">S</div>
                     <div>
-                        <h5 class="font-semibold text-gray-900">Siti Nurhaliza</h5>
+                        <h5 class="font-semibold text-gray-900">S**i N*******a</h5>
                         <span class="text-sm text-gray-500">Pemilik Toko Online</span>
                     </div>
                 </div>
@@ -546,7 +546,7 @@
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 flex items-center justify-center gradient-primary text-white font-bold rounded-full">B</div>
                     <div>
-                        <h5 class="font-semibold text-gray-900">Budi Santoso</h5>
+                        <h5 class="font-semibold text-gray-900">B**i S*****o</h5>
                         <span class="text-sm text-gray-500">Pengusaha</span>
                     </div>
                 </div>
