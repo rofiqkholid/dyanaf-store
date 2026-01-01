@@ -571,7 +571,7 @@
                     <h3 class="text-2xl font-bold text-gray-800 mb-2">Rofiq Kholid, NDE</h3>
                     <p class="text-gray-600 font-medium mb-4">Back-end Developer | Software Engineer</p>
                     <p class="text-gray-500 leading-relaxed mb-6">
-                        Berpengalaman dalam pengembangan aplikasi web dan software. Dengan dedikasi tinggi untuk memberikan hasil berkualitas dan profesional, saya siap membantu mewujudkan kebutuhan digital Anda.
+                        Spesialis dalam arsitektur back-end dan rekayasa perangkat lunak dengan fokus pada pengembangan aplikasi web yang scalable dan maintainable. Berkomitmen memberikan solusi teknis berkualitas tinggi melalui pendekatan profesional dan best practices dalam setiap proyek.
                     </p>
 
                     <!-- Social Media Icons -->
@@ -593,11 +593,14 @@
                         </a>
                     </div>
                 </div>
+                 <div class="w-32 h-32 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user text-5xl text-gray-400"></i>
+                </div>
                 <div class="text-center md:text-left">
                     <h3 class="text-2xl font-bold text-gray-800 mb-2">Chindyana Ifanka</h3>
-                    <p class="text-gray-600 font-medium mb-4">Back-end Developer | Software Engineer</p>
+                    <p class="text-gray-600 font-medium mb-4">Creative | Graphic Designer</p>
                     <p class="text-gray-500 leading-relaxed mb-6">
-                        Berpengalaman dalam pengembangan aplikasi web dan software. Dengan dedikasi tinggi untuk memberikan hasil berkualitas dan profesional, saya siap membantu mewujudkan kebutuhan digital Anda.
+                        Spesialis desain visual dan komunikasi grafis dengan keahlian dalam menciptakan identitas brand yang kuat dan memorable. Menghadirkan solusi desain kreatif yang estetis dan fungsional untuk meningkatkan daya tarik visual brand Anda.
                     </p>
 
                     <!-- Social Media Icons -->

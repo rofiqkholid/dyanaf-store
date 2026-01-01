@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/list-jasa', [ListJasaController::class, 'index'])->name('list-jasa');
+Route::get('/pilih-layanan', [ListJasaController::class, 'index'])->name('list-jasa');
 
 // Service Detail Pages - Tugas Akademik
 Route::get('/order/makalah-tanpa-materi', fn() => view('tugas-akademik.makalah-tanpa-materi'))->name('order.makalah-tanpa-materi');
