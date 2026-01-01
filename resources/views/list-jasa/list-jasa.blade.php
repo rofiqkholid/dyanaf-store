@@ -21,12 +21,12 @@
 
             <!-- Category 1: Tugas Akademik -->
             <div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl gradient-primary text-white shadow-lg text-xl">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
                         <i class="fas fa-book"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-800">Tugas Akademik</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Tugas Akademik</h3>
                         <p class="text-sm text-gray-500">Solusi cepat untuk tugas kuliah dan sekolah</p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">2 Jam - 1 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">1 - 6 Jam</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -103,7 +103,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">1 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -132,7 +132,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">3 Jam</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -152,12 +152,12 @@
 
             <!-- Category 2: Kebutuhan Lamar Pekerjaan -->
             <div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl gradient-primary text-white shadow-lg text-xl">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-800">Kebutuhan Lamar Pekerjaan</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Kebutuhan Lamar Pekerjaan</h3>
                         <p class="text-sm text-gray-500">Tampil profesional dalam melamar pekerjaan</p>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">2 Jam</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -205,7 +205,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">3 Jam</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -234,7 +234,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">30 Menit</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -263,7 +263,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">30 Menit</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -283,12 +283,12 @@
 
             <!-- Category 3: Kebutuhan Bisnis -->
             <div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl gradient-primary text-white shadow-lg text-xl">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
                         <i class="fas fa-building"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-gray-800">Kebutuhan Perusahaan & Bisnis</h3>
+                        <h3 class="text-xl font-bold text-gray-800">Kebutuhan Perusahaan & Bisnis</h3>
                         <p class="text-sm text-gray-500">Layanan untuk mengembangkan bisnis Anda</p>
                     </div>
                 </div>
@@ -307,13 +307,13 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">5 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
                                 <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
                                 <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">600<span class="text-base">K</span></span>
+                                    <span class="text-2xl font-extrabold text-gray-800">600<span class="text-base">.000</span></span>
                                     <span class="text-xs text-gray-400 ml-0.5">IDR</span>
                                 </div>
                             </div>
@@ -336,13 +336,13 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">7 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
                                 <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
                                 <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">1.2<span class="text-base">JT</span></span>
+                                    <span class="text-2xl font-extrabold text-gray-800">1.5<span class="text-base">JT</span></span>
                                     <span class="text-xs text-gray-400 ml-0.5">IDR</span>
                                 </div>
                             </div>
@@ -365,7 +365,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">1 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -394,7 +394,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">1 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -423,7 +423,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">6 Jam</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
@@ -452,7 +452,7 @@
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"><i class="far fa-clock"></i> Estimasi</span>
+                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
                                 <span class="font-semibold text-gray-700">1 Hari</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
