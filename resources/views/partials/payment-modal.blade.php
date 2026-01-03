@@ -3,14 +3,14 @@
     <!-- Backdrop -->
     <div id="paymentModalBackdrop" class="fixed inset-0 bg-black/20 transition-opacity duration-300 opacity-0"></div>
 
-    <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="fixed inset-0 z-10 overflow-y-auto overscroll-contain">
         <!-- Mobile: Full screen | Desktop: Centered horizontal rectangle -->
         <div class="flex min-h-full items-stretch sm:items-center justify-center sm:p-4">
             <!-- Modal Panel -->
             <div id="paymentModalPanel" class="relative w-full h-[100dvh] sm:min-h-0 sm:h-auto sm:max-w-5xl sm:rounded-2xl bg-white text-left shadow-2xl transition-all duration-500 ease-out -translate-y-10 opacity-0 flex flex-col overflow-hidden">
 
-                <!-- Header with Close Button -->
-                <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
+                <!-- Header with Close Button (Sticky) -->
+                <div class="sticky top-0 z-10 flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-white shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                             <i class="fas fa-credit-card text-blue-600"></i>
@@ -52,8 +52,8 @@
                     </div>
                 </div>
 
-                <!-- Footer with Buttons -->
-                <div class="flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50">
+                <!-- Footer with Buttons (Sticky) -->
+                <div class="sticky bottom-0 z-10 flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50 shrink-0">
                     <button type="button" onclick="processPayment()" id="btn-process-payment" class="flex-1 sm:flex-none inline-flex justify-center items-center rounded-lg gradient-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 cursor-pointer">
                         Bayar
                     </button>
