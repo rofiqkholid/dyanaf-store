@@ -7,10 +7,10 @@
         <!-- Mobile: Full screen | Desktop: Centered -->
         <div class="flex min-h-full items-stretch sm:items-center justify-center sm:p-4">
             <!-- Modal Panel -->
-            <div id="paymentModalCVPanel" class="relative w-full h-[100dvh] sm:min-h-0 sm:h-auto sm:max-w-4xl sm:rounded-2xl bg-white text-left shadow-2xl transition-all duration-500 ease-out -translate-y-10 opacity-0 flex flex-col overflow-hidden">
+            <div id="paymentModalCVPanel" class="relative w-full h-[100dvh] sm:min-h-0 sm:h-auto sm:max-w-4xl sm:rounded-2xl bg-white text-left shadow-2xl transition-all duration-500 ease-out -translate-y-10 opacity-0 flex flex-col">
 
-                <!-- Header with Close Button (Sticky) -->
-                <div class="sticky top-0 z-10 flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-white shrink-0">
+                <!-- Header with Close Button -->
+                <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-white shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
                             <i class="fas fa-file-alt text-blue-600"></i>
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Form Content -->
-                <div class="flex-1 p-4 sm:p-6 overflow-y-auto">
+                <div class="flex-1 p-4 sm:p-6 overflow-y-auto overscroll-contain">
                     <p class="text-sm text-gray-500 sm:hidden mb-4">Lengkapi data berikut untuk pembuatan CV profesional.</p>
 
                     <form id="cv-form" enctype="multipart/form-data">
@@ -193,8 +193,8 @@
                     </form>
                 </div>
 
-                <!-- Footer with Buttons (Sticky) -->
-                <div class="sticky bottom-0 z-10 flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50 shrink-0">
+                <!-- Footer with Buttons -->
+                <div class="flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50 shrink-0">
                     <button type="button" onclick="processPaymentCV()" id="btn-process-payment-cv" class="flex-1 sm:flex-none inline-flex justify-center items-center rounded-lg gradient-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 cursor-pointer">
                         Bayar Sekarang
                     </button>
@@ -211,6 +211,7 @@
     let currentCVServiceName = '';
     let currentCVPrice = 0;
     let activeCVOrderId = null;
+    let scrollPositionCV = 0;
 
     function showPageLoader() {
         const loader = document.getElementById('pageLoader');
@@ -247,7 +248,13 @@
         const panel = document.getElementById('paymentModalCVPanel');
 
         modal.classList.remove('hidden');
+
+        // Lock body scroll (robust for mobile)
+        scrollPositionCV = window.pageYOffset;
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPositionCV}px`;
+        document.body.style.width = '100%';
 
         setTimeout(() => {
             backdrop.classList.remove('opacity-0');
@@ -267,7 +274,13 @@
 
         setTimeout(() => {
             modal.classList.add('hidden');
+
+            // Unlock body scroll
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollPositionCV);
         }, 300);
     }
 
