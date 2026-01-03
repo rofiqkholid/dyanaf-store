@@ -7,7 +7,7 @@
         <!-- Mobile: Full screen | Desktop: Centered horizontal rectangle -->
         <div class="flex min-h-full items-stretch sm:items-center justify-center sm:p-4">
             <!-- Modal Panel -->
-            <div id="paymentModalPanel" class="relative w-full min-h-screen sm:min-h-0 sm:h-auto sm:max-w-5xl sm:rounded-2xl bg-white text-left shadow-2xl transition-all duration-500 ease-out -translate-y-10 opacity-0 flex flex-col overflow-hidden">
+            <div id="paymentModalPanel" class="relative w-full h-[100dvh] sm:min-h-0 sm:h-auto sm:max-w-5xl sm:rounded-2xl bg-white text-left shadow-2xl transition-all duration-500 ease-out -translate-y-10 opacity-0 flex flex-col overflow-hidden">
 
                 <!-- Header with Close Button -->
                 <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
