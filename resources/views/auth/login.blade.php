@@ -24,7 +24,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+<body class="font-sans antialiased h-[100dvh] md:min-h-screen overflow-hidden md:overflow-auto bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
 
     <!-- Background Effects - Hidden on mobile for better performance -->
     <div class="hidden md:block fixed inset-0 overflow-hidden pointer-events-none">
@@ -33,7 +33,7 @@
     </div>
 
     <!-- Main Container -->
-    <div class="relative min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div class="relative h-full md:min-h-screen flex items-center justify-center p-4 md:p-8">
 
         <!-- Login Card -->
         <div class="w-full max-w-4xl">
@@ -51,7 +51,7 @@
 
                 <!-- Mobile Content -->
                 <div class="p-6">
-                    <h2 class="text-lg font-semibold text-white mb-1 text-center">Selamat Datang! 👋</h2>
+                    <h2 class="text-lg font-semibold text-white mb-1 text-center">Selamat Datang!</h2>
                     <p class="text-white/50 text-xs text-center mb-6">Login untuk menggunakan fitur chat</p>
 
                     <!-- Error Alert -->

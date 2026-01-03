@@ -16,9 +16,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div class="flex h-screen">
+<body class="font-sans antialiased overflow-hidden">
+    <div class="h-[100dvh] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div class="flex h-full">
 
             @if($isAdmin)
             <!-- Sidebar for Admin (Desktop Only) -->
@@ -132,7 +132,7 @@
                 </div>
 
                 <!-- Messages -->
-                <div class="flex-1 overflow-y-auto p-3 md:p-4 space-y-3" id="chatMessages">
+                <div class="flex-1 overflow-y-auto overscroll-contain p-3 md:p-4 space-y-3 min-h-0" id="chatMessages">
                     @forelse($selectedRoom->messages as $message)
                     @php
                     $isSent = ($isAdmin && $message->is_admin_message) || (!$isAdmin && !$message->is_admin_message);
