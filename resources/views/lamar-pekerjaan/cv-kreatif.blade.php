@@ -189,7 +189,7 @@
                 <i class="fas fa-arrow-left"></i>
                 <span>Kembali <span class="hidden sm:inline">ke List Harga</span></span>
             </a>
-            
+
             <!-- Right: Service Info + Order Button -->
             <div class="flex items-center gap-3 md:gap-6">
                 <!-- Service Info (Desktop Only) -->
@@ -202,7 +202,7 @@
                         <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 25.000</p>
                     </div>
                 </div>
-                
+
                 <!-- Wrapper for Mobile Price & Button -->
                 <div class="flex flex-col items-end md:block">
                     <!-- Name & Price for Mobile (Above Button) -->
@@ -210,9 +210,9 @@
                         <div class="text-xs text-gray-600 font-medium">CV Kreatif</div>
                         <div class="text-sm font-bold text-gray-900">Rp 25.000</div>
                     </div>
-                    
+
                     <!-- Order Button -->
-                    <button onclick="triggerPayment('CV Kreatif', 25000)" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base">
+                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button-cv" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Order & Bayar</span>
                     </button>
@@ -224,4 +224,20 @@
 
 <!-- Add padding to bottom of page for floating bar -->
 <div class="h-24 md:h-20"></div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const payButton = document.getElementById('pay-button-cv');
+        if (payButton) {
+            payButton.addEventListener('click', function() {
+                const serviceName = this.dataset.serviceName;
+                const servicePrice = parseInt(this.dataset.servicePrice);
+                // Use CV modal instead of regular payment modal
+                triggerPaymentCV(serviceName, servicePrice);
+            });
+        }
+    });
+</script>
+@endpush
 @endsection

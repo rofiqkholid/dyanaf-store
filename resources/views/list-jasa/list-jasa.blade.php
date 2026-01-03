@@ -19,456 +19,81 @@
     <div class="container mx-auto px-6">
         <div class="space-y-16">
 
-            <!-- Category 1: Tugas Akademik -->
+            @foreach($categories as $category)
+            <!-- Category: {{ $category->name }} -->
             <div>
                 <div class="flex items-center gap-2 mb-8">
                     <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
-                        <i class="fas fa-book"></i>
+                        <i class="{{ $category->icon }}"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800">Tugas Akademik</h3>
-                        <p class="text-sm text-gray-500">Solusi cepat untuk tugas kuliah dan sekolah</p>
+                        <h3 class="text-xl font-bold text-gray-800">{{ $category->name }}</h3>
+                        <p class="text-sm text-gray-500">{{ $category->description }}</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Card Makalah Tanpa Materi -->
+                    @foreach($category->services as $service)
+                    <!-- Card: {{ $service->name }} -->
                     <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
                         <div class="flex items-start gap-3 mb-4">
                             <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-file-alt"></i>
+                                <i class="{{ $service->icon }}"></i>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Makalah</h4>
-                                <span class="inline-block px-2 py-0.5 bg-blue-50 text-blue-600 text-[10px] font-medium rounded-full">Tanpa Materi</span>
+                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">{{ $service->name }}</h4>
+                                @if($service->tag)
+                                @php
+                                $textColorClasses = [
+                                'red' => 'text-[#dc2626]',
+                                'blue' => 'text-[#2563eb]',
+                                'green' => 'text-[#16a34a]',
+                                'purple' => 'text-[#9333ea]',
+                                'orange' => 'text-[#ea580c]',
+                                'pink' => 'text-[#db2777]',
+                                'indigo' => 'text-[#4f46e5]',
+                                'teal' => 'text-[#0d9488]',
+                                'cyan' => 'text-[#0891b2]',
+                                'yellow' => 'text-[#ca8a04]',
+                                'lime' => 'text-[#65a30d]',
+                                'sky' => 'text-[#0284c7]',
+                                'emerald' => 'text-[#059669]',
+                                ];
+                                $colorClass = $textColorClasses[$service->tag_color] ?? $textColorClasses['blue'];
+                                @endphp
+                                <span class="inline-block px-2 py-0.5 bg-gray-100 text-[10px] font-medium rounded-full {{ $colorClass }}">{{ $service->tag }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="space-y-3 mb-4">
                             <div class="flex items-center justify-between text-xs">
                                 <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">2 Jam - 1 Hari</span>
+                                <span class="font-semibold text-gray-700">{{ $service->estimation }}</span>
                             </div>
                             <div class="flex items-center justify-between pt-2 border-t border-gray-100">
                                 <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
                                 <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">100<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
+                                    @if($service->price_display)
+                                    <span class="text-2xl font-extrabold text-gray-800">{{ $service->price_display }}</span>
+                                    @else
+                                    @php
+                                    $priceFormatted = number_format($service->price, 0, ',', '.');
+                                    $parts = explode('.', $priceFormatted);
+                                    @endphp
+                                    <span class="text-2xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-base">.{{ $parts[1] ?? '000' }}</span></span>
+                                    @endif
+                                    <span class="text-xs text-gray-400 ml-0.5">{{ $service->price_unit }}</span>
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('order.makalah-tanpa-materi') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
+                        <a href="{{ route($service->route_name) }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer">
                             <i class="fas fa-shopping-cart"></i> Order Sekarang
                         </a>
                     </div>
-
-                    <!-- Card Makalah Ada Materi -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Makalah</h4>
-                                <span class="inline-block px-2 py-0.5 bg-green-50 text-green-600 text-[10px] font-medium rounded-full">Ada Materi</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">1 - 6 Jam</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">70<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.makalah-ada-materi') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Card Jurnal -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-newspaper"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Jurnal</h4>
-                                <span class="inline-block px-2 py-0.5 bg-purple-50 text-purple-600 text-[10px] font-medium rounded-full">Ilmiah/Akademik</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">1 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">130<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.jurnal') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Card Joki Tugas -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-pencil-alt"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Joki Tugas</h4>
-                                <span class="inline-block px-2 py-0.5 bg-orange-50 text-orange-600 text-[10px] font-medium rounded-full">Tugas Harian</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">3 Jam</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">50<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">/tugas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.joki-tugas') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-
-            <!-- Category 2: Kebutuhan Lamar Pekerjaan -->
-            <div>
-                <div class="flex items-center gap-2 mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800">Kebutuhan Lamar Pekerjaan</h3>
-                        <p class="text-sm text-gray-500">Tampil profesional dalam melamar pekerjaan</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- CV Kreatif -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-id-card"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">CV Kreatif</h4>
-                                <span class="inline-block px-2 py-0.5 bg-pink-50 text-pink-600 text-[10px] font-medium rounded-full">Desain Modern</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">2 Jam</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">25<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.cv-kreatif') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- CV ATS -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">CV ATS</h4>
-                                <span class="inline-block px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[10px] font-medium rounded-full">Lolos Sistem ATS</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">3 Jam</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">60<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.cv-ats') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Surat Lamaran -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-envelope-open-text"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Surat Lamaran</h4>
-                                <span class="inline-block px-2 py-0.5 bg-teal-50 text-teal-600 text-[10px] font-medium rounded-full">Profesional</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">30 Menit</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">20<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.surat-lamaran') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Gabung PDF -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Gabung PDF</h4>
-                                <span class="inline-block px-2 py-0.5 bg-red-50 text-red-600 text-[10px] font-medium rounded-full">Merge Dokumen</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">30 Menit</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">10<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.gabung-pdf') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category 3: Kebutuhan Bisnis -->
-            <div>
-                <div class="flex items-center gap-2 mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800">Kebutuhan Perusahaan & Bisnis</h3>
-                        <p class="text-sm text-gray-500">Layanan untuk mengembangkan bisnis Anda</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- Web Statis -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Web Statis</h4>
-                                <span class="inline-block px-2 py-0.5 bg-cyan-50 text-cyan-600 text-[10px] font-medium rounded-full">Landing Page</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">5 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">600<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.web-statis') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Web Dinamis -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Web Dinamis</h4>
-                                <span class="inline-block px-2 py-0.5 bg-purple-50 text-purple-600 text-[10px] font-medium rounded-full">Excl. Hosting</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">7 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">1.5<span class="text-base">JT</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.web-dinamis') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Desain Grafis -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-paint-brush"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Desain Grafis</h4>
-                                <span class="inline-block px-2 py-0.5 bg-yellow-50 text-yellow-600 text-[10px] font-medium rounded-full">Logo, Banner, dll</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">1 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">100<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.desain-grafis') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Data Entry -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Data Entry</h4>
-                                <span class="inline-block px-2 py-0.5 bg-lime-50 text-lime-600 text-[10px] font-medium rounded-full">Input Data</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">1 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">150<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.data-entry') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Jasa Ketik Word -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fab fa-microsoft"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Jasa Ketik Word</h4>
-                                <span class="inline-block px-2 py-0.5 bg-sky-50 text-sky-600 text-[10px] font-medium rounded-full">Proposal, Surat</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">6 Jam</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">100<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.jasa-ketik-word') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-
-                    <!-- Jasa Excel -->
-                    <div class="group relative bg-white p-6 rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl transition-all text-gray-700 text-xl shadow-sm">
-                                <i class="fas fa-file-excel"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">Jasa Excel</h4>
-                                <span class="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-medium rounded-full">Rumus, Tabel, dll</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3 mb-4">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
-                                <span class="font-semibold text-gray-700">1 Hari</span>
-                            </div>
-                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
-                                <div class="text-right">
-                                    <span class="text-2xl font-extrabold text-gray-800">130<span class="text-base">.000</span></span>
-                                    <span class="text-xs text-gray-400 ml-0.5">IDR</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('order.jasa-excel') }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all">
-                            <i class="fas fa-shopping-cart"></i> Order Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
 
