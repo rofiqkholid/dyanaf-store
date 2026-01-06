@@ -20,12 +20,12 @@
             <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
                 <div class="flex items-center gap-2">
                     <i class="far fa-clock"></i>
-                    <span>2 Jam – 1 Hari</span>
+                    <span>2 Jam - 1 Hari</span>
                 </div>
                 <div class="w-px h-6 bg-white/20"></div>
                 <div class="flex items-center gap-2">
                     <i class="fas fa-tag"></i>
-                    <span class="text-2xl font-bold">Rp 100.000</span>
+                    <span class="text-2xl font-bold">Rp {{ number_format($service->price, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>

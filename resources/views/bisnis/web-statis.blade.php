@@ -24,7 +24,7 @@
                 <div class="w-px h-6 bg-white/20"></div>
                 <div class="flex items-center gap-2">
                     <i class="fas fa-tag"></i>
-                    <span class="text-2xl font-bold">Rp 600.000</span>
+                    <span class="text-2xl font-bold">Rp {{ number_format($service->price, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>
@@ -165,14 +165,14 @@
                     </div>
                     <div>
                         <h3 class="font-bold text-gray-900 text-base leading-tight">{{ $service->name }}</h3>
-                        <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 600.000</p>
+                        <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp {{ number_format($service->price, 0, ',', '.') }}</p>
                     </div>
                 </div>
 
                 <!-- Wrapper for Mobile Price & Button -->
                 <div class="md:hidden flex-1">
                     <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
-                    <div class="text-sm font-bold text-gray-900 text-right">Rp 600.000</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
                 </div>
 
                 <!-- Order Button -->
