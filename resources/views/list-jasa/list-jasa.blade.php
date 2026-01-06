@@ -77,7 +77,13 @@
                                         @if($service->price_display)
                                         <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }} <span class="text-[13px] sm:text-sm">IDR</span></span>
                                         @else
-                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ number_format($service->price, 0, ',', '.') }} <span class="text-[13px] sm:text-sm">IDR</span></span>
+                                        @php
+                                        $priceFormatted = number_format($service->price, 0, ',', '.');
+                                        $priceParts = explode('.', $priceFormatted);
+                                        $firstPart = $priceParts[0];
+                                        $remainingParts = implode('.', array_slice($priceParts, 1));
+                                        @endphp
+                                        <span class="text-md sm:text-xl font-extrabold text-gray-800">{{ $firstPart }}<span class="text-[13px] sm:text-sm">@if($remainingParts).{{ $remainingParts }}@endif IDR</span></span>
                                         @endif
                                     </div>
                                     <i class="fas fa-tag text-[10px] sm:text-xs text-gray-500"></i>
