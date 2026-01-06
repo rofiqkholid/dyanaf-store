@@ -72,19 +72,15 @@
                             @endif
 
                             <div class="space-y-1 sm:space-y-2 mb-2 sm:mb-4">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-[10px] sm:text-xs text-gray-500 font-medium">Harga</span>
+                                <div class="flex items-center justify-end gap-1">
                                     <div class="text-right">
                                         @if($service->price_display)
-                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }}</span>
+                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }} <span class="text-[13px] sm:text-sm">IDR</span></span>
                                         @else
-                                        @php
-                                        $priceFormatted = number_format($service->price, 0, ',', '.');
-                                        $parts = explode('.', $priceFormatted);
-                                        @endphp
-                                        <span class="text-md sm:text-xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-[13px] sm:text-sm">.{{ $parts[1] ?? '000' }}</span></span>
+                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ number_format($service->price, 0, ',', '.') }} <span class="text-[13px] sm:text-sm">IDR</span></span>
                                         @endif
                                     </div>
+                                    <i class="fas fa-tag text-[10px] sm:text-xs text-gray-500"></i>
                                 </div>
                             </div>
                             <a href="{{ route($service->route_name) }}" class="flex items-center justify-center gap-1 w-full py-2 sm:py-3 gradient-primary text-white rounded-lg sm:rounded-xl font-semibold text-[10px] sm:text-sm hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer">
