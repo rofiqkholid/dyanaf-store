@@ -3,19 +3,19 @@
 @section('title', 'Surat Lamaran Profesional - Dyanaf Store')
 
 @section('content')
-<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+<section class="relative pt-20 pb-12 md:pt-32 md:pb-20 gradient-hero overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto px-3 md:px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-xs md:text-sm mb-6">
                 <i class="fas fa-briefcase"></i>
                 <span>Kebutuhan Lamar Pekerjaan</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Surat Lamaran Profesional</h1>
-            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Surat lamaran kerja yang persuasif dan profesional, disesuaikan dengan posisi yang Anda lamar untuk meningkatkan daya tarik kandidat.</p>
+            <h1 class="text-2xl md:text-5xl font-bold text-white mb-6">Surat Lamaran Profesional</h1>
+            <p class="text-sm md:text-lg text-white/80 mb-8 max-w-2xl mx-auto">Surat lamaran kerja yang persuasif dan profesional, disesuaikan dengan posisi yang Anda lamar untuk meningkatkan daya tarik kandidat.</p>
             <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
                 <div class="flex items-center gap-2">
                     <i class="far fa-clock"></i>
@@ -96,31 +96,31 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
             <div class="space-y-8">
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">1</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Data Diri</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Kirim Data Diri</h3>
                         <p class="text-gray-600">Berikan data diri, posisi yang dilamar, dan info perusahaan.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">2</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Penulisan Surat</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Penulisan Surat</h3>
                         <p class="text-gray-600">Kami tulis surat lamaran yang persuasif dan disesuaikan dengan posisi.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">3</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Review & Finalisasi</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Review & Finalisasi</h3>
                         <p class="text-gray-600">Quality check untuk memastikan tidak ada typo dan format sudah benar.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">4</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim File</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Kirim File</h3>
                         <p class="text-gray-600">Surat lamaran dikirim dalam format Word dan PDF, siap dilampirkan.</p>
                     </div>
                 </div>
@@ -164,20 +164,18 @@
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base leading-tight">Surat Lamaran</h3>
+                        <h3 class="font-bold text-gray-900 text-base leading-tight">{{ $service->name }}</h3>
                         <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 20.000</p>
                     </div>
                 </div>
 
-                <!-- Wrapper for Mobile Price & Button -->
-                <div class="flex flex-col items-end md:block">
-                    <!-- Name & Price for Mobile (Above Button) -->
-                    <div class="md:hidden text-right mb-1">
-                        <div class="text-xs text-gray-600 font-medium">Surat Lamaran</div>
-                        <div class="text-sm font-bold text-gray-900">Rp 20.000</div>
-                    </div>
+                <!-- Service Info (Mobile - Left of Button) -->
+                <div class="md:hidden flex-1">
+                        <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                        <div class="text-sm font-bold text-gray-900 text-right">Rp 20.000</div>
+</div>
 
-                    <!-- Order Button -->
+                <!-- Order Button -->
                     <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
                         <i class="fas fa-shopping-cart"></i>
                         <span>Order & Bayar</span>

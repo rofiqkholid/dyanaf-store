@@ -4,19 +4,19 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+<section class="relative pt-20 pb-12 md:pt-32 md:pb-20 gradient-hero overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto px-3 md:px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-xs md:text-sm mb-6">
                 <i class="fas fa-book"></i>
                 <span>Tugas Akademik</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Jasa Pembuatan Makalah<br />(Tanpa Materi)</h1>
-            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Pembuatan makalah profesional tanpa referensi materi. Cocok untuk topik umum atau tema yang Anda tentukan.</p>
+            <h1 class="text-2xl md:text-5xl font-bold text-white mb-6">Jasa Pembuatan Makalah<br />(Tanpa Materi)</h1>
+            <p class="text-sm md:text-lg text-white/80 mb-8 max-w-2xl mx-auto">Pembuatan makalah profesional tanpa referensi materi. Cocok untuk topik umum atau tema yang Anda tentukan.</p>
             <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
                 <div class="flex items-center gap-2">
                     <i class="far fa-clock"></i>
@@ -110,47 +110,47 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
             <div class="space-y-8">
-                <div class="flex gap-6">
+                <div class="flex gap-4 md:gap-6">
                     <div class="flex-shrink-0">
-                        <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold">
                             1
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Hubungi Kami</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Hubungi Kami</h3>
                         <p class="text-gray-600">Sampaikan topik makalah, jumlah halaman yang dibutuhkan, dan deadline Anda melalui email atau form kontak.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
+                <div class="flex gap-4 md:gap-6">
                     <div class="flex-shrink-0">
-                        <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold">
                             2
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Konfirmasi & Pembayaran</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Konfirmasi & Pembayaran</h3>
                         <p class="text-gray-600">Kami akan konfirmasi detail pesanan dan waktu pengerjaan. Setelah deal, lakukan pembayaran.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
+                <div class="flex gap-4 md:gap-6">
                     <div class="flex-shrink-0">
-                        <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold">
                             3
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Pengerjaan</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Pengerjaan</h3>
                         <p class="text-gray-600">Tim kami mulai mengerjakan makalah dengan riset mendalam dan penulisan yang sistematis.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
+                <div class="flex gap-4 md:gap-6">
                     <div class="flex-shrink-0">
-                        <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold">
                             4
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Pengiriman & Revisi</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Pengiriman & Revisi</h3>
                         <p class="text-gray-600">Makalah dikirim sesuai deadline. Revisi gratis jika ada yang perlu disesuaikan.</p>
                     </div>
                 </div>
@@ -176,28 +176,26 @@
                         <i class="fas fa-book"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base leading-tight">Makalah (Tanpa Materi)</h3>
-                        <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 100.000</p>
+                        <h3 class="font-bold text-gray-900 text-base leading-tight">{{ $service->name }}</h3>
+                        <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp {{ number_format($service->price, 0, ',', '.') }}</p>
                     </div>
                 </div>
 
-                <!-- Wrapper for Mobile Price & Button -->
-                <div class="flex flex-col items-end md:block">
-                    <!-- Name & Price for Mobile (Above Button) -->
-                    <div class="md:hidden text-right mb-1">
-                        <div class="text-xs text-gray-600 font-medium">Makalah (Tanpa Materi)</div>
-                        <div class="text-sm font-bold text-gray-900">Rp 100.000</div>
-                    </div>
-
-                    <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
+                <!-- Service Info (Mobile - Left of Button) -->
+                <div class="md:hidden flex-1">
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
                 </div>
+
+                <!-- Order Button -->
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->

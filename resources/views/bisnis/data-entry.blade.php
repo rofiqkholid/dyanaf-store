@@ -3,19 +3,19 @@
 @section('title', 'Data Entry - Dyanaf Store')
 
 @section('content')
-<section class="relative pt-32 pb-20 gradient-hero overflow-hidden">
+<section class="relative pt-20 pb-12 md:pt-32 md:pb-20 gradient-hero overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto px-3 md:px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-sm mb-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white/90 text-xs md:text-sm mb-6">
                 <i class="fas fa-building"></i>
                 <span>Kebutuhan Bisnis</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Jasa Data Entry</h1>
-            <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">Input data ke Excel, database, atau sistem lain dengan cepat dan akurat. Perfect untuk data yang menumpuk.</p>
+            <h1 class="text-2xl md:text-5xl font-bold text-white mb-6">Jasa Data Entry</h1>
+            <p class="text-sm md:text-lg text-white/80 mb-8 max-w-2xl mx-auto">Input data ke Excel, database, atau sistem lain dengan cepat dan akurat. Perfect untuk data yang menumpuk.</p>
             <div class="flex flex-wrap items-center justify-center gap-4 text-white/90">
                 <div class="flex items-center gap-2">
                     <i class="far fa-clock"></i>
@@ -96,31 +96,31 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Cara Kerja</h2>
             <div class="space-y-8">
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">1</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Kirim Data</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Kirim Data</h3>
                         <p class="text-gray-600">Kirimkan file sumber data (scan, foto, PDF, dll) dan template/format yang diinginkan.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">2</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Estimasi & Harga</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Estimasi & Harga</h3>
                         <p class="text-gray-600">Kami review data dan berikan estimasi waktu + harga sesuai volume.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">3</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Data Entry</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Data Entry</h3>
                         <p class="text-gray-600">Kami input data dengan teliti sesuai format yang diminta.</p>
                     </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="w-14 h-14 rounded-full gradient-primary flex items-center justify-center text-white text-xl font-bold flex-shrink-0">4</div>
+                <div class="flex gap-4 md:gap-6">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-full gradient-primary flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">4</div>
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality Check & Kirim</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-900 mb-2">Quality Check & Kirim</h3>
                         <p class="text-gray-600">Data di-check ulang dan dikirim dalam format yang Anda minta.</p>
                     </div>
                 </div>
@@ -147,28 +147,26 @@
                         <i class="fas fa-database"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 text-base leading-tight">Data Entry</h3>
+                        <h3 class="font-bold text-gray-900 text-base leading-tight">{{ $service->name }}</h3>
                         <p class="text-lg font-extrabold text-gray-900 mt-0.5">Rp 150.000</p>
                     </div>
                 </div>
 
-                <!-- Wrapper for Mobile Price & Button -->
-                <div class="flex flex-col items-end md:block">
-                    <!-- Name & Price for Mobile (Above Button) -->
-                    <div class="md:hidden text-right mb-1">
-                        <div class="text-xs text-gray-600 font-medium">Data Entry</div>
-                        <div class="text-sm font-bold text-gray-900">Rp 150.000</div>
-                    </div>
-
-                    <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
+                <!-- Service Info (Mobile - Left of Button) -->
+                <div class="md:hidden flex-1">
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp 150.000</div>
                 </div>
+
+                <!-- Order Button -->
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->
