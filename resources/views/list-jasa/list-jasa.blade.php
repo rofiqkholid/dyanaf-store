@@ -4,25 +4,25 @@
 
 @section('content')
 <!-- Hero Header -->
-<section class="relative pt-32 pb-16 gradient-hero overflow-hidden">
+<section class="relative pt-20 pb-8 md:pt-32 md:pb-16 gradient-hero overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    <div class="container mx-auto px-6 text-center relative z-10">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">Pilih Layanan Sesuai Kebutuhan</h1>
-        <p class="text-base text-white/80 max-w-lg mx-auto">Layanan profesional dengan harga terjangkau dan pengerjaan cepat</p>
+    <div class="container mx-auto px-3 md:px-6 text-center relative z-10">
+        <h1 class="text-2xl md:text-4xl font-bold text-white mb-2 md:mb-3">Pilih Layanan Sesuai Kebutuhan</h1>
+        <p class="text-sm md:text-base text-white/80 max-w-lg mx-auto">Layanan profesional dengan harga terjangkau dan pengerjaan cepat</p>
     </div>
 </section>
 
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <div class="space-y-16">
+<section class="py-8 md:py-16 bg-gray-50">
+    <div class="container mx-auto px-3 md:px-6">
+        <div class="space-y-8 md:space-y-16">
 
             @foreach($categories as $category)
             <!-- Category: {{ $category->name }} -->
             <div>
-                <div class="flex items-center gap-2 mb-8">
+                <div class="flex items-center gap-2 mb-4 md:mb-8">
                     <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
                         <i class="{{ $category->icon }}"></i>
                     </div>
@@ -32,10 +32,10 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
                     @foreach($category->services as $service)
                     <!-- Card: {{ $service->name }} -->
-                    <div class="group relative bg-white rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    <div class="group relative bg-white border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1 overflow-hidden" style="border-radius: 2px;">
                         <!-- Thumbnail Image -->
                         @if($service->thumbnail)
                         <div class="w-full h-24 sm:h-32 overflow-hidden">
@@ -48,7 +48,7 @@
                         @endif
 
                         <div class="p-3 sm:p-6">
-                            <h4 class="font-bold text-gray-800 text-xs sm:text-base mb-1 leading-tight">{{ $service->name }}</h4>
+                            <h4 class="font-bold text-gray-800 text-sm sm:text-base mb-1 leading-tight">{{ $service->name }}</h4>
                             @if($service->tag)
                             @php
                             $textColorClasses = [
@@ -72,11 +72,7 @@
                             @endif
 
                             <div class="space-y-1 sm:space-y-2 mb-2 sm:mb-4">
-                                <div class="flex items-center justify-between text-[10px] sm:text-xs">
-                                    <span class="text-gray-500">Estimasi</span>
-                                    <span class="font-semibold text-gray-700">{{ $service->estimation }}</span>
-                                </div>
-                                <div class="flex items-center justify-between pt-1 sm:pt-2 border-t border-gray-100">
+                                <div class="flex items-center justify-between">
                                     <span class="text-[10px] sm:text-xs text-gray-500 font-medium">Harga</span>
                                     <div class="text-right">
                                         @if($service->price_display)
@@ -86,7 +82,7 @@
                                         $priceFormatted = number_format($service->price, 0, ',', '.');
                                         $parts = explode('.', $priceFormatted);
                                         @endphp
-                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-[10px] sm:text-sm">.{{ $parts[1] ?? '000' }}</span></span>
+                                        <span class="text-md sm:text-xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-[13px] sm:text-sm">.{{ $parts[1] ?? '000' }}</span></span>
                                         @endif
                                     </div>
                                 </div>
@@ -104,16 +100,16 @@
         </div>
 
         <!-- CTA Section -->
-        <div class="mt-20 relative overflow-hidden">
-            <div class="absolute inset-0 gradient-primary opacity-5 rounded-3xl"></div>
-            <div class="relative text-center p-10 bg-white rounded-3xl shadow-lg border border-gray-100">
-                <div class="w-16 h-16 mx-auto mb-5 flex items-center justify-center gradient-primary rounded-2xl shadow-lg">
-                    <i class="fas fa-question-circle text-3xl text-white"></i>
+        <div class="mt-8 md:mt-20 relative overflow-hidden">
+            <div class="absolute inset-0 gradient-primary opacity-5" style="border-radius: 2px;"></div>
+            <div class="relative text-center p-6 md:p-10 bg-white border border-gray-100" style="border-radius: 2px;">
+                <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-5 flex items-center justify-center gradient-primary" style="border-radius: 2px;">
+                    <i class="fas fa-question-circle text-2xl md:text-3xl text-white"></i>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-3">Punya Kebutuhan Lain?</h3>
-                <p class="text-gray-600 mb-6 max-w-md mx-auto">Tidak menemukan layanan yang Anda cari? Hubungi kami untuk konsultasi gratis dan solusi custom sesuai kebutuhan Anda</p>
-                <a href="https://wa.me/6285881721193" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white font-bold rounded-xl hover:shadow-xl hover:scale-105 transition-all">
-                    <i class="fab fa-whatsapp text-2xl"></i>
+                <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-2 md:mb-3">Punya Kebutuhan Lain?</h3>
+                <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6 max-w-md mx-auto">Tidak menemukan layanan yang Anda cari? Hubungi kami untuk konsultasi gratis dan solusi custom sesuai kebutuhan Anda</p>
+                <a href="https://wa.me/6285881721193" target="_blank" class="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 gradient-primary text-white font-bold text-sm md:text-base rounded-xl hover:shadow-xl hover:scale-105 transition-all">
+                    <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
                     Konsultasi Gratis Sekarang
                 </a>
             </div>
