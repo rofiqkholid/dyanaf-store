@@ -145,7 +145,7 @@
                         <!-- Welcome Text -->
                         <div class="text-left mb-8">
                             <h2 class="text-2xl font-bold text-white mb-2">
-                                Selamat Datang! 👋
+                                Selamat Datang!
                             </h2>
                             <p class="text-white/50 text-sm">
                                 Login untuk menggunakan fitur Live Chat
