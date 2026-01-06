@@ -48,7 +48,7 @@
                         @endif
 
                         <div class="p-3 sm:p-6">
-                            <h4 class="font-bold text-gray-800 text-sm sm:text-base mb-1 leading-tight">{{ $service->name }}</h4>
+                            <h4 class="font-bold text-gray-800 text-sm sm:text-base leading-tight">{{ $service->name }}</h4>
                             @if($service->tag)
                             @php
                             $textColorClasses = [
@@ -72,7 +72,7 @@
                             @endif
 
                             <div class="space-y-1 sm:space-y-2 mb-2 sm:mb-4">
-                                <div class="flex items-center justify-end gap-1">
+                                <div class="flex items-center justify-start gap-1">
                                     <div class="text-right">
                                         @if($service->price_display)
                                         <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }} <span class="text-[13px] sm:text-sm">IDR</span></span>
