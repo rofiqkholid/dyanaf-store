@@ -142,9 +142,6 @@
                             {{ $message->is_admin_message ? 'AD' : strtoupper(substr($selectedRoom->user->name, 0, 2)) }}
                         </div>
                         <div class="rounded-2xl px-3 py-2 {{ $isSent ? 'bg-white/15' : 'bg-white/5' }} border border-white/10">
-                            <div class="text-white/50 text-[10px] font-medium mb-1">
-                                {{ $message->is_admin_message ? 'Admin' : $selectedRoom->user->name }}
-                            </div>
                             <div class="text-white/90 text-sm leading-relaxed break-words">{{ $message->message }}</div>
                             <div class="text-white/30 text-[10px] text-right mt-1">{{ $message->created_at->format('H:i') }}</div>
                         </div>
@@ -282,7 +279,6 @@
                 div.innerHTML = '<div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 font-semibold text-xs flex-shrink-0">' +
                     (msg.is_admin_message ? 'AD' : msg.sender_name.substring(0, 2).toUpperCase()) +
                     '</div><div class="rounded-2xl px-3 py-2 ' + (isSent ? 'bg-white/15' : 'bg-white/5') + ' border border-white/10">' +
-                    '<div class="text-white/50 text-[10px] font-medium mb-1">' + escapeHtml(msg.sender_name) + '</div>' +
                     '<div class="text-white/90 text-sm leading-relaxed break-words">' + escapeHtml(msg.message) + '</div>' +
                     '<div class="text-white/30 text-[10px] text-right mt-1">' + msg.created_at + '</div></div>';
 

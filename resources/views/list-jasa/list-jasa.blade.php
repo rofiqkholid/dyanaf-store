@@ -32,71 +32,67 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     @foreach($category->services as $service)
                     <!-- Card: {{ $service->name }} -->
                     <div class="group relative bg-white rounded-2xl border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                         <!-- Thumbnail Image -->
                         @if($service->thumbnail)
-                        <div class="w-full h-32 overflow-hidden">
+                        <div class="w-full h-24 sm:h-32 overflow-hidden">
                             <img src="{{ asset($service->thumbnail) }}" alt="{{ $service->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         @else
-                        <div class="w-full h-32 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
-                            <i class="{{ $service->icon }} text-4xl text-gray-400"></i>
+                        <div class="w-full h-24 sm:h-32 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center">
+                            <i class="{{ $service->icon }} text-2xl sm:text-4xl text-gray-400"></i>
                         </div>
                         @endif
 
-                        <div class="p-6">
-                            <div class="flex items-start gap-3 mb-4">
-                                <div class="min-w-0 flex-1">
-                                    <h4 class="font-bold text-gray-800 text-base mb-1 leading-tight">{{ $service->name }}</h4>
-                                    @if($service->tag)
-                                    @php
-                                    $textColorClasses = [
-                                    'red' => 'text-[#dc2626]',
-                                    'blue' => 'text-[#2563eb]',
-                                    'green' => 'text-[#16a34a]',
-                                    'purple' => 'text-[#9333ea]',
-                                    'orange' => 'text-[#ea580c]',
-                                    'pink' => 'text-[#db2777]',
-                                    'indigo' => 'text-[#4f46e5]',
-                                    'teal' => 'text-[#0d9488]',
-                                    'cyan' => 'text-[#0891b2]',
-                                    'yellow' => 'text-[#ca8a04]',
-                                    'lime' => 'text-[#65a30d]',
-                                    'sky' => 'text-[#0284c7]',
-                                    'emerald' => 'text-[#059669]',
-                                    ];
-                                    $colorClass = $textColorClasses[$service->tag_color] ?? $textColorClasses['blue'];
-                                    @endphp
-                                    <span class="inline-block px-2 py-0.5 bg-gray-100 text-[10px] font-medium rounded-full {{ $colorClass }}">{{ $service->tag }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="space-y-3 mb-4">
-                                <div class="flex items-center justify-between text-xs">
-                                    <span class="text-gray-500 flex items-center gap-1"></i> Estimasi</span>
+                        <div class="p-3 sm:p-6">
+                            <h4 class="font-bold text-gray-800 text-xs sm:text-base mb-1 leading-tight">{{ $service->name }}</h4>
+                            @if($service->tag)
+                            @php
+                            $textColorClasses = [
+                            'red' => 'text-[#dc2626]',
+                            'blue' => 'text-[#2563eb]',
+                            'green' => 'text-[#16a34a]',
+                            'purple' => 'text-[#9333ea]',
+                            'orange' => 'text-[#ea580c]',
+                            'pink' => 'text-[#db2777]',
+                            'indigo' => 'text-[#4f46e5]',
+                            'teal' => 'text-[#0d9488]',
+                            'cyan' => 'text-[#0891b2]',
+                            'yellow' => 'text-[#ca8a04]',
+                            'lime' => 'text-[#65a30d]',
+                            'sky' => 'text-[#0284c7]',
+                            'emerald' => 'text-[#059669]',
+                            ];
+                            $colorClass = $textColorClasses[$service->tag_color] ?? $textColorClasses['blue'];
+                            @endphp
+                            <span class="inline-block px-1.5 sm:px-2 py-0.5 bg-gray-100 text-[8px] sm:text-[10px] font-medium rounded-full {{ $colorClass }} mb-2">{{ $service->tag }}</span>
+                            @endif
+
+                            <div class="space-y-1 sm:space-y-2 mb-2 sm:mb-4">
+                                <div class="flex items-center justify-between text-[10px] sm:text-xs">
+                                    <span class="text-gray-500">Estimasi</span>
                                     <span class="font-semibold text-gray-700">{{ $service->estimation }}</span>
                                 </div>
-                                <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                                    <span class="text-xs text-gray-500 font-medium">Harga Mulai</span>
+                                <div class="flex items-center justify-between pt-1 sm:pt-2 border-t border-gray-100">
+                                    <span class="text-[10px] sm:text-xs text-gray-500 font-medium">Harga</span>
                                     <div class="text-right">
                                         @if($service->price_display)
-                                        <span class="text-2xl font-extrabold text-gray-800">{{ $service->price_display }}</span>
+                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }}</span>
                                         @else
                                         @php
                                         $priceFormatted = number_format($service->price, 0, ',', '.');
                                         $parts = explode('.', $priceFormatted);
                                         @endphp
-                                        <span class="text-2xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-base">.{{ $parts[1] ?? '000' }}</span></span>
+                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $parts[0] }}<span class="text-[10px] sm:text-sm">.{{ $parts[1] ?? '000' }}</span></span>
                                         @endif
-                                        <span class="text-xs text-gray-400 ml-0.5">{{ $service->price_unit }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route($service->route_name) }}" class="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer">
-                                <i class="fas fa-shopping-cart"></i> Order Sekarang
+                            <a href="{{ route($service->route_name) }}" class="flex items-center justify-center gap-1 w-full py-2 sm:py-3 gradient-primary text-white rounded-lg sm:rounded-xl font-semibold text-[10px] sm:text-sm hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer">
+                                <i class="fas fa-shopping-cart text-[10px] sm:text-sm"></i> Order
                             </a>
                         </div>
                     </div>
