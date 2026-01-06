@@ -132,7 +132,7 @@
 
 <!-- Floating Bottom Bar -->
 <div class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50">
-    <div class="container mx-auto px-4 py-3 md:px-6 md:py-4">
+    <div class="container mx-auto px-4 py-5 md:px-6 md:py-4">
         <div class="flex items-center justify-between gap-3 md:gap-6">
             <!-- Left: Simple Back Link -->
             <a href="{{ route('list-jasa') }}" class="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-all font-medium text-sm md:text-base">

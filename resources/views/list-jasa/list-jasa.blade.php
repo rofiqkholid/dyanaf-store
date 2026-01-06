@@ -83,7 +83,7 @@
                                         $firstPart = $priceParts[0];
                                         $remainingParts = implode('.', array_slice($priceParts, 1));
                                         @endphp
-                                        <span class="text-md sm:text-xl font-extrabold text-gray-800">{{ $firstPart }}</span><span class="text-[13px] sm:text-sm font-bold text-gray-800">@if($remainingParts).{{ $remainingParts }}@endif IDR</span>
+                                        <span class="text-md sm:text-xl font-bold text-gray-800">{{ $firstPart }}</span><span class="text-[13px] sm:text-sm font-bold text-gray-800">@if($remainingParts).{{ $remainingParts }}@endif IDR</span>
                                         @endif
                                     </div>
                                     <i class="fas fa-tag text-[10px] sm:text-xs text-gray-500"></i>
