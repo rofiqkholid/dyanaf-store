@@ -54,6 +54,33 @@ class OrderController extends Controller
             'phone' => $request->phone,
         ]);
 
+        // Dynamic payment methods based on Device
+        $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
+
+        $enabledPayments = [
+            'qris',
+            'credit_card',
+            'bca_va',
+            'bni_va',
+            'bri_va',
+            'permata_va',
+            'cimb_va',
+            'other_va',
+            'shopeepay',
+            'indomaret',
+            'alfamart'
+        ];
+
+        // Add GoPay only for mobile to prevent Desktop issues
+        if ($isMobile) {
+            array_unshift($enabledPayments, 'gopay');
+        } else {
+            // Ensure QRIS is first on desktop
+            array_unshift($enabledPayments, 'qris');
+            // Remove duplicates if any
+            $enabledPayments = array_unique($enabledPayments);
+        }
+
         $params = [
             'transaction_details' => [
                 'order_id' => $orderId,
@@ -73,20 +100,7 @@ class OrderController extends Controller
                 'email' => 'customer@dyanaf-store.com',
                 'phone' => $request->phone,
             ],
-            'enabled_payments' => [
-                'gopay',
-                'qris',
-                'credit_card',
-                'bca_va',
-                'bni_va',
-                'bri_va',
-                'permata_va',
-                'cimb_va',
-                'other_va',
-                'shopeepay',
-                'indomaret',
-                'alfamart'
-            ],
+            'enabled_payments' => $enabledPayments,
         ];
 
         try {
@@ -210,6 +224,31 @@ class OrderController extends Controller
         $cvData['transaction_id'] = $transaction->id;
         $cvOrder = \App\Models\CvOrder::create($cvData);
 
+        // Dynamic payment methods based on Device
+        $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
+
+        $enabledPayments = [
+            'qris',
+            'credit_card',
+            'bca_va',
+            'bni_va',
+            'bri_va',
+            'permata_va',
+            'cimb_va',
+            'other_va',
+            'shopeepay',
+            'indomaret',
+            'alfamart'
+        ];
+
+        // Add GoPay only for mobile
+        if ($isMobile) {
+            array_unshift($enabledPayments, 'gopay');
+        } else {
+            array_unshift($enabledPayments, 'qris');
+            $enabledPayments = array_unique($enabledPayments);
+        }
+
         $params = [
             'transaction_details' => [
                 'order_id' => $orderId,
@@ -229,20 +268,7 @@ class OrderController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
             ],
-            'enabled_payments' => [
-                'gopay',
-                'qris',
-                'credit_card',
-                'bca_va',
-                'bni_va',
-                'bri_va',
-                'permata_va',
-                'cimb_va',
-                'other_va',
-                'shopeepay',
-                'indomaret',
-                'alfamart'
-            ],
+            'enabled_payments' => $enabledPayments,
         ];
 
         try {
