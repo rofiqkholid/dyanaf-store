@@ -64,13 +64,13 @@ class OrderController extends Controller
                     'id' => Str::slug($request->service_name),
                     'price' => $price,
                     'quantity' => 1,
-                    'name' => substr($request->service_name, 0, 50), // Midtrans limit
+                    'name' => substr($request->service_name, 0, 50),
                 ]
             ],
             'customer_details' => [
                 'first_name' => $firstName,
                 'last_name' => $lastName,
-                'email' => 'customer@dyanaf-store.com', // Placeholder email as per request to remove email input
+                'email' => 'customer@dyanaf-store.com',
                 'phone' => $request->phone,
             ],
             'enabled_payments' => [
