@@ -112,10 +112,6 @@ class OrderController extends Controller
             'order_id' => 'required|exists:transactions,order_id'
         ]);
 
-        // "Rollback" - delete the transaction or mark as cancelled/failed
-        // Requirement says "role back data tidak jadi masuk" so we delete it.
-        // Or we can soft delete, but detailed instruction says "role back data tidak jadi masuk".
-        // Deleting seems to fit the user's "backtrack" mental model best.
 
         \App\Models\Transaction::where('order_id', $request->order_id)->delete();
 
