@@ -11,40 +11,34 @@ class OrderController extends Controller
 {
     public function checkout(Request $request)
     {
+        \Illuminate\Support\Facades\Log::info('Checkout initiated', ['user_agent' => $request->header('User-Agent')]);
+
         $request->validate([
             'service_name' => 'required|string',
             'price' => 'required|numeric',
             'customer_name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20' // Phone is now required
+            'phone' => 'required|string|max:20'
         ]);
 
-        // SECURITY: Validate price from database (not frontend) to prevent manipulation
         $service = \App\Models\Service::where('name', $request->service_name)->first();
 
         if (!$service) {
             return response()->json(['error' => 'Service not found'], 404);
         }
 
-        // Use the database price, NOT the frontend price
         $price = $service->price;
 
-        // Set your Merchant Server Key
         Config::$serverKey = config('midtrans.server_key');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = config('midtrans.is_production');
-        // Set sanitization on (default)
         Config::$isSanitized = config('midtrans.is_sanitized');
-        // Set 3DS transaction for credit card to true
         Config::$is3ds = config('midtrans.is_3ds');
 
         $orderId = 'DYANAF-' . Str::upper(Str::random(6)) . '-' . time();
 
-        // Split name for Midtrans
         $names = explode(' ', $request->customer_name, 2);
         $firstName = $names[0];
         $lastName = isset($names[1]) ? $names[1] : '';
 
-        // Create initial transaction record
         $transaction = \App\Models\Transaction::create([
             'order_id' => $orderId,
             'customer_name' => $request->customer_name,
@@ -54,7 +48,6 @@ class OrderController extends Controller
             'phone' => $request->phone,
         ]);
 
-        // Dynamic payment methods based on Device
         $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
 
         $enabledPayments = [
@@ -71,14 +64,11 @@ class OrderController extends Controller
             'alfamart'
         ];
 
-        // Add GoPay only for mobile to prevent Desktop issues
         if ($isMobile) {
             array_unshift($enabledPayments, 'gopay');
         } else {
-            // Ensure QRIS is first on desktop
             array_unshift($enabledPayments, 'qris');
-            // Remove duplicates if any
-            $enabledPayments = array_unique($enabledPayments);
+            $enabledPayments = array_values(array_unique($enabledPayments));
         }
 
         $params = [
@@ -246,7 +236,7 @@ class OrderController extends Controller
             array_unshift($enabledPayments, 'gopay');
         } else {
             array_unshift($enabledPayments, 'qris');
-            $enabledPayments = array_unique($enabledPayments);
+            $enabledPayments = array_values(array_unique($enabledPayments));
         }
 
         $params = [
