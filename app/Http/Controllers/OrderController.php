@@ -73,6 +73,20 @@ class OrderController extends Controller
                 'email' => 'customer@dyanaf-store.com', // Placeholder email as per request to remove email input
                 'phone' => $request->phone,
             ],
+            'enabled_payments' => [
+                'credit_card',
+                'bca_va',
+                'bni_va',
+                'bri_va',
+                'permata_va',
+                'other_va',
+                'gopay',
+                'shopeepay',
+                'qris',
+                'cimb_va',
+                'indomaret',
+                'alfamart'
+            ],
         ];
 
         try {
@@ -218,6 +232,20 @@ class OrderController extends Controller
                 'last_name' => $lastName,
                 'email' => $request->email,
                 'phone' => $request->phone,
+            ],
+            'enabled_payments' => [
+                'credit_card',
+                'bca_va',
+                'bni_va',
+                'bri_va',
+                'permata_va',
+                'other_va',
+                'gopay',
+                'shopeepay',
+                'qris',
+                'cimb_va',
+                'indomaret',
+                'alfamart'
             ],
         ];
 
