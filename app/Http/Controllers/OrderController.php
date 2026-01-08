@@ -284,7 +284,9 @@ class OrderController extends Controller
 
     /**
      * Core API - Charge Transaction (QRIS Prototype)
+     * MODIFIED: Now uses Snap API as fallback for Production compatibility
      */
+
     public function coreCharge(Request $request)
     {
         $request->validate([
@@ -295,144 +297,77 @@ class OrderController extends Controller
             'phone' => 'required|string',
         ]);
 
-        $service = \App\Models\Service::where('name', $request->service_name)->first();
-        if (!$service) {
-            return response()->json(['success' => false, 'error' => 'Service not found'], 404);
-        }
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
 
-        $price = $service->price;
-        $orderId = 'DYANAF-QRIS-' . Str::upper(Str::random(6)) . '-' . time();
+        $orderId = 'ORD-' . time() . '-' . rand(100, 999);
+        $price = $request->price;
+        $paymentMethod = $request->payment_method;
 
         // Create transaction record
         $transaction = \App\Models\Transaction::create([
             'order_id' => $orderId,
-            'customer_name' => $request->customer_name,
             'service_name' => $request->service_name,
-            'amount' => $price,
-            'status' => 'pending',
+            'amount' => $price, // Changed from 'price' to 'amount' to match schema
+            'customer_name' => $request->customer_name,
             'phone' => $request->phone,
+            'status' => 'pending',
+            'payment_type' => $paymentMethod,
         ]);
 
-        // Midtrans Core API Configuration
-        Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = config('midtrans.is_production');
-        Config::$isSanitized = config('midtrans.is_sanitized');
-        Config::$is3ds = config('midtrans.is_3ds');
+        // Map internal payment method to Snap enabled_payments
+        $snapPaymentMethod = [];
+        $isVa = strpos($paymentMethod, '_va') !== false;
+
+        if ($paymentMethod === 'qris') {
+            $snapPaymentMethod = ['gopay', 'qris']; // Midtrans Snap groups QRIS under gopay usually
+        } elseif ($paymentMethod === 'bca_va') {
+            $snapPaymentMethod = ['bca_va'];
+        } elseif ($paymentMethod === 'bni_va') {
+            $snapPaymentMethod = ['bni_va'];
+        } elseif ($paymentMethod === 'bri_va') {
+            $snapPaymentMethod = ['bri_va'];
+        } elseif ($paymentMethod === 'mandiri_va') {
+            $snapPaymentMethod = ['echannel', 'mandiri_clickpay']; // Mandiri often needs echannel
+        } elseif ($paymentMethod === 'permata_va') {
+            $snapPaymentMethod = ['permata_va'];
+        }
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $orderId,
+                'gross_amount' => $price,
+            ],
+            'customer_details' => [
+                'first_name' => $request->customer_name,
+                'email' => 'customer@dyanaf-store.com',
+                'phone' => $request->phone,
+            ],
+            'item_details' => [
+                [
+                    'id' => 'ITEM1',
+                    'price' => $price,
+                    'quantity' => 1,
+                    'name' => $request->service_name
+                ]
+            ],
+            // Force Snap to only show the selected payment method
+            'enabled_payments' => $snapPaymentMethod
+        ];
 
         try {
-            $paymentMethod = $request->payment_method;
-
-            // For QRIS prototype
-            if ($paymentMethod === 'qris') {
-                $params = [
-                    'payment_type' => 'qris',
-                    'transaction_details' => [
-                        'order_id' => $orderId,
-                        'gross_amount' => $price,
-                    ],
-                    'customer_details' => [
-                        'first_name' => $request->customer_name,
-                        'email' => 'customer@dyanaf-store.com',
-                        'phone' => $request->phone,
-                    ],
-                ];
-
-                // Use Core API to charge
-                $charge = \Midtrans\CoreApi::charge($params);
-
-                // Extract QR code URL safely
-                $qrCodeUrl = null;
-                if (isset($charge->actions) && is_array($charge->actions) && count($charge->actions) > 0) {
-                    $qrCodeUrl = $charge->actions[0]->url ?? null;
-                }
-
-                return response()->json([
-                    'success' => true,
-                    'order_id' => $orderId,
-                    'payment_method' => 'qris',
-                    'qr_code_url' => $qrCodeUrl, // QR code URL
-                    'amount' => $price,
-                    'expiry' => '15 menit',
-                    'transaction_id' => $charge->transaction_id ?? null,
-                    'status' => $charge->transaction_status ?? 'pending',
-                ]);
-            }
-
-            // Fallback for other methods (will implement later)
-            // Virtual Account - BCA
-            if ($paymentMethod === 'bca_va') {
-                $params = [
-                    'payment_type' => 'bank_transfer',
-                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
-                    'bank_transfer' => ['bank' => 'bca'],
-                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
-                ];
-                $charge = \Midtrans\CoreApi::charge($params);
-                $vaNumber = (isset($charge->va_numbers) && is_array($charge->va_numbers) && count($charge->va_numbers) > 0) ? ($charge->va_numbers[0]->va_number ?? null) : null;
-                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bca_va', 'bank' => 'BCA', 'va_number' => $vaNumber, 'amount' => $price, 'expiry_time' => $charge->expiry_time ?? null]);
-            }
-
-            // Virtual Account - BNI
-            if ($paymentMethod === 'bni_va') {
-                $params = [
-                    'payment_type' => 'bank_transfer',
-                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
-                    'bank_transfer' => ['bank' => 'bni'],
-                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
-                ];
-                $charge = \Midtrans\CoreApi::charge($params);
-                $vaNumber = (isset($charge->va_numbers) && is_array($charge->va_numbers) && count($charge->va_numbers) > 0) ? ($charge->va_numbers[0]->va_number ?? null) : null;
-                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bni_va', 'bank' => 'BNI', 'va_number' => $vaNumber, 'amount' => $price, 'expiry_time' => $charge->expiry_time ?? null]);
-            }
-
-            // Virtual Account - BRI
-            if ($paymentMethod === 'bri_va') {
-                $params = [
-                    'payment_type' => 'bank_transfer',
-                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
-                    'bank_transfer' => ['bank' => 'bri'],
-                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
-                ];
-                $charge = \Midtrans\CoreApi::charge($params);
-                $vaNumber = (isset($charge->va_numbers) && is_array($charge->va_numbers) && count($charge->va_numbers) > 0) ? ($charge->va_numbers[0]->va_number ?? null) : null;
-                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bri_va', 'bank' => 'BRI', 'va_number' => $vaNumber, 'amount' => $price, 'expiry_time' => $charge->expiry_time ?? null]);
-            }
-
-            // Virtual Account - Mandiri
-            if ($paymentMethod === 'mandiri_va') {
-                $params = [
-                    'payment_type' => 'bank_transfer',
-                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
-                    'bank_transfer' => ['bank' => 'mandiri'],
-                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
-                ];
-                $charge = \Midtrans\CoreApi::charge($params);
-
-                // Mandiri via bank_transfer might return va_numbers or bill_key/biller_code depending on configuration
-                // But let's try to handle standard va_number first as we switched to bank_transfer type
-                $vaNumber = null;
-                if (isset($charge->va_numbers) && is_array($charge->va_numbers) && count($charge->va_numbers) > 0) {
-                    $vaNumber = $charge->va_numbers[0]->va_number ?? null;
-                } else if (isset($charge->bill_key) && isset($charge->biller_code)) {
-                    // Fallback if it still returns biller info
-                    $vaNumber = $charge->biller_code . ' ' . $charge->bill_key;
-                }
-
-                return response()->json([
-                    'success' => true,
-                    'order_id' => $orderId,
-                    'payment_method' => 'mandiri_va',
-                    'bank' => 'MANDIRI',
-                    'va_number' => $vaNumber,
-                    'amount' => $price,
-                    'expiry_time' => $charge->expiry_time ?? null
-                ]);
-            }
+            // Get Snap Token
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             return response()->json([
-                'success' => false,
-                'error' => 'Payment method not yet implemented.'
-            ], 400);
+                'success' => true,
+                'order_id' => $orderId,
+                'payment_method' => $paymentMethod,
+                'snap_token' => $snapToken, // Send token to frontend
+                'amount' => $price
+            ]);
         } catch (\Exception $e) {
             $transaction->delete();
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
