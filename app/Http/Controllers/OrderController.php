@@ -317,60 +317,112 @@ class OrderController extends Controller
             'payment_type' => $paymentMethod,
         ]);
 
-        // Map internal payment method to Snap enabled_payments
-        $snapPaymentMethod = [];
-        $isVa = strpos($paymentMethod, '_va') !== false;
-
-        if ($paymentMethod === 'qris') {
-            $snapPaymentMethod = ['gopay', 'qris']; // Midtrans Snap groups QRIS under gopay usually
-        } elseif ($paymentMethod === 'bca_va') {
-            $snapPaymentMethod = ['bca_va'];
-        } elseif ($paymentMethod === 'bni_va') {
-            $snapPaymentMethod = ['bni_va'];
-        } elseif ($paymentMethod === 'bri_va') {
-            $snapPaymentMethod = ['bri_va'];
-        } elseif ($paymentMethod === 'mandiri_va') {
-            $snapPaymentMethod = ['echannel', 'mandiri_clickpay']; // Mandiri often needs echannel
-        } elseif ($paymentMethod === 'permata_va') {
-            $snapPaymentMethod = ['permata_va'];
-        }
-
-        $params = [
-            'transaction_details' => [
-                'order_id' => $orderId,
-                'gross_amount' => $price,
-            ],
-            'customer_details' => [
-                'first_name' => $request->customer_name,
-                'email' => 'customer@dyanaf-store.com',
-                'phone' => $request->phone,
-            ],
-            'item_details' => [
-                [
-                    'id' => 'ITEM1',
-                    'price' => $price,
-                    'quantity' => 1,
-                    'name' => $request->service_name
-                ]
-            ],
-            // Force Snap to only show the selected payment method
-            'enabled_payments' => $snapPaymentMethod
-        ];
-
         try {
-            // Get Snap Token
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            $params = [];
 
-            return response()->json([
-                'success' => true,
-                'order_id' => $orderId,
-                'payment_method' => $paymentMethod,
-                'snap_token' => $snapToken, // Send token to frontend
-                'amount' => $price
-            ]);
+            // QRIS
+            if ($paymentMethod === 'qris') {
+                $params = [
+                    'payment_type' => 'qris',
+                    'transaction_details' => [
+                        'order_id' => $orderId,
+                        'gross_amount' => $price,
+                    ],
+                    'qris' => [
+                        'acquirer' => 'gopay',
+                    ],
+                    'customer_details' => [
+                        'first_name' => $request->customer_name,
+                        'email' => 'customer@dyanaf-store.com',
+                        'phone' => $request->phone,
+                    ],
+                ];
+
+                $charge = \Midtrans\CoreApi::charge($params);
+
+                $qrCodeUrl = null;
+                if (isset($charge->actions) && is_array($charge->actions)) {
+                    foreach ($charge->actions as $action) {
+                        if ($action->name == 'generate-qr-code') {
+                            $qrCodeUrl = $action->url;
+                            break;
+                        }
+                    }
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'order_id' => $orderId,
+                    'payment_method' => 'qris',
+                    'qr_code_url' => $qrCodeUrl,
+                    'amount' => $price,
+                    'expiry' => '15 menit',
+                ]);
+            }
+
+            // Virtual Account - BCA
+            if ($paymentMethod === 'bca_va') {
+                $params = [
+                    'payment_type' => 'bank_transfer',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'bank_transfer' => ['bank' => 'bca'],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+                $vaNumber = $charge->va_numbers[0]->va_number ?? null;
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bca_va', 'bank' => 'BCA', 'va_number' => $vaNumber, 'amount' => $price]);
+            }
+
+            // Virtual Account - BNI
+            if ($paymentMethod === 'bni_va') {
+                $params = [
+                    'payment_type' => 'bank_transfer',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'bank_transfer' => ['bank' => 'bni'],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+                $vaNumber = $charge->va_numbers[0]->va_number ?? null;
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bni_va', 'bank' => 'BNI', 'va_number' => $vaNumber, 'amount' => $price]);
+            }
+
+            // Virtual Account - BRI
+            if ($paymentMethod === 'bri_va') {
+                $params = [
+                    'payment_type' => 'bank_transfer',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'bank_transfer' => ['bank' => 'bri'],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+                $vaNumber = $charge->va_numbers[0]->va_number ?? null;
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bri_va', 'bank' => 'BRI', 'va_number' => $vaNumber, 'amount' => $price]);
+            }
+
+            // Virtual Account - Mandiri (E-Channel)
+            if ($paymentMethod === 'mandiri_va') {
+                $params = [
+                    'payment_type' => 'echannel',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'echannel' => [
+                        'bill_info1' => 'Payment For:',
+                        'bill_info2' => 'Order ' . $orderId
+                    ],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+
+                $billKey = $charge->bill_key ?? null;
+                $billerCode = $charge->biller_code ?? null;
+                $vaDisplay = $billerCode . ' ' . $billKey;
+
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'mandiri_va', 'bank' => 'MANDIRI', 'va_number' => $vaDisplay, 'amount' => $price]);
+            }
+
+            return response()->json(['success' => false, 'error' => 'Method not implemented'], 400);
         } catch (\Exception $e) {
             $transaction->delete();
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            return response()->json(['success' => false, 'error' => 'API Error: ' . $e->getMessage()], 500);
         }
     }
 
