@@ -221,6 +221,28 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Handling SNAP TOKEN (Prodcution Fallback)
+                if (data.success && data.snap_token) {
+                    document.getElementById('va-loading').classList.add('hidden');
+                    closeVaModal();
+
+                    window.snap.pay(data.snap_token, {
+                        onSuccess: function(result) {
+                            // Handle logic success
+                            vaData.orderId = data.order_id; // Ensure orderId is saved
+                            handleVaSuccess();
+                        },
+                        onPending: function(result) {
+                            // If pending, maybe we simulate success or wait
+                            // For now let's just close
+                        },
+                        onError: function(result) {
+                            showToast('Pembayaran Gagal', 'error');
+                        }
+                    });
+                    return;
+                }
+
                 if (data.success && data.va_number) {
                     vaData.orderId = data.order_id;
                     vaData.vaNumber = data.va_number;
