@@ -184,6 +184,10 @@
     @include('partials.toast')
     @include('partials.payment-modal')
     @include('partials.payment-modal-cv')
+    @include('partials.custom-payment-ui')
+    @include('partials.qris-payment-prototype')
+    @include('partials.va-payment-modal')
+
 
     @stack('scripts')
 </body>

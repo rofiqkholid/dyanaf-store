@@ -28,6 +28,11 @@ Route::post('/payment/checkout-cv', [App\Http\Controllers\OrderController::class
 Route::post('/payment/cancel', [App\Http\Controllers\OrderController::class, 'cancel'])->name('api.payment.cancel');
 Route::post('/payment/success', [App\Http\Controllers\OrderController::class, 'success'])->name('api.payment.success');
 
+// Core API Payment
+Route::post('/payment/core/charge', [App\Http\Controllers\OrderController::class, 'coreCharge'])->name('api.payment.core.charge');
+Route::get('/payment/status/{orderId}', [App\Http\Controllers\OrderController::class, 'checkStatus'])->name('api.payment.status');
+
+
 // Public API (if needed)
 Route::get('/user', function (Request $request) {
     return $request->user();

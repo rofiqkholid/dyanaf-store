@@ -175,57 +175,66 @@
 
         if (!isValid) return;
 
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        btn.disabled = true;
+        // Close current modal and show custom payment UI
+        closePaymentModal();
 
-        fetch('{{ route("api.payment.checkout") }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: JSON.stringify({
-                    service_name: currentServiceName,
-                    price: currentPrice,
-                    customer_name: customerName,
-                    phone: customerPhone
+        // Show custom payment modal with collected data
+        if (typeof showCustomPaymentModal === 'function') {
+            showCustomPaymentModal(currentServiceName, currentPrice, customerName, customerPhone);
+        } else {
+            // Fallback to old method if custom UI not loaded
+            console.warn('Custom payment UI not available, using default Snap');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+
+            fetch('{{ route("api.payment.checkout") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        service_name: currentServiceName,
+                        price: currentPrice,
+                        customer_name: customerName,
+                        phone: customerPhone
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.snap_token) {
-                    activeOrderId = data.order_id;
-                    closePaymentModal();
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
+                .then(response => response.json())
+                .then(data => {
+                    if (data.snap_token) {
+                        activeOrderId = data.order_id;
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
 
-                    window.snap.pay(data.snap_token, {
-                        onSuccess: function(result) {
-                            handlePaymentSuccess(activeOrderId);
-                        },
-                        onPending: function(result) {
-                            showToast('Menunggu Pembayaran!', 'warning', true);
-                        },
-                        onError: function(result) {
-                            handlePaymentCancel(activeOrderId, "Pembayaran Gagal!");
-                        },
-                        onClose: function() {
-                            handlePaymentCancel(activeOrderId, "Pembayaran Dibatalkan oleh pengguna");
-                        }
-                    });
-                } else {
-                    showToast('Gagal membuat transaksi: ' + (data.error || 'Unknown error'), 'error');
+                        window.snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                handlePaymentSuccess(activeOrderId);
+                            },
+                            onPending: function(result) {
+                                showToast('Menunggu Pembayaran!', 'warning', true);
+                            },
+                            onError: function(result) {
+                                handlePaymentCancel(activeOrderId, "Pembayaran Gagal!");
+                            },
+                            onClose: function() {
+                                handlePaymentCancel(activeOrderId, "Pembayaran Dibatalkan oleh pengguna");
+                            }
+                        });
+                    } else {
+                        showToast('Gagal membuat transaksi: ' + (data.error || 'Unknown error'), 'error');
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    showToast('Terjadi kesalahan sistem', 'error');
                     btn.innerHTML = originalText;
                     btn.disabled = false;
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                showToast('Terjadi kesalahan sistem', 'error');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            });
+                });
+        }
     }
 
     function handlePaymentSuccess(orderId) {
