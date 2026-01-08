@@ -170,6 +170,27 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Handling SNAP TOKEN (Prodcution Fallback)
+                if (data.success && data.snap_token) {
+                    document.getElementById('qris-loading').classList.add('hidden');
+                    closeQrisModal();
+
+                    window.snap.pay(data.snap_token, {
+                        onSuccess: function(result) {
+                            // Handle logic success
+                            qrisData.orderId = data.order_id;
+                            handleQrisSuccess();
+                        },
+                        onPending: function(result) {
+                            // If pending, maybe we simulate success or wait
+                        },
+                        onError: function(result) {
+                            showToast('Pembayaran Gagal', 'error');
+                        }
+                    });
+                    return;
+                }
+
                 if (data.success && data.qr_code_url) {
                     qrisData.orderId = data.order_id;
 
