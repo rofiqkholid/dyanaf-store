@@ -401,27 +401,29 @@ class OrderController extends Controller
             // Virtual Account - Mandiri
             if ($paymentMethod === 'mandiri_va') {
                 $params = [
-                    'payment_type' => 'echannel',
+                    'payment_type' => 'bank_transfer',
                     'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'bank_transfer' => ['bank' => 'mandiri'],
                     'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
-                    'echannel' => [
-                        'bill_info1' => 'Payment For:',
-                        'bill_info2' => 'Order ' . $orderId
-                    ]
                 ];
                 $charge = \Midtrans\CoreApi::charge($params);
 
-                $billKey = $charge->bill_key ?? null;
-                $billerCode = $charge->biller_code ?? null;
-                // Format: Biller Code - Bill Key
-                $vaDisplay = $billerCode . ' ' . $billKey;
+                // Mandiri via bank_transfer might return va_numbers or bill_key/biller_code depending on configuration
+                // But let's try to handle standard va_number first as we switched to bank_transfer type
+                $vaNumber = null;
+                if (isset($charge->va_numbers) && is_array($charge->va_numbers) && count($charge->va_numbers) > 0) {
+                    $vaNumber = $charge->va_numbers[0]->va_number ?? null;
+                } else if (isset($charge->bill_key) && isset($charge->biller_code)) {
+                    // Fallback if it still returns biller info
+                    $vaNumber = $charge->biller_code . ' ' . $charge->bill_key;
+                }
 
                 return response()->json([
                     'success' => true,
                     'order_id' => $orderId,
                     'payment_method' => 'mandiri_va',
                     'bank' => 'MANDIRI',
-                    'va_number' => $vaDisplay,
+                    'va_number' => $vaNumber,
                     'amount' => $price,
                     'expiry_time' => $charge->expiry_time ?? null
                 ]);
