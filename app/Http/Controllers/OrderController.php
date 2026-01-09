@@ -315,7 +315,7 @@ class OrderController extends Controller
             'customer_name' => $request->customer_name,
             'phone' => $request->phone,
             'status' => 'pending',
-            'payment_type' => $paymentMethod,
+            'payment_method' => $paymentMethod,
         ]);
 
         // Debug logging
@@ -347,6 +347,12 @@ class OrderController extends Controller
 
                 $charge = \Midtrans\CoreApi::charge($params);
 
+                // Log the full response for debugging
+                \Illuminate\Support\Facades\Log::info('GoPay charge response', [
+                    'order_id' => $orderId,
+                    'response' => json_encode($charge)
+                ]);
+
                 // Get deeplink URL for mobile or QR code for desktop
                 $deeplink = null;
                 $qrCodeUrl = null;
@@ -355,10 +361,17 @@ class OrderController extends Controller
                         if ($action->name == 'deeplink-redirect') {
                             $deeplink = $action->url;
                         }
+                        // GoPay uses 'generate-qr-code' action
                         if ($action->name == 'generate-qr-code') {
                             $qrCodeUrl = $action->url;
                         }
                     }
+                }
+
+                // Fallback: Check if QR string is available directly
+                if (!$qrCodeUrl && isset($charge->qr_string)) {
+                    // Generate QR code using Google Chart API
+                    $qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' . urlencode($charge->qr_string);
                 }
 
                 return response()->json([
@@ -527,10 +540,25 @@ class OrderController extends Controller
                 ? $status->transaction_status
                 : 'pending';
 
+            // Get payment method from Midtrans response
+            $paymentType = $status->payment_type ?? null;
+
             if ($transactionStatus === 'settlement' || $transactionStatus === 'capture') {
-                $transaction->update(['status' => 'success']);
+                $transaction->update([
+                    'status' => 'success',
+                    'payment_method' => $paymentType,
+                ]);
+
+                // Create order record only when payment is successful
+                \App\Models\Order::firstOrCreate(
+                    ['order_id' => $orderId],
+                    ['customer_name' => $transaction->customer_name]
+                );
             } elseif ($transactionStatus === 'pending') {
-                $transaction->update(['status' => 'pending']);
+                $transaction->update([
+                    'status' => 'pending',
+                    'payment_method' => $paymentType,
+                ]);
             } elseif ($transactionStatus === 'deny' || $transactionStatus === 'expire' || $transactionStatus === 'cancel') {
                 $transaction->update(['status' => 'failed']);
             }
@@ -538,6 +566,7 @@ class OrderController extends Controller
             return response()->json([
                 'order_id' => $orderId,
                 'status' => $transactionStatus,
+                'payment_method' => $paymentType,
                 'fraud_status' => $status->fraud_status ?? null,
             ]);
         } catch (\Exception $e) {

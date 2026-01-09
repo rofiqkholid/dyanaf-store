@@ -16,6 +16,7 @@ class Transaction extends Model
         'service_name',
         'amount',
         'status',
+        'payment_method',
         'snap_token',
         'phone',
         'metadata',
