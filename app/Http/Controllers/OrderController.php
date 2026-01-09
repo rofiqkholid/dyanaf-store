@@ -50,26 +50,12 @@ class OrderController extends Controller
 
         $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
 
+        // Only include payment channels that are activated in Production
         $enabledPayments = [
-            'qris',
-            'credit_card',
             'bca_va',
             'bni_va',
             'bri_va',
-            'permata_va',
-            'cimb_va',
-            'other_va',
-            'shopeepay',
-            'indomaret',
-            'alfamart'
         ];
-
-        if ($isMobile) {
-            array_unshift($enabledPayments, 'gopay');
-        } else {
-            array_unshift($enabledPayments, 'qris');
-            $enabledPayments = array_values(array_unique($enabledPayments));
-        }
 
         $params = [
             'transaction_details' => [
@@ -234,27 +220,12 @@ class OrderController extends Controller
         // Dynamic payment methods based on Device
         $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
 
+        // Only include payment channels that are activated in Production
         $enabledPayments = [
-            'qris',
-            'credit_card',
             'bca_va',
             'bni_va',
             'bri_va',
-            'permata_va',
-            'cimb_va',
-            'other_va',
-            'shopeepay',
-            'indomaret',
-            'alfamart'
         ];
-
-        // Add GoPay only for mobile
-        if ($isMobile) {
-            array_unshift($enabledPayments, 'gopay');
-        } else {
-            array_unshift($enabledPayments, 'qris');
-            $enabledPayments = array_values(array_unique($enabledPayments));
-        }
 
         $params = [
             'transaction_details' => [

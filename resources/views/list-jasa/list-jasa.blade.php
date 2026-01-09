@@ -3,7 +3,6 @@
 @section('title', 'Daftar Harga Layanan - Dyanaf Store')
 
 @section('content')
-<!-- Hero Header -->
 <section class="relative pt-20 pb-8 md:pt-32 md:pb-16 gradient-hero overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
@@ -20,7 +19,6 @@
         <div class="space-y-8 md:space-y-16">
 
             @foreach($categories as $category)
-            <!-- Category: {{ $category->name }} -->
             <div>
                 <div class="flex items-center gap-2 mb-4 md:mb-8">
                     <div class="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-gray-800 text-base md:text-xl">
@@ -34,9 +32,7 @@
 
                 <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
                     @foreach($category->services as $service)
-                    <!-- Card: {{ $service->name }} -->
                     <div class="group relative bg-white border border-gray-300 hover:border-gray-400 transition-all duration-300 hover:-translate-y-1 overflow-hidden" style="border-radius: 2px;">
-                        <!-- Thumbnail Image -->
                         @if($service->thumbnail)
                         <div class="w-full h-24 sm:h-32 overflow-hidden">
                             <img src="{{ asset($service->thumbnail) }}" alt="{{ $service->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
@@ -48,7 +44,7 @@
                         @endif
 
                         <div class="p-3 sm:p-6">
-                            <h4 class="font-medium text-gray-800 text-xs leading-tight">{{ $service->name }}</h4>
+                            <h4 class="font-medium text-gray-800 text-xs sm:text-sm leading-tight">{{ $service->name }}</h4>
 
                             <div class="mb-2 sm:mb-4">
                                 <div class="flex items-center gap-1">
@@ -74,7 +70,6 @@
 
         </div>
 
-        <!-- CTA Section -->
         <div class="mt-8 md:mt-20 relative overflow-hidden">
             <div class="absolute inset-0 gradient-primary opacity-5" style="border-radius: 2px;"></div>
             <div class="relative text-center p-6 md:p-10 bg-white border border-gray-100" style="border-radius: 2px;">
