@@ -303,8 +303,59 @@ class OrderController extends Controller
             'payment_type' => $paymentMethod,
         ]);
 
+        // Debug logging
+        \Illuminate\Support\Facades\Log::info('Core API Charge attempt', [
+            'server_key_prefix' => substr(config('midtrans.server_key'), 0, 25),
+            'is_production' => config('midtrans.is_production'),
+            'payment_method' => $paymentMethod,
+            'order_id' => $orderId,
+            'amount' => $price,
+        ]);
+
         try {
             $params = [];
+
+            // GoPay
+            if ($paymentMethod === 'gopay') {
+                $params = [
+                    'payment_type' => 'gopay',
+                    'transaction_details' => [
+                        'order_id' => $orderId,
+                        'gross_amount' => $price,
+                    ],
+                    'customer_details' => [
+                        'first_name' => $request->customer_name,
+                        'email' => 'customer@dyanaf-store.com',
+                        'phone' => $request->phone,
+                    ],
+                ];
+
+                $charge = \Midtrans\CoreApi::charge($params);
+
+                // Get deeplink URL for mobile or QR code for desktop
+                $deeplink = null;
+                $qrCodeUrl = null;
+                if (isset($charge->actions) && is_array($charge->actions)) {
+                    foreach ($charge->actions as $action) {
+                        if ($action->name == 'deeplink-redirect') {
+                            $deeplink = $action->url;
+                        }
+                        if ($action->name == 'generate-qr-code') {
+                            $qrCodeUrl = $action->url;
+                        }
+                    }
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'order_id' => $orderId,
+                    'payment_method' => 'gopay',
+                    'deeplink' => $deeplink,
+                    'qr_code_url' => $qrCodeUrl,
+                    'amount' => $price,
+                    'expiry' => '15 menit',
+                ]);
+            }
 
             // QRIS
             if ($paymentMethod === 'qris') {
@@ -383,6 +434,32 @@ class OrderController extends Controller
                 $charge = \Midtrans\CoreApi::charge($params);
                 $vaNumber = $charge->va_numbers[0]->va_number ?? null;
                 return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'bri_va', 'bank' => 'BRI', 'va_number' => $vaNumber, 'amount' => $price]);
+            }
+
+            // Virtual Account - CIMB Niaga
+            if ($paymentMethod === 'cimb_va') {
+                $params = [
+                    'payment_type' => 'bank_transfer',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'bank_transfer' => ['bank' => 'cimb'],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+                $vaNumber = $charge->va_numbers[0]->va_number ?? null;
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'cimb_va', 'bank' => 'CIMB NIAGA', 'va_number' => $vaNumber, 'amount' => $price]);
+            }
+
+
+            // Virtual Account - Permata (uses different payment type)
+            if ($paymentMethod === 'permata_va') {
+                $params = [
+                    'payment_type' => 'permata',
+                    'transaction_details' => ['order_id' => $orderId, 'gross_amount' => $price],
+                    'customer_details' => ['first_name' => $request->customer_name, 'email' => 'customer@dyanaf-store.com', 'phone' => $request->phone],
+                ];
+                $charge = \Midtrans\CoreApi::charge($params);
+                $vaNumber = $charge->permata_va_number ?? null;
+                return response()->json(['success' => true, 'order_id' => $orderId, 'payment_method' => 'permata_va', 'bank' => 'PERMATA', 'va_number' => $vaNumber, 'amount' => $price]);
             }
 
             // Virtual Account - Mandiri (E-Channel)

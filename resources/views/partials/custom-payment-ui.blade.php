@@ -92,16 +92,19 @@
                             </div>
                         </button>
 
-                        <!-- GoPay - Disabled -->
-                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed mb-2">
+                        <!-- GoPay - AKTIF -->
+                        <button type="button" onclick="selectGopayPayment()" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white">
-                                    <i class="fab fa-google-wallet text-gray-400"></i>
+                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
+                                    <img src="{{ asset('image/payment-logo/gopay.png') }}" alt="GoPay" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#00AA13] font-bold text-xs\'>GoPay</span>';">
                                 </div>
                                 <div class="text-left">
-                                    <p class="text-sm font-semibold text-gray-500">GoPay</p>
-                                    <p class="text-xs text-gray-400">Coming Soon</p>
+                                    <p class="text-sm font-semibold text-[#2b3a4b]">GoPay</p>
+                                    <p class="text-xs text-gray-500">Bayar via GoPay</p>
                                 </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
                             </div>
                         </button>
 
@@ -126,19 +129,16 @@
                             Virtual Account
                         </h4>
 
-                        <!-- BCA VA -->
-                        <button type="button" onclick="selectVaPayment('bca_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                        <!-- BCA VA - Disabled (tidak aktif di akun) -->
+                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
-                                    <img src="{{ asset('image/payment-logo/bca.png') }}" alt="BCA" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-sm\'>BCA</span>';">
+                                    <img src="{{ asset('image/payment-logo/bca.png') }}" alt="BCA" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-gray-400 font-bold text-sm\'>BCA</span>';">
                                 </div>
                                 <div class="text-left">
-                                    <p class="text-sm font-semibold text-[#2b3a4b]">BCA Virtual Account</p>
-                                    <p class="text-xs text-gray-500">Transfer Bank BCA</p>
+                                    <p class="text-sm font-semibold text-gray-500">BCA Virtual Account</p>
+                                    <p class="text-xs text-gray-400">Coming Soon</p>
                                 </div>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
                             </div>
                         </button>
 
@@ -174,16 +174,51 @@
                             </div>
                         </button>
 
-                        <!-- Mandiri VA - Disabled (belum aktif di Production) -->
-                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed">
+                        <!-- Permata VA (Test - Different payment type) -->
+                        <button type="button" onclick="selectVaPayment('permata_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
-                                    <img src="{{ asset('image/payment-logo/mandiri.png') }}" alt="Mandiri" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-gray-400 font-bold text-xs\'>MANDIRI</span>';">
+                                    <img src="{{ asset('image/payment-logo/permata.png') }}" alt="Permata" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-xs\'>PERMATA</span>';">
                                 </div>
                                 <div class="text-left">
-                                    <p class="text-sm font-semibold text-gray-500">Mandiri Virtual Account</p>
-                                    <p class="text-xs text-gray-400">Coming Soon</p>
+                                    <p class="text-sm font-semibold text-[#2b3a4b]">Permata Virtual Account</p>
+                                    <p class="text-xs text-gray-500">Transfer Bank Permata</p>
                                 </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </button>
+
+                        <!-- CIMB Niaga VA - AKTIF -->
+                        <button type="button" onclick="selectVaPayment('cimb_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
+                                    <img src="{{ asset('image/payment-logo/cimb.png') }}" alt="CIMB" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-xs\'>CIMB</span>';">
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm font-semibold text-[#2b3a4b]">CIMB Niaga Virtual Account</p>
+                                    <p class="text-xs text-gray-500">Transfer Bank CIMB Niaga</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                            </div>
+                        </button>
+
+                        <!-- Mandiri VA - AKTIF -->
+                        <button type="button" onclick="selectVaPayment('mandiri_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
+                                    <img src="{{ asset('image/payment-logo/mandiri.png') }}" alt="Mandiri" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-xs\'>MANDIRI</span>';">
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm font-semibold text-[#2b3a4b]">Mandiri Virtual Account</p>
+                                    <p class="text-xs text-gray-500">Transfer Bank Mandiri</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
                             </div>
                         </button>
                     </div>
@@ -271,6 +306,15 @@
         closeCustomPaymentModal(true); // skipCancel = true
         setTimeout(() => {
             showVaPayment(bankMethod, customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+        }, 300);
+    }
+
+    // Helper function to select GoPay payment
+    function selectGopayPayment() {
+        customPaymentData.paymentSelected = true;
+        closeCustomPaymentModal(true); // skipCancel = true
+        setTimeout(() => {
+            showGopayPayment(customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
         }, 300);
     }
 

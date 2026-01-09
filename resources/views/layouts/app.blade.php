@@ -187,6 +187,7 @@
     @include('partials.custom-payment-ui')
     @include('partials.qris-payment-prototype')
     @include('partials.va-payment-modal')
+    @include('partials.gopay-payment-modal')
 
 
     @stack('scripts')
