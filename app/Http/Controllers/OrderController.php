@@ -106,6 +106,21 @@ class OrderController extends Controller
         $transaction = \App\Models\Transaction::where('order_id', $request->order_id)->first();
 
         if ($transaction) {
+            // Cancel transaction in Midtrans
+            try {
+                Config::$serverKey = config('midtrans.server_key');
+                Config::$isProduction = config('midtrans.is_production');
+
+                \Midtrans\Transaction::cancel($request->order_id);
+                \Illuminate\Support\Facades\Log::info('Midtrans transaction cancelled', ['order_id' => $request->order_id]);
+            } catch (\Exception $e) {
+                // Log error but continue with local cancellation
+                \Illuminate\Support\Facades\Log::warning('Failed to cancel Midtrans transaction', [
+                    'order_id' => $request->order_id,
+                    'error' => $e->getMessage()
+                ]);
+            }
+
             // Find and delete related CvOrder if exists
             $cvOrder = \App\Models\CvOrder::where('transaction_id', $transaction->id)->first();
             if ($cvOrder) {
