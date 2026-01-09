@@ -25,8 +25,32 @@
                     </button>
                 </div>
 
+                <!-- Step Indicator -->
+                <div class="px-4 sm:px-6 py-3 bg-gray-50 border-b border-gray-100">
+                    <div class="flex items-center justify-center gap-4 sm:gap-8">
+                        <!-- Step 1 - Active -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#2b3a4b] text-white text-[10px] sm:text-xs font-semibold">
+                                1
+                            </div>
+                            <span class="text-xs sm:text-sm font-medium text-[#2b3a4b]">Lengkapi Data</span>
+                        </div>
+
+                        <!-- Connector Line -->
+                        <div class="w-8 sm:w-16 h-0.5 bg-gray-300"></div>
+
+                        <!-- Step 2 - Inactive -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-gray-300 text-gray-500 text-[10px] sm:text-xs font-semibold">
+                                2
+                            </div>
+                            <span class="text-xs sm:text-sm font-medium text-gray-400">Metode Pembayaran</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Form Content -->
-                <div class="flex-1 p-4 sm:p-6 overflow-y-auto overscroll-contain">
+                <div id="cv-form-content" class="flex-1 p-4 sm:p-6 overflow-y-auto overscroll-contain">
                     <p class="text-sm text-gray-500 sm:hidden mb-4">Lengkapi data berikut untuk pembuatan CV profesional.</p>
 
                     <form id="cv-form" enctype="multipart/form-data">
@@ -193,8 +217,15 @@
                     </form>
                 </div>
 
+                <!-- Loading Overlay -->
+                <div id="cv-loading-overlay" class="hidden flex-1 flex flex-col items-center justify-center p-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-[#2b3a4b] mb-4"></div>
+                    <p class="text-sm font-medium text-gray-600">Memproses...</p>
+                    <p class="text-xs text-gray-400 mt-1">Mohon tunggu sebentar</p>
+                </div>
+
                 <!-- Footer with Buttons -->
-                <div class="flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50 shrink-0">
+                <div id="cv-form-footer" class="flex flex-row-reverse gap-3 p-4 sm:p-6 border-t border-gray-100 bg-gray-50 shrink-0">
                     <button type="button" onclick="processPaymentCV()" id="btn-process-payment-cv" class="flex-1 sm:flex-none inline-flex justify-center items-center rounded-lg gradient-primary px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 cursor-pointer">
                         Bayar Sekarang
                     </button>
@@ -355,10 +386,18 @@
             return;
         }
 
-        const btn = document.getElementById('btn-process-payment-cv');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        btn.disabled = true;
+        // Get customer data
+        const customerName = document.getElementById('cv-name').value;
+        const customerPhone = document.getElementById('cv-phone').value;
+
+        // Hide form content and footer, show loading overlay
+        const formContent = document.getElementById('cv-form-content');
+        const loadingOverlay = document.getElementById('cv-loading-overlay');
+        const footer = document.getElementById('cv-form-footer');
+
+        formContent.classList.add('hidden');
+        footer.classList.add('hidden');
+        loadingOverlay.classList.remove('hidden');
 
         // Collect form data
         const formData = new FormData(document.getElementById('cv-form'));
@@ -376,6 +415,7 @@
         }
         formData.set('skills', JSON.stringify(skills));
 
+        // Send CV data to server first to create pending records
         fetch('{{ route("api.payment.checkout.cv") }}', {
                 method: 'POST',
                 headers: {
@@ -383,39 +423,56 @@
                 },
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.snap_token) {
-                    activeCVOrderId = data.order_id;
-                    closePaymentModalCV();
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-
-                    window.snap.pay(data.snap_token, {
-                        onSuccess: function(result) {
-                            handleCVPaymentSuccess(activeCVOrderId);
-                        },
-                        onPending: function(result) {
-                            showToast('Menunggu Pembayaran!', 'warning', true);
-                        },
-                        onError: function(result) {
-                            handleCVPaymentCancel(activeCVOrderId, "Pembayaran Gagal!");
-                        },
-                        onClose: function() {
-                            handleCVPaymentCancel(activeCVOrderId, "Pembayaran Dibatalkan oleh pengguna");
-                        }
+            .then(response => {
+                console.log('CV checkout response status:', response.status);
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || err.error || JSON.stringify(err));
                     });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('CV checkout response data:', data);
+                if (data.order_id) {
+                    // Store order ID for later use
+                    activeCVOrderId = data.order_id;
+
+                    // Wait a bit then show payment modal
+                    setTimeout(() => {
+                        // Reset - show form and footer, hide loading
+                        formContent.classList.remove('hidden');
+                        footer.classList.remove('hidden');
+                        loadingOverlay.classList.add('hidden');
+
+                        // Close current modal
+                        closePaymentModalCV();
+
+                        // Show custom payment modal with collected data
+                        if (typeof showCustomPaymentModalCV === 'function') {
+                            setTimeout(() => {
+                                showCustomPaymentModalCV(currentCVServiceName, currentCVPrice, customerName, customerPhone, activeCVOrderId);
+                            }, 300);
+                        } else if (typeof showCustomPaymentModal === 'function') {
+                            setTimeout(() => {
+                                showCustomPaymentModal(currentCVServiceName, currentCVPrice, customerName, customerPhone, activeCVOrderId);
+                            }, 300);
+                        }
+                    }, 500);
                 } else {
-                    showToast('Gagal membuat transaksi: ' + (data.error || 'Unknown error'), 'error');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
+                    // Reset UI on error
+                    formContent.classList.remove('hidden');
+                    footer.classList.remove('hidden');
+                    loadingOverlay.classList.add('hidden');
+                    showToast('Gagal menyimpan data CV: ' + (data.error || data.message || 'Unknown error'), 'error');
                 }
             })
             .catch(error => {
-                console.error(error);
-                showToast('Terjadi kesalahan sistem', 'error');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                console.error('CV checkout error:', error);
+                formContent.classList.remove('hidden');
+                footer.classList.remove('hidden');
+                loadingOverlay.classList.add('hidden');
+                showToast('Terjadi kesalahan: ' + error.message, 'error');
             });
     }
 

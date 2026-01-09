@@ -23,12 +23,12 @@
             <!-- Category: {{ $category->name }} -->
             <div>
                 <div class="flex items-center gap-2 mb-4 md:mb-8">
-                    <div class="w-12 h-12 flex items-center justify-center rounded-xl text-gray-800 text-xl">
+                    <div class="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-gray-800 text-base md:text-xl">
                         <i class="{{ $category->icon }}"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800">{{ $category->name }}</h3>
-                        <p class="text-sm text-gray-500">{{ $category->description }}</p>
+                        <h3 class="text-sm md:text-xl font-bold text-gray-800">{{ $category->name }}</h3>
+                        <p class="text-xs md:text-sm text-gray-500">{{ $category->description }}</p>
                     </div>
                 </div>
 
@@ -48,45 +48,18 @@
                         @endif
 
                         <div class="p-3 sm:p-6">
-                            <h4 class="font-bold text-gray-800 text-sm sm:text-base leading-tight">{{ $service->name }}</h4>
-                            @if($service->tag)
-                            @php
-                            $textColorClasses = [
-                            'red' => 'text-[#dc2626]',
-                            'blue' => 'text-[#2563eb]',
-                            'green' => 'text-[#16a34a]',
-                            'purple' => 'text-[#9333ea]',
-                            'orange' => 'text-[#ea580c]',
-                            'pink' => 'text-[#db2777]',
-                            'indigo' => 'text-[#4f46e5]',
-                            'teal' => 'text-[#0d9488]',
-                            'cyan' => 'text-[#0891b2]',
-                            'yellow' => 'text-[#ca8a04]',
-                            'lime' => 'text-[#65a30d]',
-                            'sky' => 'text-[#0284c7]',
-                            'emerald' => 'text-[#059669]',
-                            ];
-                            $colorClass = $textColorClasses[$service->tag_color] ?? $textColorClasses['blue'];
-                            @endphp
-                            <span class="inline-block px-1.5 sm:px-2 py-0.5 bg-gray-100 text-[8px] sm:text-[10px] font-medium rounded-full {{ $colorClass }} mb-2">{{ $service->tag }}</span>
-                            @endif
+                            <h4 class="font-medium text-gray-800 text-xs leading-tight">{{ $service->name }}</h4>
 
-                            <div class="space-y-1 sm:space-y-2 mb-2 sm:mb-4">
-                                <div class="flex items-center justify-start gap-1">
-                                    <div class="text-right">
+                            <div class="mb-2 sm:mb-4">
+                                <div class="flex items-center gap-1">
+                                    <div>
                                         @if($service->price_display)
-                                        <span class="text-sm sm:text-xl font-extrabold text-gray-800">{{ $service->price_display }} <span class="text-[13px] sm:text-sm">IDR</span></span>
+                                        <span class="text-sm sm:text-base font-extrabold text-[#2b3a4b]">{{ $service->price_display }} IDR</span>
                                         @else
-                                        @php
-                                        $priceFormatted = number_format($service->price, 0, ',', '.');
-                                        $priceParts = explode('.', $priceFormatted);
-                                        $firstPart = $priceParts[0];
-                                        $remainingParts = implode('.', array_slice($priceParts, 1));
-                                        @endphp
-                                        <span class="text-md sm:text-xl font-bold text-gray-800">{{ $firstPart }}</span><span class="text-[13px] sm:text-sm font-bold text-gray-800">@if($remainingParts).{{ $remainingParts }}@endif IDR</span>
+                                        <span class="text-sm sm:text-base font-bold text-[#2b3a4b]">{{ number_format($service->price, 0, ',', '.') }} IDR</span>
                                         @endif
                                     </div>
-                                    <i class="fas fa-tag text-[10px] sm:text-xs text-gray-500"></i>
+                                    <i class="fas fa-tag text-[8px] sm:text-xs text-gray-400"></i>
                                 </div>
                             </div>
                             <a href="{{ route($service->route_name) }}" class="flex items-center justify-center gap-1 w-full py-2 sm:py-3 gradient-primary text-white rounded-lg sm:rounded-xl font-semibold text-[10px] sm:text-sm hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer">

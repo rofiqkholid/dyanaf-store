@@ -105,7 +105,8 @@
         price: 0,
         customerName: '',
         phone: '',
-        orderId: null
+        orderId: null,
+        paymentSuccess: false
     };
     let qrisScrollPosition = 0;
     let statusCheckInterval = null;
@@ -116,7 +117,8 @@
             price: price,
             customerName: customerName,
             phone: phone,
-            orderId: null
+            orderId: null,
+            paymentSuccess: false
         };
 
         // Populate modal
@@ -228,6 +230,7 @@
                         `;
 
                         setTimeout(() => {
+                            qrisData.paymentSuccess = true;
                             closeQrisModal();
                             handleQrisSuccess();
                         }, 2000);
@@ -273,8 +276,8 @@ Mohon segera diproses. Terima kasih!`;
     }
 
     function closeQrisModal() {
-        // Cancel transaction if exists
-        if (qrisData.orderId) {
+        // Cancel transaction if exists and payment not successful
+        if (qrisData.orderId && !qrisData.paymentSuccess) {
             fetch('{{ route("api.payment.cancel") }}', {
                 method: 'POST',
                 headers: {
@@ -318,6 +321,7 @@ Mohon segera diproses. Terima kasih!`;
 
             // Clear data for fresh start next time
             qrisData.orderId = null;
+            qrisData.paymentSuccess = false;
         }, 300);
     }
 </script>

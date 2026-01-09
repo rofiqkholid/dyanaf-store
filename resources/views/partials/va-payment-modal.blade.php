@@ -126,7 +126,8 @@
         phone: '',
         orderId: null,
         paymentMethod: '',
-        vaNumber: ''
+        vaNumber: '',
+        paymentSuccess: false
     };
     let vaScrollPosition = 0;
     let vaStatusCheckInterval = null;
@@ -139,7 +140,8 @@
             phone: phone,
             orderId: null,
             paymentMethod: method,
-            vaNumber: ''
+            vaNumber: '',
+            paymentSuccess: false
         };
 
         // Bank-specific titles and colors
@@ -286,6 +288,7 @@
                         `;
 
                         setTimeout(() => {
+                            vaData.paymentSuccess = true;
                             closeVaModal();
                             handleVaSuccess();
                         }, 2000);
@@ -339,8 +342,8 @@ Mohon segera diproses. Terima kasih!`;
     }
 
     function closeVaModal() {
-        // Cancel transaction if exists
-        if (vaData.orderId) {
+        // Cancel transaction if exists and payment not successful
+        if (vaData.orderId && !vaData.paymentSuccess) {
             fetch('{{ route("api.payment.cancel") }}', {
                 method: 'POST',
                 headers: {
@@ -385,6 +388,7 @@ Mohon segera diproses. Terima kasih!`;
             // Clear data for fresh start next time
             vaData.orderId = null;
             vaData.vaNumber = '';
+            vaData.paymentSuccess = false;
         }, 300);
     }
 </script>

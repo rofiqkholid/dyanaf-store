@@ -8,30 +8,59 @@
         <div id="customPaymentPanel" class="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-4xl bg-white sm:border sm:border-gray-200 shadow-lg transition-all duration-500 ease-out scale-95 opacity-0 flex flex-col overflow-hidden">
 
             <!-- Header - Minimal -->
-            <div class="flex items-center justify-between px-6 py-4 bg-[#2b3a4b] text-white border-b border-gray-200">
+            <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 bg-white">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-credit-card text-lg"></i>
-                    <h3 class="text-lg font-semibold" id="custom-payment-title">Pilih Metode Pembayaran</h3>
+                    <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                        <i class="fas fa-credit-card text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900" id="custom-payment-title">Metode Pembayaran</h3>
+                        <p class="text-sm text-gray-500 hidden sm:block">Pilih metode pembayaran favorit Anda.</p>
+                    </div>
                 </div>
-                <button type="button" onclick="closeCustomPaymentModal()" class="text-white/80 hover:text-white p-1 transition-colors cursor-pointer">
+                <button type="button" onclick="closeCustomPaymentModal()" class="text-gray-400 hover:text-gray-500 p-2 cursor-pointer">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
 
-            <!-- Order Summary - Minimal -->
-            <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <p class="text-xs text-gray-500 mb-1">Layanan</p>
-                        <p class="text-base font-semibold text-[#2b3a4b]" id="custom-service-name"></p>
+            <!-- Step Indicator -->
+            <div class="px-6 py-3 bg-white border-b border-gray-200">
+                <div class="flex items-center justify-center gap-4 sm:gap-8">
+                    <!-- Step 1 - Completed -->
+                    <div class="flex items-center gap-2">
+                        <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-green-500 text-white text-[10px] sm:text-xs">
+                            <i class="fas fa-check text-xs"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-gray-400">Lengkapi Data</span>
                     </div>
-                    <div class="text-right">
-                        <p class="text-xs text-gray-500 mb-1">Total Pembayaran</p>
-                        <p class="text-xl font-bold text-[#2b3a4b]" id="custom-price-display"></p>
+
+                    <!-- Connector Line -->
+                    <div class="w-8 sm:w-16 h-0.5 bg-[#2b3a4b]"></div>
+
+                    <!-- Step 2 - Active -->
+                    <div class="flex items-center gap-2">
+                        <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#2b3a4b] text-white text-[10px] sm:text-xs font-semibold">
+                            2
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium text-[#2b3a4b]">Metode Pembayaran</span>
                     </div>
                 </div>
-                <div class="mt-3 flex items-center gap-2 text-sm text-gray-600">
-                    <i class="fas fa-user text-[#2b3a4b]"></i>
+            </div>
+
+            <!-- Order Summary - Minimal -->
+            <div class="px-4 py-3 sm:px-6 sm:py-4 bg-gray-50 border-b border-gray-200">
+                <div class="grid grid-cols-2 gap-2 sm:gap-4">
+                    <div>
+                        <p class="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">Layanan</p>
+                        <p class="text-sm sm:text-base font-semibold text-[#2b3a4b]" id="custom-service-name"></p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">Total Pembayaran</p>
+                        <p class="text-base sm:text-xl font-bold text-[#2b3a4b]" id="custom-price-display"></p>
+                    </div>
+                </div>
+                <div class="mt-2 sm:mt-3 flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                    <i class="fas fa-user text-[#2b3a4b] text-xs"></i>
                     <span id="custom-customer-name"></span>
                 </div>
             </div>
@@ -51,7 +80,7 @@
                         </h4>
 
                         <!-- QRIS - List Item -->
-                        <button type="button" onclick="closeCustomPaymentModal(); setTimeout(() => showQrisPayment(customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone), 300);" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                        <button type="button" onclick="selectQrisPayment()" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
                                     <img src="{{ asset('image/payment-logo/qris.png') }}" alt="QRIS" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-qrcode text-[#2b3a4b]\'></i>';">
@@ -101,7 +130,7 @@
                         </h4>
 
                         <!-- BCA VA -->
-                        <button type="button" onclick="closeCustomPaymentModal(); setTimeout(() => showVaPayment('bca_va', customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone), 300);" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                        <button type="button" onclick="selectVaPayment('bca_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
                                     <img src="{{ asset('image/payment-logo/bca.png') }}" alt="BCA" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-sm\'>BCA</span>';">
@@ -117,7 +146,7 @@
                         </button>
 
                         <!-- BNI VA -->
-                        <button type="button" onclick="closeCustomPaymentModal(); setTimeout(() => showVaPayment('bni_va', customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone), 300);" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                        <button type="button" onclick="selectVaPayment('bni_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
                                     <img src="{{ asset('image/payment-logo/bni.png') }}" alt="BNI" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-sm\'>BNI</span>';">
@@ -133,7 +162,7 @@
                         </button>
 
                         <!-- BRI VA -->
-                        <button type="button" onclick="closeCustomPaymentModal(); setTimeout(() => showVaPayment('bri_va', customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone), 300);" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
+                        <button type="button" onclick="selectVaPayment('bri_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
                                     <img src="{{ asset('image/payment-logo/bri.png') }}" alt="BRI" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-sm\'>BRI</span>';">
@@ -149,7 +178,7 @@
                         </button>
 
                         <!-- Mandiri VA -->
-                        <button type="button" onclick="closeCustomPaymentModal(); setTimeout(() => showVaPayment('mandiri_va', customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone), 300);" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer">
+                        <button type="button" onclick="selectVaPayment('mandiri_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
                                     <img src="{{ asset('image/payment-logo/mandiri.png') }}" alt="Mandiri" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-[#2b3a4b] font-bold text-xs\'>MANDIRI</span>';">
@@ -190,14 +219,15 @@
     };
     let customScrollPosition = 0;
 
-    function showCustomPaymentModal(serviceName, price, customerName, phone) {
+    function showCustomPaymentModal(serviceName, price, customerName, phone, orderId = null) {
         customPaymentData = {
             serviceName: serviceName,
             price: price,
             customerName: customerName,
             phone: phone,
-            orderId: null,
-            selectedMethod: null
+            orderId: orderId,
+            selectedMethod: null,
+            paymentSelected: false
         };
 
         // Populate modal
@@ -232,7 +262,61 @@
         }, 10);
     }
 
-    function closeCustomPaymentModal() {
+    // Helper function to select QRIS payment
+    function selectQrisPayment() {
+        customPaymentData.paymentSelected = true;
+        closeCustomPaymentModal(true); // skipCancel = true
+        setTimeout(() => {
+            showQrisPayment(customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+        }, 300);
+    }
+
+    // Helper function to select VA payment
+    function selectVaPayment(bankMethod) {
+        customPaymentData.paymentSelected = true;
+        closeCustomPaymentModal(true); // skipCancel = true
+        setTimeout(() => {
+            showVaPayment(bankMethod, customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+        }, 300);
+    }
+
+    function closeCustomPaymentModal(skipCancel = false) {
+        console.log('closeCustomPaymentModal called', {
+            skipCancel: skipCancel,
+            orderId: customPaymentData.orderId,
+            paymentSelected: customPaymentData.paymentSelected
+        });
+
+        // Cancel transaction if exists and payment not selected
+        if (!skipCancel && customPaymentData.orderId && !customPaymentData.paymentSelected) {
+            console.log('Calling cancel API for order:', customPaymentData.orderId);
+            fetch('{{ route("api.payment.cancel") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        order_id: customPaymentData.orderId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Cancel response:', data);
+                    if (typeof showToast === 'function') {
+                        showToast('Pembayaran dibatalkan', 'info');
+                    }
+                })
+                .catch(err => {
+                    console.error('Cancel error:', err);
+                });
+        } else if (!skipCancel && !customPaymentData.paymentSelected) {
+            // No orderId but still show toast if modal closed without payment
+            if (typeof showToast === 'function') {
+                showToast('Pembayaran dibatalkan', 'info');
+            }
+        }
+
         const modal = document.getElementById('customPaymentModal');
         const backdrop = document.getElementById('customPaymentBackdrop');
         const panel = document.getElementById('customPaymentPanel');
@@ -253,6 +337,10 @@
             document.body.style.right = '';
             document.body.style.width = '';
             window.scrollTo(0, customScrollPosition);
+
+            // Reset orderId after closing
+            customPaymentData.orderId = null;
+            customPaymentData.paymentSelected = false;
         }, 300);
     }
 

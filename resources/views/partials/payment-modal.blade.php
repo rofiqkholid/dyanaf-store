@@ -25,8 +25,32 @@
                     </button>
                 </div>
 
+                <!-- Step Indicator -->
+                <div class="px-4 sm:px-6 py-3 bg-gray-50 border-b border-gray-100">
+                    <div class="flex items-center justify-center gap-4 sm:gap-8">
+                        <!-- Step 1 - Active -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#2b3a4b] text-white text-[10px] sm:text-xs font-semibold">
+                                1
+                            </div>
+                            <span class="text-xs sm:text-sm font-medium text-[#2b3a4b]">Lengkapi Data</span>
+                        </div>
+
+                        <!-- Connector Line -->
+                        <div class="w-8 sm:w-16 h-0.5 bg-gray-300"></div>
+
+                        <!-- Step 2 - Inactive -->
+                        <div class="flex items-center gap-2">
+                            <div class="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-gray-300 text-gray-500 text-[10px] sm:text-xs font-semibold">
+                                2
+                            </div>
+                            <span class="text-xs sm:text-sm font-medium text-gray-400">Metode Pembayaran</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Form Content -->
-                <div class="flex-1 p-4 sm:p-6 overflow-y-auto overscroll-contain">
+                <div id="payment-form-content" class="flex-1 p-4 sm:p-6 overflow-y-auto overscroll-contain">
                     <p class="text-sm text-gray-500 sm:hidden mb-4">Mohon lengkapi data berikut untuk melanjutkan pembayaran.</p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -50,6 +74,13 @@
                             <p class="mt-1 text-xs text-red-500 hidden" id="phone-error">Nomor WhatsApp wajib diisi</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Loading Overlay -->
+                <div id="payment-loading-overlay" class="hidden flex-1 flex flex-col items-center justify-center p-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-[#2b3a4b] mb-4"></div>
+                    <p class="text-sm font-medium text-gray-600">Memproses...</p>
+                    <p class="text-xs text-gray-400 mt-1">Mohon tunggu sebentar</p>
                 </div>
 
                 <!-- Footer with Buttons -->
@@ -175,66 +206,32 @@
 
         if (!isValid) return;
 
-        // Close current modal and show custom payment UI
-        closePaymentModal();
+        // Hide form content and footer, show loading overlay
+        const formContent = document.getElementById('payment-form-content');
+        const loadingOverlay = document.getElementById('payment-loading-overlay');
+        const footer = document.querySelector('#paymentModal .bg-gray-50.shrink-0');
 
-        // Show custom payment modal with collected data
-        if (typeof showCustomPaymentModal === 'function') {
-            showCustomPaymentModal(currentServiceName, currentPrice, customerName, customerPhone);
-        } else {
-            // Fallback to old method if custom UI not loaded
-            console.warn('Custom payment UI not available, using default Snap');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            btn.disabled = true;
+        formContent.classList.add('hidden');
+        footer.classList.add('hidden');
+        loadingOverlay.classList.remove('hidden');
 
-            fetch('{{ route("api.payment.checkout") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    body: JSON.stringify({
-                        service_name: currentServiceName,
-                        price: currentPrice,
-                        customer_name: customerName,
-                        phone: customerPhone
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.snap_token) {
-                        activeOrderId = data.order_id;
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
+        // Wait 1.5 seconds then show payment modal
+        setTimeout(() => {
+            // Reset - show form and footer, hide loading
+            formContent.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            loadingOverlay.classList.add('hidden');
 
-                        window.snap.pay(data.snap_token, {
-                            onSuccess: function(result) {
-                                handlePaymentSuccess(activeOrderId);
-                            },
-                            onPending: function(result) {
-                                showToast('Menunggu Pembayaran!', 'warning', true);
-                            },
-                            onError: function(result) {
-                                handlePaymentCancel(activeOrderId, "Pembayaran Gagal!");
-                            },
-                            onClose: function() {
-                                handlePaymentCancel(activeOrderId, "Pembayaran Dibatalkan oleh pengguna");
-                            }
-                        });
-                    } else {
-                        showToast('Gagal membuat transaksi: ' + (data.error || 'Unknown error'), 'error');
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    showToast('Terjadi kesalahan sistem', 'error');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                });
-        }
+            // Close current modal and show custom payment UI
+            closePaymentModal();
+
+            // Show custom payment modal with collected data
+            if (typeof showCustomPaymentModal === 'function') {
+                setTimeout(() => {
+                    showCustomPaymentModal(currentServiceName, currentPrice, customerName, customerPhone);
+                }, 300);
+            }
+        }, 1500);
     }
 
     function handlePaymentSuccess(orderId) {

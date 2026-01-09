@@ -116,8 +116,27 @@ class OrderController extends Controller
             'order_id' => 'required|exists:transactions,order_id'
         ]);
 
+        // Find the transaction first
+        $transaction = \App\Models\Transaction::where('order_id', $request->order_id)->first();
 
-        \App\Models\Transaction::where('order_id', $request->order_id)->delete();
+        if ($transaction) {
+            // Find and delete related CvOrder if exists
+            $cvOrder = \App\Models\CvOrder::where('transaction_id', $transaction->id)->first();
+            if ($cvOrder) {
+                // Delete uploaded files
+                if ($cvOrder->foto) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($cvOrder->foto);
+                }
+                if ($cvOrder->sertifikat_file) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($cvOrder->sertifikat_file);
+                }
+                // Delete the CvOrder
+                $cvOrder->delete();
+            }
+
+            // Delete the transaction
+            $transaction->delete();
+        }
 
         return response()->json(['message' => 'Transaction cancelled and rolled back']);
     }
@@ -136,6 +155,7 @@ class OrderController extends Controller
 
     public function checkoutCV(Request $request)
     {
+        \Illuminate\Support\Facades\Log::info('checkoutCV initiated', $request->all());
         $request->validate([
             'service_name' => 'required|string',
             'price' => 'required|numeric',
@@ -178,12 +198,10 @@ class OrderController extends Controller
             $sertifikatPath = $request->file('sertifikat_file')->store('cv-sertifikat', 'public');
         }
 
-        // Split name for Midtrans
         $names = explode(' ', $request->nama_lengkap, 2);
         $firstName = $names[0];
         $lastName = isset($names[1]) ? $names[1] : '';
 
-        // Collect CV data
         $cvData = [
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
@@ -195,12 +213,11 @@ class OrderController extends Controller
             'sertifikat_text' => $request->sertifikat_text,
             'sertifikat_file' => $sertifikatPath,
             'foto' => $fotoPath,
-            'skills' => $request->skills, // JSON string
+            'skills' => $request->skills,
             'hobby' => $request->hobby,
             'pertanyaan_lainnya' => $request->pertanyaan_lainnya,
         ];
 
-        // Create initial transaction record
         $transaction = \App\Models\Transaction::create([
             'order_id' => $orderId,
             'customer_name' => $request->nama_lengkap,
@@ -270,22 +287,20 @@ class OrderController extends Controller
                 'order_id' => $orderId
             ]);
         } catch (\Exception $e) {
-            // Delete uploaded files if transaction fails
-            if ($fotoPath) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($fotoPath);
-            }
-            if ($sertifikatPath) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($sertifikatPath);
-            }
-            $transaction->delete();
-            return response()->json(['error' => $e->getMessage()], 500);
+            // Even if Snap token fails, we still have the records
+            // Return order_id so custom payment UI can be used
+            \Illuminate\Support\Facades\Log::warning('Snap token failed for CV order, using custom payment', [
+                'order_id' => $orderId,
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json([
+                'order_id' => $orderId,
+                'snap_token' => null,
+                'message' => 'Menggunakan metode pembayaran alternatif'
+            ]);
         }
     }
-
-    /**
-     * Core API - Charge Transaction (QRIS Prototype)
-     * MODIFIED: Now uses Snap API as fallback for Production compatibility
-     */
 
     public function coreCharge(Request $request)
     {
@@ -302,7 +317,7 @@ class OrderController extends Controller
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
-        $orderId = 'ORD-' . time() . '-' . rand(100, 999);
+        $orderId = 'DYANAF-' . time() . '-' . rand(100, 999);
         $price = $request->price;
         $paymentMethod = $request->payment_method;
 
