@@ -134,13 +134,13 @@
     let gopayScrollPosition = 0;
     let gopayStatusCheckInterval = null;
 
-    function showGopayPayment(serviceName, price, customerName, phone) {
+    function showGopayPayment(serviceName, price, customerName, phone, existingOrderId = null) {
         gopayData = {
             serviceName: serviceName,
             price: price,
             customerName: customerName,
             phone: phone,
-            orderId: null,
+            orderId: existingOrderId, // Use existing order if provided
             paymentSuccess: false
         };
 
@@ -179,19 +179,26 @@
     }
 
     function createGopayCharge() {
+        const requestBody = {
+            payment_method: 'gopay',
+            service_name: gopayData.serviceName,
+            price: gopayData.price,
+            customer_name: gopayData.customerName,
+            phone: gopayData.phone
+        };
+
+        // Include existing order_id if available
+        if (gopayData.orderId) {
+            requestBody.order_id = gopayData.orderId;
+        }
+
         fetch('/api/payment/core/charge', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({
-                    payment_method: 'gopay',
-                    service_name: gopayData.serviceName,
-                    price: gopayData.price,
-                    customer_name: gopayData.customerName,
-                    phone: gopayData.phone
-                })
+                body: JSON.stringify(requestBody)
             })
             .then(response => response.json())
             .then(data => {

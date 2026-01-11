@@ -249,6 +249,14 @@
     let customScrollPosition = 0;
 
     function showCustomPaymentModal(serviceName, price, customerName, phone, orderId = null) {
+        console.log('showCustomPaymentModal called with:', {
+            serviceName,
+            price,
+            customerName,
+            phone,
+            orderId
+        });
+
         customPaymentData = {
             serviceName: serviceName,
             price: price,
@@ -258,6 +266,8 @@
             selectedMethod: null,
             paymentSelected: false
         };
+
+        console.log('customPaymentData set:', customPaymentData);
 
         // Populate modal
         document.getElementById('custom-service-name').textContent = serviceName;
@@ -293,28 +303,53 @@
 
     // Helper function to select QRIS payment
     function selectQrisPayment() {
+        // Save data locally before closing modal (orderId gets reset in closeCustomPaymentModal)
+        const savedOrderId = customPaymentData.orderId;
+        const savedServiceName = customPaymentData.serviceName;
+        const savedPrice = customPaymentData.price;
+        const savedCustomerName = customPaymentData.customerName;
+        const savedPhone = customPaymentData.phone;
+
         customPaymentData.paymentSelected = true;
         closeCustomPaymentModal(true); // skipCancel = true
         setTimeout(() => {
-            showQrisPayment(customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+            showQrisPayment(savedServiceName, savedPrice, savedCustomerName, savedPhone, savedOrderId);
         }, 300);
     }
 
     // Helper function to select VA payment
     function selectVaPayment(bankMethod) {
+        console.log('selectVaPayment called with bankMethod:', bankMethod);
+        console.log('customPaymentData.orderId:', customPaymentData.orderId);
+
+        // Save data locally before closing modal (orderId gets reset in closeCustomPaymentModal)
+        const savedOrderId = customPaymentData.orderId;
+        const savedServiceName = customPaymentData.serviceName;
+        const savedPrice = customPaymentData.price;
+        const savedCustomerName = customPaymentData.customerName;
+        const savedPhone = customPaymentData.phone;
+
         customPaymentData.paymentSelected = true;
         closeCustomPaymentModal(true); // skipCancel = true
         setTimeout(() => {
-            showVaPayment(bankMethod, customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+            console.log('Calling showVaPayment with savedOrderId:', savedOrderId);
+            showVaPayment(bankMethod, savedServiceName, savedPrice, savedCustomerName, savedPhone, savedOrderId);
         }, 300);
     }
 
     // Helper function to select GoPay payment
     function selectGopayPayment() {
+        // Save data locally before closing modal (orderId gets reset in closeCustomPaymentModal)
+        const savedOrderId = customPaymentData.orderId;
+        const savedServiceName = customPaymentData.serviceName;
+        const savedPrice = customPaymentData.price;
+        const savedCustomerName = customPaymentData.customerName;
+        const savedPhone = customPaymentData.phone;
+
         customPaymentData.paymentSelected = true;
         closeCustomPaymentModal(true); // skipCancel = true
         setTimeout(() => {
-            showGopayPayment(customPaymentData.serviceName, customPaymentData.price, customPaymentData.customerName, customPaymentData.phone);
+            showGopayPayment(savedServiceName, savedPrice, savedCustomerName, savedPhone, savedOrderId);
         }, 300);
     }
 

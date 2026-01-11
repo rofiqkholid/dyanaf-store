@@ -41,11 +41,13 @@ class OrderController extends Controller
 
         $transaction = \App\Models\Transaction::create([
             'order_id' => $orderId,
-            'customer_name' => $request->customer_name,
             'service_name' => $request->service_name,
             'amount' => $price,
             'status' => 'pending',
-            'phone' => $request->phone,
+            'metadata' => json_encode([
+                'customer_name' => $request->customer_name,
+                'phone' => $request->phone,
+            ]),
         ]);
 
         $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
@@ -99,10 +101,33 @@ class OrderController extends Controller
     public function cancel(Request $request)
     {
         $request->validate([
-            'order_id' => 'required|exists:transactions,order_id'
+            'order_id' => 'required|string'
         ]);
 
-        // Find the transaction first
+        // First check if this is a pending CV order in cache (not yet in database)
+        if ($request->order_id && str_contains($request->order_id, '-CV-')) {
+            $cacheKey = 'pending_cv_order_' . $request->order_id;
+            $pendingCvOrder = \Illuminate\Support\Facades\Cache::get($cacheKey);
+
+            if ($pendingCvOrder) {
+                // Delete uploaded files from cache data
+                $cvData = $pendingCvOrder['cv_data'];
+                if (!empty($cvData['foto'])) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($cvData['foto']);
+                }
+                if (!empty($cvData['sertifikat_file'])) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($cvData['sertifikat_file']);
+                }
+                // Clear cache
+                \Illuminate\Support\Facades\Cache::forget($cacheKey);
+
+                \Illuminate\Support\Facades\Log::info('Pending CV order cancelled from cache', ['order_id' => $request->order_id]);
+
+                return response()->json(['message' => 'Pending order cancelled']);
+            }
+        }
+
+        // Find the transaction in database
         $transaction = \App\Models\Transaction::where('order_id', $request->order_id)->first();
 
         if ($transaction) {
@@ -134,6 +159,9 @@ class OrderController extends Controller
                 // Delete the CvOrder
                 $cvOrder->delete();
             }
+
+            // Find and delete related Order if exists
+            \App\Models\Order::where('order_id', $request->order_id)->delete();
 
             // Delete the transaction
             $transaction->delete();
@@ -179,15 +207,10 @@ class OrderController extends Controller
 
         $price = $service->price;
 
-        // Set Midtrans config
-        Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = config('midtrans.is_production');
-        Config::$isSanitized = config('midtrans.is_sanitized');
-        Config::$is3ds = config('midtrans.is_3ds');
-
+        // Generate order ID for this CV order
         $orderId = 'DYANAF-CV-' . Str::upper(Str::random(6)) . '-' . time();
 
-        // Handle file uploads
+        // Handle file uploads (files are uploaded but transaction not created yet)
         $fotoPath = null;
         $sertifikatPath = null;
 
@@ -199,10 +222,7 @@ class OrderController extends Controller
             $sertifikatPath = $request->file('sertifikat_file')->store('cv-sertifikat', 'public');
         }
 
-        $names = explode(' ', $request->nama_lengkap, 2);
-        $firstName = $names[0];
-        $lastName = isset($names[1]) ? $names[1] : '';
-
+        // Prepare CV data to be stored in session (NOT in database yet)
         $cvData = [
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
@@ -219,73 +239,32 @@ class OrderController extends Controller
             'pertanyaan_lainnya' => $request->pertanyaan_lainnya,
         ];
 
-        $transaction = \App\Models\Transaction::create([
+        // Store CV data in cache for later use when payment method is selected (using cache instead of session for API compatibility)
+        $cacheKey = 'pending_cv_order_' . $orderId;
+        \Illuminate\Support\Facades\Cache::put($cacheKey, [
             'order_id' => $orderId,
-            'customer_name' => $request->nama_lengkap,
             'service_name' => $request->service_name,
-            'amount' => $price,
-            'status' => 'pending',
+            'price' => $price,
+            'cv_data' => $cvData,
+            'customer_name' => $request->nama_lengkap,
             'phone' => $request->phone,
+            'email' => $request->email,
+            'created_at' => now()->toDateTimeString(),
+        ], now()->addHours(2)); // Cache for 2 hours
+
+        \Illuminate\Support\Facades\Log::info('CV order data stored in cache', ['order_id' => $orderId, 'cache_key' => $cacheKey]);
+
+        // Return order_id and data for payment method selection
+        // NO database insert yet - will be done when payment method is selected
+        return response()->json([
+            'success' => true,
+            'order_id' => $orderId,
+            'service_name' => $request->service_name,
+            'price' => $price,
+            'customer_name' => $request->nama_lengkap,
+            'phone' => $request->phone,
+            'message' => 'Data tersimpan, silakan pilih metode pembayaran'
         ]);
-
-        // Create CV order record with relation to transaction
-        $cvData['transaction_id'] = $transaction->id;
-        $cvOrder = \App\Models\CvOrder::create($cvData);
-
-        // Dynamic payment methods based on Device
-        $isMobile = preg_match('/(android|iphone|ipad|mobile)/i', $request->header('User-Agent'));
-
-        // Only include payment channels that are activated in Production
-        $enabledPayments = [
-            'bca_va',
-            'bni_va',
-            'bri_va',
-        ];
-
-        $params = [
-            'transaction_details' => [
-                'order_id' => $orderId,
-                'gross_amount' => $price,
-            ],
-            'item_details' => [
-                [
-                    'id' => Str::slug($request->service_name),
-                    'price' => $price,
-                    'quantity' => 1,
-                    'name' => substr($request->service_name, 0, 50),
-                ]
-            ],
-            'customer_details' => [
-                'first_name' => $firstName,
-                'last_name' => $lastName,
-                'email' => $request->email,
-                'phone' => $request->phone,
-            ],
-            'enabled_payments' => $enabledPayments,
-        ];
-
-        try {
-            $snapToken = Snap::getSnapToken($params);
-            $transaction->update(['snap_token' => $snapToken]);
-
-            return response()->json([
-                'snap_token' => $snapToken,
-                'order_id' => $orderId
-            ]);
-        } catch (\Exception $e) {
-            // Even if Snap token fails, we still have the records
-            // Return order_id so custom payment UI can be used
-            \Illuminate\Support\Facades\Log::warning('Snap token failed for CV order, using custom payment', [
-                'order_id' => $orderId,
-                'error' => $e->getMessage()
-            ]);
-
-            return response()->json([
-                'order_id' => $orderId,
-                'snap_token' => null,
-                'message' => 'Menggunakan metode pembayaran alternatif'
-            ]);
-        }
     }
 
     public function coreCharge(Request $request)
@@ -296,6 +275,7 @@ class OrderController extends Controller
             'price' => 'required|numeric',
             'customer_name' => 'required|string',
             'phone' => 'required|string',
+            'order_id' => 'nullable|string', // Optional: use existing order from session
         ]);
 
         Config::$serverKey = config('midtrans.server_key');
@@ -303,20 +283,83 @@ class OrderController extends Controller
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
-        $orderId = 'DYANAF-' . time() . '-' . rand(100, 999);
-        $price = $request->price;
         $paymentMethod = $request->payment_method;
+        $price = $request->price;
+        $orderId = null;
+        $transaction = null;
 
-        // Create transaction record
-        $transaction = \App\Models\Transaction::create([
-            'order_id' => $orderId,
+        // Debug: Log incoming request
+        \Illuminate\Support\Facades\Log::info('coreCharge called', [
+            'order_id' => $request->order_id,
+            'payment_method' => $request->payment_method,
             'service_name' => $request->service_name,
-            'amount' => $price, // Changed from 'price' to 'amount' to match schema
-            'customer_name' => $request->customer_name,
-            'phone' => $request->phone,
-            'status' => 'pending',
-            'payment_method' => $paymentMethod,
+            'is_cv_order' => $request->order_id ? str_contains($request->order_id, '-CV-') : false,
         ]);
+
+        // Check if this is a CV order from cache
+        $pendingCvOrder = null;
+        if ($request->order_id && str_contains($request->order_id, '-CV-')) {
+            $cacheKey = 'pending_cv_order_' . $request->order_id;
+            $pendingCvOrder = \Illuminate\Support\Facades\Cache::get($cacheKey);
+            \Illuminate\Support\Facades\Log::info('Cache lookup for CV order', [
+                'cache_key' => $cacheKey,
+                'found' => $pendingCvOrder ? true : false,
+            ]);
+        }
+
+        if ($pendingCvOrder && $request->order_id && $pendingCvOrder['order_id'] === $request->order_id) {
+            // This is a CV order - create Transaction + CvOrder NOW
+            $orderId = $pendingCvOrder['order_id'];
+            $price = $pendingCvOrder['price'];
+
+            // Create transaction
+            $transaction = \App\Models\Transaction::create([
+                'order_id' => $orderId,
+                'service_name' => $pendingCvOrder['service_name'],
+                'amount' => $price,
+                'status' => 'pending',
+                'payment_method' => $paymentMethod,
+                'metadata' => json_encode([
+                    'customer_name' => $pendingCvOrder['customer_name'],
+                    'phone' => $pendingCvOrder['phone'],
+                ]),
+            ]);
+
+            // Create CvOrder
+            $cvData = $pendingCvOrder['cv_data'];
+            $cvData['transaction_id'] = $transaction->id;
+            \App\Models\CvOrder::create($cvData);
+
+            // Clear cache data
+            \Illuminate\Support\Facades\Cache::forget($cacheKey);
+
+            \Illuminate\Support\Facades\Log::info('CV Order created from cache', ['order_id' => $orderId]);
+        } elseif ($request->order_id) {
+            // Check if transaction already exists (existing flow)
+            $transaction = \App\Models\Transaction::where('order_id', $request->order_id)->first();
+            if ($transaction) {
+                // Update existing transaction with payment method
+                $transaction->update(['payment_method' => $paymentMethod]);
+                $orderId = $request->order_id;
+                $price = $transaction->amount;
+            } else {
+                return response()->json(['success' => false, 'error' => 'Transaction not found'], 404);
+            }
+        } else {
+            // Create new transaction for fresh orders (non-CV)
+            $orderId = 'DYANAF-' . time() . '-' . rand(100, 999);
+            $transaction = \App\Models\Transaction::create([
+                'order_id' => $orderId,
+                'service_name' => $request->service_name,
+                'amount' => $price,
+                'status' => 'pending',
+                'payment_method' => $paymentMethod,
+                'metadata' => json_encode([
+                    'customer_name' => $request->customer_name,
+                    'phone' => $request->phone,
+                ]),
+            ]);
+        }
 
         // Debug logging
         \Illuminate\Support\Facades\Log::info('Core API Charge attempt', [
@@ -549,10 +592,14 @@ class OrderController extends Controller
                     'payment_method' => $paymentType,
                 ]);
 
-                // Create order record only when payment is successful
+                // Create order record when payment is successful
+                $metadata = json_decode($transaction->metadata, true) ?? [];
                 \App\Models\Order::firstOrCreate(
                     ['order_id' => $orderId],
-                    ['customer_name' => $transaction->customer_name]
+                    [
+                        'customer_name' => $metadata['customer_name'] ?? 'Customer',
+                        'phone' => $metadata['phone'] ?? null,
+                    ]
                 );
             } elseif ($transactionStatus === 'pending') {
                 $transaction->update([

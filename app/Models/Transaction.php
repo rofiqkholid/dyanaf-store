@@ -12,13 +12,11 @@ class Transaction extends Model
 
     protected $fillable = [
         'order_id',
-        'customer_name',
         'service_name',
         'amount',
         'status',
         'payment_method',
         'snap_token',
-        'phone',
         'metadata',
     ];
 

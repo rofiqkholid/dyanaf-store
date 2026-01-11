@@ -132,13 +132,13 @@
     let vaScrollPosition = 0;
     let vaStatusCheckInterval = null;
 
-    function showVaPayment(method, serviceName, price, customerName, phone) {
+    function showVaPayment(method, serviceName, price, customerName, phone, existingOrderId = null) {
         vaData = {
             serviceName: serviceName,
             price: price,
             customerName: customerName,
             phone: phone,
-            orderId: null,
+            orderId: existingOrderId, // Use existing order if provided
             paymentMethod: method,
             vaNumber: '',
             paymentSuccess: false
@@ -207,19 +207,26 @@
     }
 
     function createVaCharge(method) {
+        const requestBody = {
+            payment_method: method,
+            service_name: vaData.serviceName,
+            price: vaData.price,
+            customer_name: vaData.customerName,
+            phone: vaData.phone
+        };
+
+        // Include existing order_id if available (from checkoutCV)
+        if (vaData.orderId) {
+            requestBody.order_id = vaData.orderId;
+        }
+
         fetch('/api/payment/core/charge', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({
-                    payment_method: method,
-                    service_name: vaData.serviceName,
-                    price: vaData.price,
-                    customer_name: vaData.customerName,
-                    phone: vaData.phone
-                })
+                body: JSON.stringify(requestBody)
             })
             .then(response => response.json())
             .then(data => {

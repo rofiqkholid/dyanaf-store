@@ -111,13 +111,13 @@
     let qrisScrollPosition = 0;
     let statusCheckInterval = null;
 
-    function showQrisPayment(serviceName, price, customerName, phone) {
+    function showQrisPayment(serviceName, price, customerName, phone, existingOrderId = null) {
         qrisData = {
             serviceName: serviceName,
             price: price,
             customerName: customerName,
             phone: phone,
-            orderId: null,
+            orderId: existingOrderId, // Use existing order if provided
             paymentSuccess: false
         };
 
@@ -156,19 +156,26 @@
     }
 
     function createQrisCharge() {
+        const requestBody = {
+            payment_method: 'qris',
+            service_name: qrisData.serviceName,
+            price: qrisData.price,
+            customer_name: qrisData.customerName,
+            phone: qrisData.phone
+        };
+
+        // Include existing order_id if available
+        if (qrisData.orderId) {
+            requestBody.order_id = qrisData.orderId;
+        }
+
         fetch('/api/payment/core/charge', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
-                body: JSON.stringify({
-                    payment_method: 'qris',
-                    service_name: qrisData.serviceName,
-                    price: qrisData.price,
-                    customer_name: qrisData.customerName,
-                    phone: qrisData.phone
-                })
+                body: JSON.stringify(requestBody)
             })
             .then(response => response.json())
             .then(data => {
