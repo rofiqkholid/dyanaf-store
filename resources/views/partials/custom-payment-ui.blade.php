@@ -79,16 +79,20 @@
                             E-Wallet & QRIS
                         </h4>
 
-                        <!-- QRIS - Disabled (belum aktif di Production) -->
-                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed mb-2">
+
+                        <!-- QRIS Dinamis - AKTIF -->
+                        <button type="button" onclick="selectQrisPayment()" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
-                                    <img src="{{ asset('image/payment-logo/qris.png') }}" alt="QRIS" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-qrcode text-gray-400\'></i>';">
+                                    <img src="{{ asset('image/payment-logo/qris.png') }}" alt="QRIS" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-qrcode text-[#2b3a4b]\'></i>';">
                                 </div>
                                 <div class="text-left">
-                                    <p class="text-sm font-semibold text-gray-500">QRIS</p>
-                                    <p class="text-xs text-gray-400">Coming Soon</p>
+                                    <p class="text-sm font-semibold text-[#2b3a4b]">QRIS</p>
+                                    <p class="text-xs text-gray-500">Scan QR dengan semua e-wallet</p>
                                 </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
                             </div>
                         </button>
 
@@ -108,18 +112,6 @@
                             </div>
                         </button>
 
-                        <!-- ShopeePay - Disabled -->
-                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white">
-                                    <i class="fas fa-shopping-bag text-gray-400"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="text-sm font-semibold text-gray-500">ShopeePay</p>
-                                    <p class="text-xs text-gray-400">Coming Soon</p>
-                                </div>
-                            </div>
-                        </button>
                     </div>
 
                     <!-- Virtual Account Section -->
@@ -129,18 +121,6 @@
                             Virtual Account
                         </h4>
 
-                        <!-- BCA VA - Disabled (tidak aktif di akun) -->
-                        <button type="button" disabled class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 opacity-50 cursor-not-allowed mb-2">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 flex items-center justify-center border border-gray-200 bg-white p-1">
-                                    <img src="{{ asset('image/payment-logo/bca.png') }}" alt="BCA" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-gray-400 font-bold text-sm\'>BCA</span>';">
-                                </div>
-                                <div class="text-left">
-                                    <p class="text-sm font-semibold text-gray-500">BCA Virtual Account</p>
-                                    <p class="text-xs text-gray-400">Coming Soon</p>
-                                </div>
-                            </div>
-                        </button>
 
                         <!-- BNI VA -->
                         <button type="button" onclick="selectVaPayment('bni_va')" class="w-full flex items-center justify-between p-4 bg-white border border-gray-200 hover:border-[#2b3a4b] hover:bg-gray-50 transition-all cursor-pointer mb-2">
