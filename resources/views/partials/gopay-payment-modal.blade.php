@@ -11,7 +11,7 @@
             <div class="flex items-center justify-between px-6 py-4 bg-[#2b3a4b] text-white border-b border-gray-200 shrink-0">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-wallet text-lg"></i>
-                    <h3 class="text-lg font-semibold" id="gopay-payment-title">Pembayaran GoPay</h3>
+                    <span class="text-lg font-semibold" id="gopay-payment-title">Pembayaran GoPay</span>
                 </div>
                 <button type="button" onclick="closeGopayModal()" class="text-white/80 hover:text-white p-1 transition-colors cursor-pointer">
                     <i class="fas fa-times text-xl"></i>

@@ -11,7 +11,7 @@
             <div class="flex items-center justify-between px-4 sm:px-6 py-4 bg-[#2b3a4b] text-white border-b border-gray-200 shrink-0">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-university text-lg"></i>
-                    <h3 class="text-base sm:text-lg font-semibold" id="va-payment-title">Virtual Account</h3>
+                    <span class="text-base sm:text-lg font-semibold" id="va-payment-title">Virtual Account</span>
                 </div>
                 <button type="button" onclick="closeVaModal()" class="text-white/80 hover:text-white p-1 transition-colors cursor-pointer">
                     <i class="fas fa-times text-xl"></i>

@@ -16,7 +16,7 @@
                             <i class="fas fa-file-alt text-blue-600"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900" id="modal-title-cv">Form Pembuatan CV</h3>
+                            <span class="text-lg font-semibold text-gray-900" id="modal-title-cv">Form Pembuatan CV</span>
                             <p class="text-sm text-gray-500 hidden sm:block">Lengkapi data berikut untuk pembuatan CV profesional.</p>
                         </div>
                     </div>

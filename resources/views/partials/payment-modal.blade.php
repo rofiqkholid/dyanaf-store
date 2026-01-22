@@ -16,7 +16,7 @@
                             <i class="fas fa-credit-card text-blue-600"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900" id="modal-title">Lengkapi Data</h3>
+                            <span class="text-lg font-semibold text-gray-900" id="modal-title">Lengkapi Data</span>
                             <p class="text-sm text-gray-500 hidden sm:block">Mohon lengkapi data berikut untuk melanjutkan pembayaran.</p>
                         </div>
                     </div>
