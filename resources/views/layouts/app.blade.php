@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja. Pengerjaan cepat 2-5 hari dengan gratis domain dan SSL.">
+    <meta name="description" content="Jasa pembuatan website murah mulai dari Rp 599.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja. Pengerjaan cepat 2-5 hari dengan gratis domain dan SSL.">
     <meta name="keywords" content="jasa pembuatan website, website murah, joki tugas, desain grafis, surat lamaran kerja, CV profesional, jasa pembuatan CV, portfolio website, website bisnis">
     <meta name="author" content="Dyanaf Store">
     <meta name="robots" content="index, follow">
