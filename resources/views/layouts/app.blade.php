@@ -5,9 +5,129 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Dyanaf Store - Jasa Pembuatan Website, CV Profesional, dan Surat Lamaran Pekerjaan Berkualitas">
+    <meta name="description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.">
+    <meta name="keywords" content="jasa pembuatan website, jasa pembuatan CV, surat lamaran kerja, website murah, CV profesional, portfolio website">
+    <meta name="author" content="Dyanaf Store">
+    <meta name="robots" content="index, follow">
 
-    <title>@yield('title', 'Dyanaf Store')</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')">
+    <meta property="og:description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.">
+    <meta property="og:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah')">
+    <meta property="twitter:description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi.">
+    <meta property="twitter:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
+
+    <title>@yield('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')</title>
+
+    <!-- Schema.org JSON-LD Structured Data for Rich Snippets -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Dyanaf Store",
+            "description": "Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.",
+            "url": "{{ config('app.url') }}",
+            "logo": "{{ asset('image/dyanaf-logo-circle.png') }}",
+            "image": "{{ asset('image/dyanaf-logo-circle.png') }}",
+            "telephone": "+6285881721193",
+            "email": "support@dyanaf.com",
+            "priceRange": "Rp 25.000 - Rp 1.500.000",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "ID",
+                "addressLocality": "Indonesia"
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "bestRating": "5",
+                "worstRating": "1",
+                "ratingCount": "5030",
+                "reviewCount": "5030"
+            },
+            "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "IDR",
+                "lowPrice": "25000",
+                "highPrice": "1500000",
+                "offerCount": "10"
+            },
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Layanan Digital Dyanaf Store",
+                "itemListElement": [{
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "CV Kreatif",
+                            "description": "Desain CV kreatif dan profesional untuk pencari kerja"
+                        },
+                        "price": "25000",
+                        "priceCurrency": "IDR"
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "CV + Surat Lamaran",
+                            "description": "Paket lengkap CV ATS-Friendly dan Surat Lamaran Kerja"
+                        },
+                        "price": "70000",
+                        "priceCurrency": "IDR"
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Website Bisnis",
+                            "description": "Website profesional untuk bisnis dengan domain dan hosting"
+                        },
+                        "price": "1500000",
+                        "priceCurrency": "IDR"
+                    }
+                ]
+            },
+            "sameAs": [
+                "https://www.linkedin.com/in/rofiq-kholid",
+                "https://www.instagram.com/dhenrofiq"
+            ]
+        }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Dyanaf Store",
+            "url": "{{ config('app.url') }}",
+            "logo": "{{ asset('image/dyanaf-logo-circle.png') }}",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+6285881721193",
+                "contactType": "customer service",
+                "areaServed": "ID",
+                "availableLanguage": "Indonesian"
+            }
+        }
+    </script>
+
+    <!-- WebSite Schema for Sitelinks Search Box -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Dyanaf Store",
+            "url": "{{ config('app.url') }}"
+        }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('image/dyanaf-logo-circle.png') }}">

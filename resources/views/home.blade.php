@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Dyanaf Store')
+@section('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')
 
 @section('content')
-<!-- Hero Section -->
 <section id="home" class="relative min-h-screen flex items-start lg:items-center pt-40 lg:pt-20 pb-10 overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 gradient-hero -z-20"></div>
@@ -593,7 +592,7 @@
                         </a>
                     </div>
                 </div>
-                 <div class="w-32 h-32 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
+                <div class="w-32 h-32 flex-shrink-0 bg-gray-200 rounded-full flex items-center justify-center">
                     <i class="fas fa-user text-5xl text-gray-400"></i>
                 </div>
                 <div class="text-center md:text-left">
