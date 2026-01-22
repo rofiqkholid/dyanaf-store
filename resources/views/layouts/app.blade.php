@@ -27,15 +27,16 @@
     <title>@yield('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')</title>
 
     <!-- Schema.org JSON-LD Structured Data for Rich Snippets -->
+    @verbatim
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Dyanaf Store",
             "description": "Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.",
-            "url": "{{ config('app.url') }}",
-            "logo": "{{ asset('image/dyanaf-logo-circle.png') }}",
-            "image": "{{ asset('image/dyanaf-logo-circle.png') }}",
+            "url": "https://dyanaf.com",
+            "logo": "https://dyanaf.com/image/dyanaf-logo-circle.png",
+            "image": "https://dyanaf.com/image/dyanaf-logo-circle.png",
             "telephone": "+6285881721193",
             "email": "support@dyanaf.com",
             "priceRange": "Rp 25.000 - Rp 1.500.000",
@@ -100,15 +101,17 @@
             ]
         }
     </script>
+    @endverbatim
 
     <!-- Organization Schema -->
+    @verbatim
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Dyanaf Store",
-            "url": "{{ config('app.url') }}",
-            "logo": "{{ asset('image/dyanaf-logo-circle.png') }}",
+            "url": "https://dyanaf.com",
+            "logo": "https://dyanaf.com/image/dyanaf-logo-circle.png",
             "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+6285881721193",
@@ -118,16 +121,19 @@
             }
         }
     </script>
+    @endverbatim
 
     <!-- WebSite Schema for Sitelinks Search Box -->
+    @verbatim
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Dyanaf Store",
-            "url": "{{ config('app.url') }}"
+            "url": "https://dyanaf.com"
         }
     </script>
+    @endverbatim
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('image/dyanaf-logo-circle.png') }}">
