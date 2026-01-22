@@ -9,6 +9,7 @@
     <meta name="keywords" content="jasa pembuatan website, jasa pembuatan CV, surat lamaran kerja, website murah, CV profesional, portfolio website">
     <meta name="author" content="Dyanaf Store">
     <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="SJHvN40U5t0I3LsPvdeLtXQ5d4EYuz5wx3zjND-0O8w">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
