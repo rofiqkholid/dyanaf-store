@@ -17,18 +17,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')">
-    <meta property="og:description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
+    <meta property="og:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah Mulai dari Rp 599.000')">
+    <meta property="og:description" content="Jasa pembuatan website murah mulai dari Rp 599.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
     <meta property="og:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah')">
-    <meta property="twitter:description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
+    <meta property="twitter:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah Mulai dari Rp 599.000')">
+    <meta property="twitter:description" content="Jasa pembuatan website murah mulai dari Rp 599.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
     <meta property="twitter:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
 
-    <title>@yield('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')</title>
+    <title>@yield('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 599.000')</title>
 
     <!-- Schema.org JSON-LD Structured Data for Rich Snippets -->
     @verbatim
