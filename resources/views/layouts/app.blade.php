@@ -37,10 +37,11 @@
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Dyanaf Store",
+            "alternateName": "Dyanaf",
             "description": "Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.",
-            "url": "https://dyanaf.com",
-            "logo": "https://dyanaf.com/image/dyanaf-logo-circle.png",
-            "image": "https://dyanaf.com/image/dyanaf-logo-circle.png",
+            "url": "https://www.dyanaf.com",
+            "logo": "https://www.dyanaf.com/image/dyanaf-logo-circle.png",
+            "image": "https://www.dyanaf.com/image/dyanaf-logo-circle.png",
             "telephone": "+6285881721193",
             "email": "support@dyanaf.com",
             "priceRange": "Rp 25.000 - Rp 1.500.000",
@@ -114,8 +115,9 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Dyanaf Store",
-            "url": "https://dyanaf.com",
-            "logo": "https://dyanaf.com/image/dyanaf-logo-circle.png",
+            "alternateName": "Dyanaf",
+            "url": "https://www.dyanaf.com",
+            "logo": "https://www.dyanaf.com/image/dyanaf-logo-circle.png",
             "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+6285881721193",
@@ -127,14 +129,15 @@
     </script>
     @endverbatim
 
-    <!-- WebSite Schema for Sitelinks Search Box -->
+    <!-- WebSite Schema for Site Name in Search Results -->
     @verbatim
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Dyanaf Store",
-            "url": "https://dyanaf.com"
+            "alternateName": "Dyanaf",
+            "url": "https://www.dyanaf.com"
         }
     </script>
     @endverbatim
