@@ -11,6 +11,9 @@
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="SJHvN40U5t0I3LsPvdeLtXQ5d4EYuz5wx3zjND-0O8w">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
