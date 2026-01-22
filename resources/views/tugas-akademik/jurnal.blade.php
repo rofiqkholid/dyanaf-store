@@ -36,7 +36,10 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
-                Jurnal ilmiah memerlukan metodologi penelitian yang benar, struktur yang sistematis, dan penulisan yang akademis. Kami membantu Anda membuat jurnal yang memenuhi standar publikasi ilmiah dengan riset mendalam dan data yang valid.
+                <strong>Jasa Pembuatan Jurnal Ilmiah</strong> kami hadir untuk membantu Anda membuat jurnal akademik dengan metodologi penelitian yang benar, struktur yang sistematis, dan penulisan yang akademis. Kami membantu Anda membuat jurnal ilmiah yang memenuhi standar publikasi dengan riset mendalam dan data yang valid.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Layanan jasa pembuatan jurnal ilmiah ini sangat cocok untuk tugas kampus, publikasi konferensi, atau requirement skripsi/thesis. Tim kami berpengalaman dalam menulis berbagai jenis jurnal dengan format IMRAD (Introduction, Method, Results, and Discussion).
             </p>
             <p class="text-gray-600 leading-relaxed">
                 Cocok untuk tugas kampus, publikasi konferensi, atau requirement skripsi/thesis.
@@ -155,19 +158,19 @@
 
                 <!-- Service Info (Mobile - Left of Button) -->
                 <div class="md:hidden flex-1">
-                        <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
-                        <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
-</div>
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
+                </div>
 
                 <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
-                </div>
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->

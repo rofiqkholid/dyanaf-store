@@ -36,10 +36,16 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">Layanan Desain Grafis</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
-                Kami menyediakan berbagai jasa desain grafis untuk kebutuhan branding bisnis Anda. Dari logo, social media content, hingga materi promosi print seperti banner dan flyer.
+                Kami menyediakan berbagai jasa desain grafis untuk kebutuhan branding bisnis Anda. Dari logo, social media content, hingga materi promosi print seperti banner dan flyer. Tim desainer profesional kami siap membantu mewujudkan identitas visual yang unik dan memorable untuk brand Anda.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Setiap desain yang kami buat memperhatikan aspek estetika, keterbacaan, dan konsistensi brand. Kami menggunakan tools desain terkini seperti Adobe Illustrator, Photoshop, dan Canva Pro untuk menghasilkan output berkualitas tinggi yang siap digunakan untuk berbagai keperluan, baik digital maupun cetak.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Proses pengerjaan desain di Dyanaf Store sangat transparan. Anda akan mendapatkan preview desain sebelum finalisasi dan berhak melakukan revisi hingga puas dengan hasilnya. File final akan dikirimkan dalam berbagai format sesuai kebutuhan Anda, termasuk source file untuk editing di kemudian hari.
             </p>
             <p class="text-gray-600 leading-relaxed">
-                Harga mulai dari Rp 100.000, disesuaikan dengan kompleksitas dan jenis desain yang dibutuhkan.
+                Harga mulai dari Rp 100.000, disesuaikan dengan kompleksitas dan jenis desain yang dibutuhkan. Untuk proyek yang lebih besar seperti brand identity package atau desain marketing kit lengkap, hubungi kami untuk penawaran khusus.
             </p>
         </div>
     </div>
@@ -139,19 +145,19 @@
 
                 <!-- Service Info (Mobile - Left of Button) -->
                 <div class="md:hidden flex-1">
-                        <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
-                        <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
-</div>
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
+                </div>
 
                 <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
-                </div>
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->

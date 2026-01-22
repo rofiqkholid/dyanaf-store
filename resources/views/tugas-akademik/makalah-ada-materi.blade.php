@@ -36,7 +36,10 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
-                Jika Anda sudah memiliki materi, buku, atau referensi untuk makalah, layanan ini cocok untuk Anda. Kami akan mengolah materi yang Anda berikan menjadi makalah yang sistematis, terstruktur, dan siap dikumpulkan.
+                <strong>Jasa Pembuatan Makalah (Ada Materi)</strong> adalah layanan yang cocok jika Anda sudah memiliki materi, buku, atau referensi untuk makalah. Kami akan mengolah materi yang Anda berikan menjadi makalah yang sistematis, terstruktur, dan siap dikumpulkan.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Dengan menggunakan jasa pembuatan makalah ada materi ini, proses pengerjaan menjadi lebih cepat karena sumber referensi sudah tersedia. Tim penulis kami akan menyusun materi Anda menjadi tulisan akademik yang rapi dan sesuai format standar.
             </p>
             <p class="text-gray-600 leading-relaxed">
                 Dengan materi yang sudah ada, proses pengerjaan lebih cepat dan harga lebih terjangkau. Cocok untuk deadline yang ketat!
@@ -155,19 +158,19 @@
 
                 <!-- Service Info (Mobile - Left of Button) -->
                 <div class="md:hidden flex-1">
-                        <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
-                        <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
-</div>
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
+                </div>
 
                 <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
-                </div>
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->

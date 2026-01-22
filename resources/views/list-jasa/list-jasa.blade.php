@@ -70,6 +70,25 @@
 
         </div>
 
+        <!-- SEO Content Section -->
+        <div class="mt-8 md:mt-16 bg-white border border-gray-100 p-6 md:p-10" style="border-radius: 2px;">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Kenapa Memilih Layanan Kami?</h2>
+            <div class="space-y-4 text-gray-600 text-sm md:text-base leading-relaxed">
+                <p>
+                    Dyanaf Store hadir sebagai solusi lengkap untuk berbagai kebutuhan digital Anda. Kami menyediakan jasa pembuatan CV profesional, desain grafis, pembuatan website, hingga joki tugas akademik dengan kualitas terbaik dan harga yang terjangkau. Setiap layanan dikerjakan oleh tim ahli yang berpengalaman di bidangnya.
+                </p>
+                <p>
+                    Dengan pengalaman melayani ribuan pelanggan, kami memahami bahwa setiap klien memiliki kebutuhan yang unik. Oleh karena itu, kami menawarkan layanan yang fleksibel dengan berbagai pilihan paket harga. Mulai dari CV ATS friendly untuk melamar kerja, desain logo untuk branding bisnis, hingga website dinamis untuk kebutuhan perusahaan Anda.
+                </p>
+                <p>
+                    Proses pemesanan di Dyanaf Store sangat mudah dan cepat. Anda cukup memilih layanan yang dibutuhkan, melakukan pembayaran, dan hasil akan dikirimkan sesuai estimasi waktu. Kami juga menyediakan revisi gratis untuk memastikan kepuasan Anda terhadap hasil pekerjaan kami.
+                </p>
+                <p>
+                    Hubungi kami melalui WhatsApp untuk konsultasi gratis sebelum memesan. Tim customer service kami siap membantu Anda 24 jam untuk menjawab semua pertanyaan dan memberikan rekomendasi layanan terbaik sesuai kebutuhan dan budget Anda.
+                </p>
+            </div>
+        </div>
+
         <div class="mt-8 md:mt-20 relative overflow-hidden">
             <div class="absolute inset-0 gradient-primary opacity-5" style="border-radius: 2px;"></div>
             <div class="relative text-center p-6 md:p-10 bg-white border border-gray-100" style="border-radius: 2px;">

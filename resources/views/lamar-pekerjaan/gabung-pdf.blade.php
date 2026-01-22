@@ -36,7 +36,10 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
-                Sering kali saat melamar kerja atau mengurus dokumen, kita perlu menggabungkan beberapa PDF (CV, surat lamaran, ijazah, sertifikat) menjadi satu file. Kami membantu Anda menggabungkan PDF dengan rapi dan teratur.
+                <strong>Jasa Gabung PDF</strong> adalah layanan untuk menggabungkan beberapa file PDF menjadi satu dokumen. Sering kali saat melamar kerja atau mengurus dokumen, kita perlu menggabungkan beberapa PDF (CV, surat lamaran, ijazah, sertifikat) menjadi satu file.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Dengan menggunakan jasa gabung PDF dari Dyanaf Store, Anda akan mendapatkan hasil yang rapi dan teratur. Kami memastikan urutan dokumen sesuai dengan keinginan Anda dan ukuran file tetap optimal untuk keperluan upload.
             </p>
             <p class="text-gray-600 leading-relaxed">
                 Simple, cepat, dan murah - hanya Rp 10.000!
@@ -153,19 +156,19 @@
 
                 <!-- Service Info (Mobile - Left of Button) -->
                 <div class="md:hidden flex-1">
-                        <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
-                        <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
-</div>
+                    <div class="text-xs text-gray-600 font-medium text-right">{{ $service->name }}</div>
+                    <div class="text-sm font-bold text-gray-900 text-right">Rp {{ number_format($service->price, 0, ',', '.') }}</div>
+                </div>
 
                 <!-- Order Button -->
-                    <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Order & Bayar</span>
-                    </button>
-                </div>
+                <button data-service-name="{{ $service->name }}" data-service-price="{{ $service->price }}" id="pay-button" class="flex items-center justify-center gap-2 px-4 py-2.5 md:px-8 md:py-3 gradient-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all shadow-lg text-sm md:text-base cursor-pointer">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Order & Bayar</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Add padding to bottom of page for floating bar -->

@@ -39,7 +39,10 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-6">Tentang Layanan Ini</h2>
             <div class="prose prose-lg max-w-none">
                 <p class="text-gray-600 leading-relaxed mb-4">
-                    Layanan pembuatan makalah tanpa materi adalah solusi sempurna ketika Anda membutuhkan makalah untuk topik umum yang tidak memerlukan referensi khusus. Kami akan membuat makalah yang terstruktur dengan baik, menggunakan sumber-sumber kredibel yang relevan dengan topik yang Anda tentukan.
+                    <strong>Jasa Pembuatan Makalah (Tanpa Materi)</strong> adalah solusi sempurna ketika Anda membutuhkan makalah untuk topik umum yang tidak memerlukan referensi khusus. Kami akan membuat makalah yang terstruktur dengan baik, menggunakan sumber-sumber kredibel yang relevan dengan topik yang Anda tentukan.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Dengan layanan jasa pembuatan makalah tanpa materi ini, Anda tidak perlu repot mencari bahan atau referensi. Tim penulis kami yang berpengalaman akan melakukan riset mendalam untuk menghasilkan makalah berkualitas tinggi sesuai standar akademik.
                 </p>
                 <p class="text-gray-600 leading-relaxed">
                     Makalah yang kami buat mengikuti standar akademik dengan format yang rapi, sistematis, dan mudah dipahami.
