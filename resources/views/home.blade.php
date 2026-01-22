@@ -20,7 +20,7 @@
                 </h1>
 
                 <p class="text-lg text-white/85 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                    Layanan profesional pembuatan website, CV berkualitas, dan surat lamaran pekerjaan yang akan membantu Anda tampil lebih menonjol di era digital.
+                    Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja dengan pengerjaan cepat dan berkualitas.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 ">

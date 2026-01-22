@@ -7,12 +7,12 @@
         </a>
 
         <div class="md:hidden flex items-center gap-5">
-            <a href="{{ route('list-jasa') }}" class="text-white hover:text-gray-300 transition-all">
+            <a href="{{ route('list-jasa') }}" aria-label="Pilih Layanan" title="Pilih Layanan" class="text-white hover:text-gray-300 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
             </a>
-            <a href="{{ route('chat') }}" class="text-white hover:text-gray-300 transition-all">
+            <a href="{{ route('chat') }}" aria-label="Chat" title="Chat" class="text-white hover:text-gray-300 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
@@ -33,12 +33,12 @@
         </ul>
 
         <div class="hidden md:flex items-center gap-5">
-            <a href="{{ route('list-jasa') }}" class="text-white hover:text-gray-300 transition-all">
+            <a href="{{ route('list-jasa') }}" aria-label="Pilih Layanan" title="Pilih Layanan" class="text-white hover:text-gray-300 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
             </a>
-            <a href="{{ route('chat') }}" class="text-white hover:text-gray-300 transition-all">
+            <a href="{{ route('chat') }}" aria-label="Chat" title="Chat" class="text-white hover:text-gray-300 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>

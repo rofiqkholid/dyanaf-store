@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.">
-    <meta name="keywords" content="jasa pembuatan website, jasa pembuatan CV, surat lamaran kerja, website murah, CV profesional, portfolio website">
+    <meta name="description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja. Pengerjaan cepat 2-5 hari dengan gratis domain dan SSL.">
+    <meta name="keywords" content="jasa pembuatan website, website murah, joki tugas, desain grafis, surat lamaran kerja, CV profesional, jasa pembuatan CV, portfolio website, website bisnis">
     <meta name="author" content="Dyanaf Store">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="SJHvN40U5t0I3LsPvdeLtXQ5d4EYuz5wx3zjND-0O8w">
@@ -18,14 +18,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')">
-    <meta property="og:description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi. Dalam 2-5 hari website sudah bisa diakses, gratis email domain dan SSL.">
+    <meta property="og:description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
     <meta property="og:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', 'Dyanaf Store - Jasa Pembuatan Website Murah')">
-    <meta property="twitter:description" content="Jasa pembuatan website profesional dan murah untuk bisnis, sekolah dan organisasi.">
+    <meta property="twitter:description" content="Jasa pembuatan website murah mulai dari Rp 149.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja.">
     <meta property="twitter:image" content="{{ asset('image/dyanaf-logo-circle.png') }}">
 
     <title>@yield('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 149.000/bulan')</title>
