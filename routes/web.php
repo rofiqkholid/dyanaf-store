@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/pilih-layanan', [ServiceController::class, 'index'])->name('list-jasa');
+Route::get('/list-jasa', [ServiceController::class, 'index'])->name('list-jasa');
 
 // Service Detail Pages - Dynamic (using database)
 Route::get('/order/{slug}', [ServiceController::class, 'show'])->name('order.show');
