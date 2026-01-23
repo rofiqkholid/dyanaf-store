@@ -52,22 +52,32 @@
                 <div id="gopay-content" class="hidden">
                     <!-- Desktop: Show QR Code -->
                     <div id="gopay-qr-section" class="bg-white border border-gray-200 p-6 text-center">
-                        <div class="mb-4">
-                            <p class="text-lg font-bold text-[#2b3a4b] mb-2">Scan dengan Aplikasi GoPay/Gojek</p>
-                            <p class="text-sm text-gray-600">Gunakan aplikasi Gojek atau GoPay untuk scan</p>
+                        <!-- Countdown Timer -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                            <p class="text-xs text-gray-500 mb-2 text-center">QR Code berlaku dalam</p>
+                            <div class="flex items-center justify-center gap-2">
+                                <i class="fas fa-clock text-lg text-[#2b3a4b]"></i>
+                                <p id="gopay-countdown" class="text-2xl font-bold font-mono text-[#2b3a4b]">15:00</p>
+                            </div>
                         </div>
 
-                        <div class="flex justify-center mb-6">
-                            <div class="p-4 bg-white border-4 border-[#2b3a4b] inline-block rounded-lg">
+                        <div class="mb-4">
+                            <p class="text-lg font-bold text-[#2b3a4b] mb-2">Scan dengan Aplikasi GoPay/Gojek</p>
+                            <p class="text-sm text-gray-600">Khusus untuk pembayaran via <strong>GoPay</strong>. Gunakan aplikasi Gojek atau GoPay.</p>
+                        </div>
+
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 bg-white border-4 border-[#00AA13] inline-block rounded-lg">
                                 <img id="gopay-qr-image" src="" alt="GoPay QR Code" class="w-64 h-64">
                             </div>
                         </div>
 
-                        <div class="bg-gray-50 border border-gray-200 p-4 mb-4">
-                            <div class="flex items-center justify-center gap-2 text-[#2b3a4b]">
-                                <i class="fas fa-clock"></i>
-                                <p class="text-sm font-medium">QR Code berlaku selama <strong>15 menit</strong></p>
-                            </div>
+                        <!-- Download Button -->
+                        <div class="mb-4">
+                            <button type="button" onclick="downloadGopayQr()" class="inline-flex items-center gap-2 px-6 py-3 bg-[#00AA13] text-white rounded-lg hover:bg-[#008f10] transition-all cursor-pointer">
+                                <i class="fas fa-download"></i>
+                                <span class="font-medium">Download QR Code</span>
+                            </button>
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 p-4">
@@ -222,6 +232,10 @@
                         document.getElementById('gopay-qr-section').classList.remove('hidden');
                         document.getElementById('gopay-deeplink-section').classList.add('hidden');
                         document.getElementById('gopay-qr-image').src = data.qr_code_url;
+                        gopayData.qrCodeUrl = data.qr_code_url; // Save for download
+
+                        // Start countdown timer (15 minutes)
+                        startGopayCountdown(15 * 60);
                     }
 
                     // Start checking payment status
@@ -345,9 +359,63 @@ Mohon segera diproses. Terima kasih!`;
             document.body.style.width = '';
             window.scrollTo(0, gopayScrollPosition);
 
+            // Stop countdown
+            stopGopayCountdown();
+
             // Clear data
             gopayData.orderId = null;
+            gopayData.qrCodeUrl = null;
             gopayData.paymentSuccess = false;
         }, 300);
+    }
+
+    // GoPay Countdown timer variables
+    let gopayCountdownInterval = null;
+    let gopayCountdownSeconds = 0;
+
+    function startGopayCountdown(seconds) {
+        gopayCountdownSeconds = seconds;
+        updateGopayCountdownDisplay();
+
+        gopayCountdownInterval = setInterval(() => {
+            gopayCountdownSeconds--;
+            updateGopayCountdownDisplay();
+
+            if (gopayCountdownSeconds <= 0) {
+                stopGopayCountdown();
+                document.getElementById('gopay-countdown').textContent = '00:00';
+                if (typeof showToast === 'function') {
+                    showToast('QR Code telah kedaluwarsa. Silakan buat ulang.', 'warning');
+                }
+            }
+        }, 1000);
+    }
+
+    function updateGopayCountdownDisplay() {
+        const minutes = Math.floor(gopayCountdownSeconds / 60);
+        const seconds = gopayCountdownSeconds % 60;
+        const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById('gopay-countdown').textContent = display;
+    }
+
+    function stopGopayCountdown() {
+        if (gopayCountdownInterval) {
+            clearInterval(gopayCountdownInterval);
+            gopayCountdownInterval = null;
+        }
+        document.getElementById('gopay-countdown').textContent = '15:00';
+    }
+
+    function downloadGopayQr() {
+        if (!gopayData.qrCodeUrl) {
+            if (typeof showToast === 'function') {
+                showToast('QR Code tidak tersedia', 'error');
+            }
+            return;
+        }
+        window.open(gopayData.qrCodeUrl, '_blank');
+        if (typeof showToast === 'function') {
+            showToast('QR Code dibuka di tab baru. Klik kanan untuk menyimpan.', 'info');
+        }
     }
 </script>

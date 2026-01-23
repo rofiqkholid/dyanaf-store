@@ -51,22 +51,32 @@
                 <!-- QR Code Display -->
                 <div id="qris-content" class="hidden">
                     <div class="bg-white border border-gray-200 p-6 text-center">
+                        <!-- Countdown Timer -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                            <p class="text-xs text-gray-500 mb-2 text-center">QR Code berlaku dalam</p>
+                            <div class="flex items-center justify-center gap-2">
+                                <i class="fas fa-clock text-lg text-[#2b3a4b]"></i>
+                                <p id="qris-countdown" class="text-2xl font-bold font-mono text-[#2b3a4b]">15:00</p>
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <p class="text-lg font-bold text-[#2b3a4b] mb-2">Scan QR Code</p>
                             <p class="text-sm text-gray-600">Gunakan aplikasi e-wallet (GoPay, OVO, Dana, ShopeePay, dll)</p>
                         </div>
 
-                        <div class="flex justify-center mb-6">
+                        <div class="flex justify-center mb-4">
                             <div class="p-4 bg-white border border-gray-200 inline-block">
                                 <img id="qris-qr-image" src="" alt="QRIS Code" class="w-64 h-64">
                             </div>
                         </div>
 
-                        <div class="bg-gray-50 border border-gray-200 p-4 mb-4">
-                            <div class="flex items-center justify-center gap-2 text-[#2b3a4b]">
-                                <i class="fas fa-clock"></i>
-                                <p class="text-sm font-medium">QR Code berlaku selama <strong>15 menit</strong></p>
-                            </div>
+                        <!-- Download QRIS Button -->
+                        <div class="mb-4">
+                            <button type="button" onclick="downloadQrisImage()" class="inline-flex items-center gap-2 px-6 py-3 bg-[#2b3a4b] text-white rounded-lg hover:bg-[#1e2a36] transition-all cursor-pointer">
+                                <i class="fas fa-download"></i>
+                                <span class="font-medium">Download QR Code</span>
+                            </button>
                         </div>
 
                         <div class="bg-gray-50 border border-gray-200 p-4">
@@ -202,11 +212,15 @@
 
                 if (data.success && data.qr_code_url) {
                     qrisData.orderId = data.order_id;
+                    qrisData.qrCodeUrl = data.qr_code_url; // Save for download
 
                     // Hide loading, show QR code
                     document.getElementById('qris-loading').classList.add('hidden');
                     document.getElementById('qris-content').classList.remove('hidden');
                     document.getElementById('qris-qr-image').src = data.qr_code_url;
+
+                    // Start countdown timer (15 minutes)
+                    startCountdown(15 * 60);
 
                     // Start checking payment status
                     startStatusChecking();
@@ -326,9 +340,74 @@ Mohon segera diproses. Terima kasih!`;
             document.body.style.width = '';
             window.scrollTo(0, qrisScrollPosition);
 
+            // Stop countdown
+            stopCountdown();
+
             // Clear data for fresh start next time
             qrisData.orderId = null;
+            qrisData.qrCodeUrl = null;
             qrisData.paymentSuccess = false;
         }, 300);
+    }
+
+    // Countdown timer variables
+    let countdownInterval = null;
+    let countdownSeconds = 0;
+
+    function startCountdown(seconds) {
+        countdownSeconds = seconds;
+        updateCountdownDisplay();
+
+        countdownInterval = setInterval(() => {
+            countdownSeconds--;
+            updateCountdownDisplay();
+
+            if (countdownSeconds <= 0) {
+                stopCountdown();
+                // QR Code expired
+                document.getElementById('qris-countdown').textContent = '00:00';
+                if (typeof showToast === 'function') {
+                    showToast('QR Code telah kedaluwarsa. Silakan buat ulang.', 'warning');
+                }
+            }
+        }, 1000);
+    }
+
+    function updateCountdownDisplay() {
+        const minutes = Math.floor(countdownSeconds / 60);
+        const seconds = countdownSeconds % 60;
+        const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById('qris-countdown').textContent = display;
+    }
+
+    function stopCountdown() {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+        // Reset countdown display
+        document.getElementById('qris-countdown').textContent = '15:00';
+    }
+
+    function downloadQrisImage() {
+        if (!qrisData.qrCodeUrl) {
+            if (typeof showToast === 'function') {
+                showToast('QR Code tidak tersedia', 'error');
+            }
+            return;
+        }
+
+        // Create a temporary link to download the image
+        const link = document.createElement('a');
+        link.href = qrisData.qrCodeUrl;
+        link.download = `QRIS_${qrisData.orderId || 'payment'}.png`;
+        link.target = '_blank';
+
+        // For cross-origin images, open in new tab
+        window.open(qrisData.qrCodeUrl, '_blank');
+
+        if (typeof showToast === 'function') {
+            showToast('QR Code dibuka di tab baru. Klik kanan untuk menyimpan.', 'info');
+        }
     }
 </script>
