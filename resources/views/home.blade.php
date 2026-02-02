@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 599.000/bulan')
+@section('title', 'Jasa Pembuatan Website Murah Mulai dari Rp 599.000')
 
 @section('content')
 <section id="home" class="relative min-h-screen flex items-start lg:items-center pt-40 lg:pt-20 pb-10 overflow-hidden">
@@ -20,7 +20,7 @@
                 </h1>
 
                 <p class="text-lg text-white/85 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                    Jasa pembuatan website murah mulai dari Rp 599.000/bulan. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja dengan pengerjaan cepat dan berkualitas.
+                    Jasa pembuatan website murah mulai dari Rp 599.000. Layanan joki tugas, desain grafis, CV profesional, dan surat lamaran kerja dengan pengerjaan cepat dan berkualitas.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 ">
